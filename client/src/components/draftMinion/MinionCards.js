@@ -1,31 +1,11 @@
 import React, { Component } from "react";
 import './draftMinion.css';
-import API from "../../utils/API";
 
+class MinionCards extends Component {
 
-class DraftMinion extends Component {
-    
-    state = {
-        minions: []
-    };
+return(){
 
-    componentDidMount() {
-        this.loadMinions();
-      };
-
-    loadMinions = () => {
-        API.getMinions()
-          .then(res =>
-            this.setState({ minions: res.data})
-          )
-          .catch(err => console.log(err));
-      };
-
-
-    render() {
-    return(
-    this.state.minions.map(minion => (
-        <div className= "minionCard">
+<div className= "minionCard">
         <h3 className="MinionName">{minion.name || "Minion"}</h3>
         <p className="minionHealth">{minion.health || 2}</p>
         <p className="minionAttack1">{minion.attack1 || "Ability 1"}</p>
@@ -37,8 +17,5 @@ class DraftMinion extends Component {
         <p className="minionStrength">{minion.strength}</p>
         <img className= "minionPortrait" src={minion.image} alt=""></img>
     </div>
-    )
-    ))
-    }}
 
-  export default DraftMinion;
+}}
