@@ -88,3 +88,24 @@
     background:#968E86;
     
   }
+   /* The Minions Strength Orb */
+    .minionStrength {
+      position:absolute;
+      padding: 12px 16px;
+      background: white;
+      border: 4px solid #968E86;
+      border-radius:100%;
+      bottom: -25px;
+      right: 50px;
+    }
+
+    /* The Minions Weakness Orb */
+    .minionWeakness {
+      position:absolute;
+      padding: 12px 16px;
+      background: white;
+      border: 4px solid #968E86;
+      border-radius:100%;
+      bottom: -25px;
+      left: 50px;
+    } 
