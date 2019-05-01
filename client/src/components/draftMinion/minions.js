@@ -25,7 +25,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "water",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/Arcanine.jpg"
     },
     {
       "Name": "Articuno",
@@ -39,7 +39,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "fire",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/Articuno.jpg"
     },
     {
       "Name": "Chansey",
@@ -53,7 +53,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "none",
       "StrongAgainst": "none",
-      "Img": ""
+      "Img": "../images/Chansey.jpg"
     },
     {
       "Name": "Flareon",
@@ -67,7 +67,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "water",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/Flareon.jpg"
     },
     {
       "Name": "Gengar",
@@ -81,7 +81,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "ghost",
       "StrongAgainst": "psychic",
-      "Img": ""
+      "Img": "../images/Gengar.png"
     },
     {
       "Name": "Gyarados",
@@ -95,7 +95,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "grass",
       "StrongAgainst": "fire",
-      "Img": ""
+      "Img": "../images/gyrarados.jpeg"
     },
     {
       "Name": "Jolteon",
@@ -109,7 +109,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "ground",
       "StrongAgainst": "water",
-      "Img": ""
+      "Img": "../images/Jolteon.jpg"
     },
     {
       "Name": "Lapras",
@@ -123,7 +123,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "grass",
       "StrongAgainst": "fire",
-      "Img": ""
+      "Img": "../images/Lapras.png"
     },
     {
       "Name": "Machamp",
@@ -137,7 +137,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "psychic",
       "StrongAgainst": "ice",
-      "Img": ""
+      "Img": "../images/machamp.jpg"
     },
     {
       "Name": "Marowak",
@@ -151,7 +151,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "water",
       "StrongAgainst": "fire",
-      "Img": ""
+      "Img": "../images/Marowak.jpg"
     },
     {
       "Name": "Moltres",
@@ -165,7 +165,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "ice",
       "StrongAgainst": "fighting",
-      "Img": ""
+      "Img": "../images/Moltres.jpg"
     },
     {
       "Name": "Nidoqueen",
@@ -179,7 +179,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "psychic",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/nidoqueen.jpg"
     },
     {
       "Name": "Ninetails",
@@ -193,7 +193,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "water",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/Ninetails.png"
     },
     {
       "Name": "Poliwhirl",
@@ -207,7 +207,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "electric",
       "StrongAgainst": "fire",
-      "Img": ""
+      "Img": "../images/Poliwhirl.jpg"
     },
     {
       "Name": "Rapidash",
@@ -221,7 +221,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "water",
       "StrongAgainst": "grass",
-      "Img": ""
+      "Img": "../images/Rapidash.jpg"
     },
     {
       "Name": "Snorlax",
@@ -235,7 +235,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "none",
       "StrongAgainst": "none",
-      "Img": ""
+      "Img": "../images/Snorlax.jpg"
     },
     {
       "Name": "Vaporeon",
@@ -249,7 +249,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "grass",
       "StrongAgainst": "fire",
-      "Img": ""
+      "Img": "../images/vaporeon.jpg"
     },
     {
       "Name": "Zapdos",
@@ -263,7 +263,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "ground",
       "StrongAgainst": "water",
-      "Img": ""
+      "Img": "../images/Zapdos.jpg"
     }
   ]
 
