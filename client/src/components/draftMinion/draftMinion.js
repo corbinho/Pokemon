@@ -38,7 +38,8 @@ class DraftMinion extends Component {
         <img className= "minionPortrait" src={minion.image} alt=""></img>
     </div>
     )
-    ))
+    )
+    )
     }}
 
   export default DraftMinion;
