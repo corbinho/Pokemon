@@ -3,6 +3,7 @@ import './draftMinion.css';
 import API from "../../utils/API";
 import minionsList from "./minions"
 
+
 class DraftMinion extends Component {
     
     state = {

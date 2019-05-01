@@ -11,7 +11,7 @@ var minionsList = [
       "Health": 20,
       "WeakAgainst": "dark",
       "StrongAgainst": "fighting",
-      "Img": ""
+      "Img": "../images/Alakazam.png"
     },
     {
       "Name": "Arcanine",
