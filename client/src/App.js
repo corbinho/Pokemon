@@ -7,14 +7,15 @@ import DraftMinion from "./components/draftMinion/draftMinion";
 class App extends Component {
   render() {
     return (
-      <Router>
-      <div>
-        <Switch>
-          <Route exact path="/api/minion" component={DraftMinion} />
+    //   <Router>
+    //   <div>
+    //     <Switch>
+    //       <Route exact path="/api/minion" component={DraftMinion} />
           
-        </Switch>
-      </div>
-    </Router>
+    //     </Switch>
+    //   </div>
+    // </Router>
+    <DraftMinion></DraftMinion>
     );
   }
 }
