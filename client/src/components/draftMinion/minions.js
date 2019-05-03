@@ -1,21 +1,21 @@
 var minionsList = [
     {
       "Name": "Alakazam",
-      "Type": "psychic",
+      "Type": "../images/psychicOrb.png",
       "Attack1Name": "Psychic",
       "Attack1Power": 6,
       "Attack1Cost": 9,
-      "Attack2Name": "Dream Eater",
+      "Attack2Name": "Blast",
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "dark",
-      "StrongAgainst": "fighting",
+      "WeakAgainstImg": "../images/darkOrb.png",
+      "StrongAgainstImg": "../images/fightingOrb.png",
       "Img": "../images/Alakazam.png"
     },
     {
       "Name": "Arcanine",
-      "Type": "fire",
+      "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -23,13 +23,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "water",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/waterOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/Arcanine.jpg"
     },
     {
       "Name": "Articuno",
-      "Type": "ice",
+      "Type": "../images/iceOrb.png",
       "Attack1Name": "Sky Attack",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -37,8 +37,8 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "fire",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/fireOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/Articuno.jpg"
     },
     {
@@ -51,13 +51,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "none",
-      "StrongAgainst": "none",
+      "WeakAgainstImg": "none",
+      "StrongAgainstImg": "none",
       "Img": "../images/Chansey.jpg"
     },
     {
       "Name": "Flareon",
-      "Type": "fire",
+      "Type": "../images/fireOrb.png",
       "Attack1Name": "Flare Blitz",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -65,13 +65,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "water",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/waterOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/Flareon.jpg"
     },
     {
       "Name": "Gengar",
-      "Type": "ghost",
+      "Type": "../images/ghostOrb.png",
       "Attack1Name": "Dream Eater",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -79,13 +79,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "ghost",
-      "StrongAgainst": "psychic",
+      "WeakAgainstImg": "../images/ghostOrb.png",
+      "StrongAgainstImg": "../images/psychicOrb.png",
       "Img": "../images/Gengar.png"
     },
     {
       "Name": "Gyarados",
-      "Type": "water",
+      "Type": "../images/waterOrb.png",
       "Attack1Name": "Ice Beam",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -93,13 +93,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "grass",
-      "StrongAgainst": "fire",
+      "WeakAgainstImg": "../images/grassOrb.png",
+      "StrongAgainstImg": "../images/fireOrb.png",
       "Img": "../images/gyrarados.jpeg"
     },
     {
       "Name": "Jolteon",
-      "Type": "electric",
+      "Type": "../images/electricOrb.png",
       "Attack1Name": "Thunder",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -107,13 +107,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "ground",
-      "StrongAgainst": "water",
+      "WeakAgainstImg": "../images/groundOrb.png",
+      "StrongAgainstImg": "../images/waterOrb.png",
       "Img": "../images/Jolteon.jpg"
     },
     {
       "Name": "Lapras",
-      "Type": "water",
+      "Type": "../images/waterOrb.png",
       "Attack1Name": "Megahorn",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -121,13 +121,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "grass",
-      "StrongAgainst": "fire",
+      "WeakAgainstImg": "../images/grassOrb.png",
+      "StrongAgainstImg": "../images/fireOrb.png",
       "Img": "../images/Lapras.png"
     },
     {
       "Name": "Machamp",
-      "Type": "fighting",
+      "Type": "../images/fightingOrb.png",
       "Attack1Name": "Bulk Up",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -135,13 +135,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "psychic",
-      "StrongAgainst": "ice",
+      "WeakAgainstImg": "../images/psychicOrb.png",
+      "StrongAgainstImg": "../images/iceOrb.png",
       "Img": "../images/machamp.jpg"
     },
     {
       "Name": "Marowak",
-      "Type": "ground",
+      "Type": "../images/groundOrb.png",
       "Attack1Name": "Bonemerang",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -149,8 +149,8 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "water",
-      "StrongAgainst": "fire",
+      "WeakAgainstImg": "../images/waterOrb.png",
+      "StrongAgainstImg": "../images/fireOrb.png",
       "Img": "../images/Marowak.jpg"
     },
     {
@@ -163,8 +163,8 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "ice",
-      "StrongAgainst": "fighting",
+      "WeakAgainstImg": "../images/iceOrb.png",
+      "StrongAgainstImg": "../images/fightingOrb.png",
       "Img": "../images/Moltres.jpg"
     },
     {
@@ -177,13 +177,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "psychic",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/psychicOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/nidoqueen.jpg"
     },
     {
       "Name": "Ninetails",
-      "Type": "fire",
+      "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -191,13 +191,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "water",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/waterOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/Ninetails.png"
     },
     {
       "Name": "Poliwhirl",
-      "Type": "water",
+      "Type": "../images/waterOrb.png",
       "Attack1Name": "Hydro Pump",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -205,13 +205,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "electric",
-      "StrongAgainst": "fire",
+      "WeakAgainstImg": "../images/electricOrb.png",
+      "StrongAgainstImg": "../images/fireOrb.png",
       "Img": "../images/Poliwhirl.jpg"
     },
     {
       "Name": "Rapidash",
-      "Type": "fire",
+      "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -219,8 +219,8 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "water",
-      "StrongAgainst": "grass",
+      "WeakAgainstImg": "../images/waterOrb.png",
+      "StrongAgainstImg": "../images/grassOrb.png",
       "Img": "../images/Rapidash.jpg"
     },
     {
@@ -233,13 +233,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "none",
-      "StrongAgainst": "none",
+      "WeakAgainstImg": "none",
+      "StrongAgainstImg": "none",
       "Img": "../images/Snorlax.jpg"
     },
     {
       "Name": "Vaporeon",
-      "Type": "water",
+      "Type": "../images/waterOrb.png",
       "Attack1Name": "Surf",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -247,13 +247,13 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "grass",
-      "StrongAgainst": "fire",
+      "WeakAgainstImg": "../images/grassOrb.png",
+      "StrongAgainstImg": "../images/fireOrb.png",
       "Img": "../images/vaporeon.jpg"
     },
     {
       "Name": "Zapdos",
-      "Type": "electric",
+      "Type": "../images/electricOrb.png",
       "Attack1Name": "Sky Attack",
       "Attack1Power": 6,
       "Attack1Cost": 9,
@@ -261,8 +261,8 @@ var minionsList = [
       "Attack2Power": 9,
       "Attack2Cost": 13,
       "Health": 20,
-      "WeakAgainst": "ground",
-      "StrongAgainst": "water",
+      "WeakAgainstImg": "../images/groundOrb.png",
+      "StrongAgainstImg": "../images/waterOrb.png",
       "Img": "../images/Zapdos.jpg"
     }
   ]
