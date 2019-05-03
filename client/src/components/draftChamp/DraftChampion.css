@@ -17,6 +17,18 @@
     margin-top:8vh;
   }
 
+  .championCard:hover {
+    background: #6e5c4f;
+  }
+  
+  .background {
+    background-color:black;
+  }
+  .container {
+    background-color:green;
+    height:100vh;
+  }
+
   /* The Champion's Name Banner */
 .championName {
     position: absolute;

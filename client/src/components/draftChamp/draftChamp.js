@@ -19,7 +19,11 @@ class DraftChamp extends Component {
 
   render() {
     return(
-    this.state.champions.map((champion) => (
+
+<div className="container">
+
+  <div className="background">
+    {this.state.champions.map((champion) => (
         <div className= "championCard" id= {champion.id} key={champion.id} onClick={() => this.selectChampion(champion.id)}>
 
         <h3 className="championName">{champion.name || "champion"}</h3>
@@ -29,9 +33,10 @@ class DraftChamp extends Component {
         <img className="championWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
         <img className="championStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
         <img className= "championPortrait" src={champion.Img} alt=""></img>
-      </div> 
+    </div> 
     )
-    )
+    )}</div>
+    </div>
     )
     }
 }
