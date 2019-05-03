@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './draftMinion.css';
 import minionsList from "./minions"
+import DraftChamp from "../draftChamp/draftChamp";
 
 
 class DraftMinion extends Component {
@@ -44,7 +45,9 @@ class DraftMinion extends Component {
         <img className="minionWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
         <img className="minionStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
         <img className= "minionPortrait" src={minion.Img} alt=""></img>
+        
       </div>
+
     )
     )
     )

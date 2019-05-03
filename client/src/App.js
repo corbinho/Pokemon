@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import DraftMinion from "./components/draftMinion/draftMinion";
+import DraftChamp from "./components/draftChamp/draftChamp"
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
     //     </Switch>
     //   </div>
     // </Router>
-    <DraftMinion></DraftMinion>
+      <DraftChamp></DraftChamp>
     );
   }
 }
