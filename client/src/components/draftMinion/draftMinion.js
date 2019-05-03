@@ -1,35 +1,29 @@
 import React, { Component } from "react";
 import './draftMinion.css';
-import API from "../../utils/API";
 import minionsList from "./minions"
 
 
 class DraftMinion extends Component {
     
     state = {
-        minions: minionsList.minionsList
+        minions: minionsList.minionsList,
+        player1deck: [],
+        player2deck: []
     };
 
-    // componentDidMount() {
-    //     this.loadMinions();
-    //   };
-
-    // loadMinions = () => {
-    //     API.getMinions()
-    //       .then(res =>
-    //         this.setState({ minions: res.data})
-    //       )
-    //       .catch(err => console.log(err));
-    //   };
-
+    
     selectMinion = index => {
-      
+      let selectedMinion = [...this.state.minions]
+      this.setState({
+        player1deck: [...this.state.player1deck, selectedMinion[index]]
+      })
+      console.log(this.state.player1deck)
     }
 
     render() {
     return(
-    this.state.minions.map((minion,index) => (
-        <div className= "minionCard">
+    this.state.minions.map((minion) => (
+        <div className= "minionCard" id= {minion.id} key={minion.id} onClick={() => this.selectMinion(minion.id)}>
 
         <h3 className="MinionName">{minion.Name || "Minion"}</h3>
         <p className="minionHealth">{minion.Health || 2}</p>

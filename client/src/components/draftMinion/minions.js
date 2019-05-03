@@ -1,5 +1,6 @@
 var minionsList = [
     {
+      "id": "0",
       "Name": "Alakazam",
       "Type": "../images/psychicOrb.png",
       "Attack1Name": "Psychic",
@@ -14,6 +15,7 @@ var minionsList = [
       "Img": "../images/Alakazam.png"
     },
     {
+      "id": "1",
       "Name": "Arcanine",
       "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
@@ -28,6 +30,7 @@ var minionsList = [
       "Img": "../images/Arcanine.jpg"
     },
     {
+      "id": "2",
       "Name": "Articuno",
       "Type": "../images/iceOrb.png",
       "Attack1Name": "Sky Attack",
@@ -42,6 +45,7 @@ var minionsList = [
       "Img": "../images/Articuno.jpg"
     },
     {
+      "id": "3",
       "Name": "Chansey",
       "Type": "normal",
       "Attack1Name": "Hyper Beam",
@@ -56,6 +60,7 @@ var minionsList = [
       "Img": "../images/Chansey.jpg"
     },
     {
+      "id": "4",
       "Name": "Flareon",
       "Type": "../images/fireOrb.png",
       "Attack1Name": "Flare Blitz",
@@ -70,6 +75,7 @@ var minionsList = [
       "Img": "../images/Flareon.jpg"
     },
     {
+      "id": "5",
       "Name": "Gengar",
       "Type": "../images/ghostOrb.png",
       "Attack1Name": "Dream Eater",
@@ -84,6 +90,7 @@ var minionsList = [
       "Img": "../images/Gengar.png"
     },
     {
+      "id": "6",
       "Name": "Gyarados",
       "Type": "../images/waterOrb.png",
       "Attack1Name": "Ice Beam",
@@ -98,6 +105,7 @@ var minionsList = [
       "Img": "../images/gyrarados.jpeg"
     },
     {
+      "id": "7",
       "Name": "Jolteon",
       "Type": "../images/electricOrb.png",
       "Attack1Name": "Thunder",
@@ -112,6 +120,7 @@ var minionsList = [
       "Img": "../images/Jolteon.jpg"
     },
     {
+      "id": "8",
       "Name": "Lapras",
       "Type": "../images/waterOrb.png",
       "Attack1Name": "Megahorn",
@@ -126,6 +135,7 @@ var minionsList = [
       "Img": "../images/Lapras.png"
     },
     {
+      "id": "9",
       "Name": "Machamp",
       "Type": "../images/fightingOrb.png",
       "Attack1Name": "Bulk Up",
@@ -140,6 +150,7 @@ var minionsList = [
       "Img": "../images/machamp.jpg"
     },
     {
+      "id": "10",
       "Name": "Marowak",
       "Type": "../images/groundOrb.png",
       "Attack1Name": "Bonemerang",
@@ -154,6 +165,7 @@ var minionsList = [
       "Img": "../images/Marowak.jpg"
     },
     {
+      "id": "11",
       "Name": "Moltres",
       "Type": "flying",
       "Attack1Name": "Sky Attack",
@@ -168,6 +180,7 @@ var minionsList = [
       "Img": "../images/Moltres.jpg"
     },
     {
+      "id": "12",
       "Name": "Nidoqueen",
       "Type": "poison",
       "Attack1Name": "Sludge Bomb",
@@ -182,6 +195,7 @@ var minionsList = [
       "Img": "../images/nidoqueen.jpg"
     },
     {
+      "id": "13",
       "Name": "Ninetails",
       "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
@@ -196,6 +210,7 @@ var minionsList = [
       "Img": "../images/Ninetails.png"
     },
     {
+      "id": "14",
       "Name": "Poliwhirl",
       "Type": "../images/waterOrb.png",
       "Attack1Name": "Hydro Pump",
@@ -210,6 +225,7 @@ var minionsList = [
       "Img": "../images/Poliwhirl.jpg"
     },
     {
+      "id": "15",
       "Name": "Rapidash",
       "Type": "../images/fireOrb.png",
       "Attack1Name": "Fire Blast",
@@ -224,6 +240,7 @@ var minionsList = [
       "Img": "../images/Rapidash.jpg"
     },
     {
+      "id": "16",
       "Name": "Snorlax",
       "Type": "normal",
       "Attack1Name": "Pay Day",
@@ -238,6 +255,7 @@ var minionsList = [
       "Img": "../images/Snorlax.jpg"
     },
     {
+      "id": "17",
       "Name": "Vaporeon",
       "Type": "../images/waterOrb.png",
       "Attack1Name": "Surf",
@@ -252,6 +270,7 @@ var minionsList = [
       "Img": "../images/vaporeon.jpg"
     },
     {
+      "id": "18",
       "Name": "Zapdos",
       "Type": "../images/electricOrb.png",
       "Attack1Name": "Sky Attack",
