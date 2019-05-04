@@ -36,8 +36,8 @@ class DraftChamp extends Component {
   }
 
   id2List = {
-    droppable: 'champions'
-    // droppable2: 'player1champion'
+    droppable: 'champions',
+    droppable2: 'player1champion'
   };
 
   getList = id => this.state[this.id2List[id]];
@@ -59,9 +59,9 @@ class DraftChamp extends Component {
 
       let state = { items };
 
-      // if (source.droppableId === 'droppable2') {
-      //   state = { selected: items };
-      // }
+      if (source.droppableId === 'droppable2') {
+        state = { selected: items };
+      }
 
       this.setState(state);
     } else {
@@ -74,7 +74,7 @@ class DraftChamp extends Component {
 
       this.setState({
         items: result.droppable,
-        // selected: result.droppable2
+        selected: result.droppable2
       });
     }
   };
@@ -96,9 +96,10 @@ class DraftChamp extends Component {
         </div>
         <div className="row2">
           <DragDropContext onDragEnd={this.onDragEnd}>
+          
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
-                <div className="dragabbleArea">
+                
                 <div className="championContainer" ref={provided.innerRef}>
 
                   {this.state.champions.map((champion) => (
@@ -126,20 +127,51 @@ class DraftChamp extends Component {
                   ))}
                   {provided.placeholder}
                 </div>
-                <div className = "chosenChampion">
-                        <h3 className="chosenText">Chosen Champion</h3>
-
-                </div>
-                </div>
-
               )
               }
-
-
             </Droppable>
+            <Droppable droppableId="droppable2">
+              {(provided, snapshot) => (
+                <div
+                  ref={provided.innerRef} className="chosenChampion">
+                  <h3 className = "chosenText">Chosen Champion</h3>
+                    {this.state.player1champion.map((p1champion, index) => (
+                      <Draggable
+                        key={p1champion.id}
+                        draggableId={p1champion.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+
+                            className="championCard" id={p1champion.id} key={p1champion.id}>
+
+                            <h3 className="championName">{p1champion.name || "champion"}</h3>
+                            <p className="championHealth">{p1champion.Health || 2}</p>
+
+                            <p className="championCost">{p1champion.playCost || 6}</p>
+                            <img className="championWeakness" src={p1champion.WeakAgainst} alt="" width="42" height="1"></img>
+                            <img className="championStrength" src={p1champion.StrongAgainst} alt="" width="5" height="1"></img>
+                            <img className="championPortrait" src={p1champion.Img} alt=""></img>
+
+                          </div>
+
+                        )}
+                      </Draggable>
+                    ))}
+                  {provided.placeholder}
+                  </div>
+               
+              )}
+            </Droppable>
+          
           </DragDropContext>
         </div>
       </div>
+      
     )
   }
 }
