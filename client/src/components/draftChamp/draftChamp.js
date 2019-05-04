@@ -92,7 +92,7 @@ class DraftChamp extends Component {
 
       <div className="container">
         <div className="championHeader">
-          <h1>Choose a champion</h1>
+          <h1 className="headerText">Choose your champion</h1>
         </div>
         <div className="row2">
           <DragDropContext onDragEnd={this.onDragEnd}>
@@ -116,7 +116,7 @@ class DraftChamp extends Component {
                           <h3 className="championName">{champion.name || "champion"}</h3>
                           <p className="championHealth">{champion.Health || 2}</p>
 
-                          <p className="championCost">{champion.playCost || 6}</p>
+                          <img className="championCost" src={champion.type} alt="" width="42" height="42"></img>
                           <img className="championWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
                           <img className="championStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
                           <img className="championPortrait" src={champion.Img} alt=""></img>
@@ -127,6 +127,8 @@ class DraftChamp extends Component {
                   {provided.placeholder}
                 </div>
                 <div className = "chosenChampion">
+                        <h3 className="chosenText">Chosen Champion</h3>
+
                 </div>
                 </div>
 

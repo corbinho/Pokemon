@@ -15,7 +15,7 @@
   transform: scale(0.8);
 
     /* Remove this margin! only for testing */
-  margin-left:1vh;
+  
   margin-top:8vh;
 }
 
@@ -60,25 +60,23 @@
 /* The Champion's Play Cost Orb */
 .championCost {
   position:absolute;
-  padding: 2.5vh 3vh;
-  background: #4681ee;
+  background: #968E86;
   border: 4px solid #968E86;
   border-radius:100%;
-  bottom: -5vh;
-  left: -3vh;
-  font-size:15px;
+  bottom: -8%;
+  left: -10%;
   color:white;
   }
 
   /* The Champion's Health Orb */
   .championHealth {
   position:absolute;
-  padding: 2.5vh 3vh;
+  padding: 2.5vh 2.5vh;
   background: #bc3328;
   border: 4px solid #968E86;
   border-radius:100%;
-  bottom: -5vh;
-  right: -3vh;
+  bottom: -14%;
+  right: -10%;
   color:white;
   }    
 
@@ -89,7 +87,7 @@
   border: 2px solid #968E86;
   border-radius:100%;
   bottom: -3vh;
-  right: 9vh;
+  right: 50%;
   width: 6vh;
   height: 6vh;
   background-size: cover;
@@ -105,7 +103,7 @@
   border: 2px solid #968E86;
   border-radius:100%;
   bottom: -3vh;
-  left: 9vh;
+  left: 50%;
   width: 6vh;
   height: 6vh;
   background-size: cover;
@@ -131,17 +129,30 @@
 
 /* Outer most container */
 .container {
+  background-image: url("chooseBackground.gif");
   background-color:rgb(110, 63, 0);
-  height:150vh;
+  background-repeat: no-repeat;
+  height:100%;
+  padding-top:.1%;
 }     
 
 
 .championHeader {
   text-align:center;
   background-color:rgb(207, 170, 89);
-  margin-left:8vw;
-  margin-right:8vw;
   border: 1vh rgb(163, 122, 61);
+  border-style: outset;
+  margin-left:30vw;
+  margin-right:30vw;
+  margin-top:10vh;
+  height:12vh;
+  
+}
+
+.headerText {
+  line-height:60%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size:200%;
 }
 
 .chosenChampion {
@@ -150,12 +161,18 @@
   background-color:rgb(207, 170, 89);
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
+  text-align:center;
   float:right;
   display:inline-flex;
   margin-right:1vw;
   margin-left:1vw;
 }
 
+.chosenText {
+  margin-left:16.3%;
+}
+
 .row2 {
   height:100vh;
+  margin-top:5vh;
 }

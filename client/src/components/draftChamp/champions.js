@@ -29,7 +29,7 @@ var championList = [
     {
       "id": "3",
       "name": "Mewtwo",
-      "type": "psychic",
+      "type": "../images/psychicOrb.png",
       "Health": 80,
       "WeakAgainst": "../images/darkOrb.png",
       "StrongAgainst": "../images/fightingOrb.png",
