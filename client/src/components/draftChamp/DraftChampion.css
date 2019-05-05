@@ -33,14 +33,15 @@
   background: #D4B48F;
   text-align: center;
   font-size: 3vh;
+  font-family:'ZCOOL KuaiLe', cursive;
   color: #ffffff;
   padding: 10px;
   box-sizing: border-box;
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5);
   z-index: 1;
   height:12%;
   border-radius:15%;
-  border-style: double;
+  border: 1px solid black;
   border: 2vh rgb(163, 122, 61);
   }
 
@@ -115,7 +116,14 @@
 /* ----------------------Draft Champion Phase CSS------------------- */
 
 .championContainer {
-  background-color:rgb(207, 170, 89);
+  background:
+radial-gradient(circle farthest-side at 0% 50%,rgb(207, 170, 89) 23.5%,rgba(240,166,17,0) 0)21px 30px,
+radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
+linear-gradient(rgb(207, 170, 89) 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(150deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(30deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(90deg,#B71 2%,rgb(207, 170, 89) 0,rgb(207, 170, 89) 98%,#B71 0%)0 0 rgb(207, 170, 89);
+background-size: 40px 60px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
   display:inline-flex;
@@ -123,7 +131,8 @@
   padding-right: 1vw;
   margin-left:1vw;
   height:65vh;
-  
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
+  border-radius:10%;
   
 }
 
@@ -139,37 +148,49 @@
 
 .championHeader {
   text-align:center;
-  background-color:rgb(207, 170, 89);
+  background-image: radial-gradient(circle, rgb(207, 170, 89), #cab09b, rgb(207, 170, 89));
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
+  border-radius:20%;
   margin-left:30vw;
   margin-right:30vw;
   margin-top:10vh;
   height:12vh;
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
   
 }
 
 .headerText {
   line-height:60%;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:'ZCOOL KuaiLe', cursive;
   font-size:200%;
 }
 
 .chosenChampion {
   height:65vh;
   width:20%;
-  background-color:rgb(207, 170, 89);
+  background:
+radial-gradient(circle farthest-side at 0% 50%,rgb(207, 170, 89) 23.5%,rgba(240,166,17,0) 0)21px 30px,
+radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
+linear-gradient(rgb(207, 170, 89) 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(150deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(30deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
+linear-gradient(90deg,#B71 2%,rgb(207, 170, 89) 0,rgb(207, 170, 89) 98%,#B71 0%)0 0 rgb(207, 170, 89);
+background-size: 40px 60px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
+  border-radius:10%;
   text-align:center;
   float:right;
   margin-right:1vw;
   margin-left:1vw;
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
 }
 
 .chosenText {
   height:10%;
   display:block;
+  font-family:'ZCOOL KuaiLe', cursive;
 }
 
 .row2 {
