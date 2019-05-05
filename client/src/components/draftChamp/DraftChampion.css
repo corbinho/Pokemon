@@ -163,13 +163,13 @@
   border-style: outset;
   text-align:center;
   float:right;
-  display:inline-flex;
   margin-right:1vw;
   margin-left:1vw;
 }
 
 .chosenText {
-  margin-left:16.3%;
+  height:10%;
+  display:block;
 }
 
 .row2 {
@@ -179,7 +179,7 @@
 
 .chosenChampionCard {
   transition: transform 0.15s;
-  position: relative;
+  position:relative;
   width: 35vh;
   height: 47vh;
   box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
@@ -190,7 +190,4 @@
   display:inline-flex;
   transform: scale(0.8);
 
-    /* Remove this margin! only for testing */
-  
-  margin-top:8vh;
 }
