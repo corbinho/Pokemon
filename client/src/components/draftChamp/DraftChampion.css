@@ -176,25 +176,3 @@
   height:100vh;
   margin-top:5vh;
 }
-
-.chosenChampionCard {
-  transition: transform 0.15s;
-  position: relative;
-  width: 35vh;
-  height: 47vh;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-  border-radius: 8px;
-  border: 1vh rgb(163, 122, 61);
-  border-style: outset;
-  background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
-  display:inline-flex;
-  transform: scale(0.8);
-
-    /* Remove this margin! only for testing */
-  
-  margin-top:8vh;
-}
-
-.chosenChampionCard:hover {
-  background: #6e5c4f;
-}
