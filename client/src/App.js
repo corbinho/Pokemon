@@ -16,7 +16,7 @@ class App extends Component {
     //     </Switch>
     //   </div>
     // </Router>
-      <DraftChamp></DraftChamp>
+      <DraftMinion></DraftMinion>
     );
   }
 }

@@ -123,7 +123,10 @@ class DraftChamp extends Component {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="championCard" id={champion.id} key={champion.id}>
+                          className="championCard" 
+                          id={champion.id} 
+                          key={champion.id}
+                          >
 
                           <h3 className="championName">{champion.name || "champion"}</h3>
                           <p className="championHealth">{champion.Health || 2}</p>
