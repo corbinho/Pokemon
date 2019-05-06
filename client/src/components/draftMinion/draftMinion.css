@@ -200,7 +200,6 @@
   }
   
   
-
   .chosenMinion {
     height:65vh;
     width:20%;
@@ -211,4 +210,18 @@
     float:right;
     margin-right:1vw;
     margin-left:1vw;
+    
+  }
+
+  .minionContainer {
+    background-color:rgb(207, 170, 89);
+    border: 1vh rgb(163, 122, 61);
+    border-style: outset;
+    display:inline-flex;
+    width:72%;
+    padding-right: 1vw;
+    margin-left:1vw;
+    height:65vh;
+    overflow: auto;
+    
   }
