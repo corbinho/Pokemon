@@ -200,18 +200,7 @@
   }
   
   
-  .chosenMinion {
-    height:65vh;
-    width:20%;
-    background-color:rgb(207, 170, 89);
-    border: 1vh rgb(163, 122, 61);
-    border-style: outset;
-    text-align:center;
-    float:right;
-    margin-right:1vw;
-    margin-left:1vw;
-    
-  }
+  
 
   .minionContainer {
     background-color:rgb(207, 170, 89);
@@ -222,6 +211,49 @@
     padding-right: 1vw;
     margin-left:1vw;
     height:65vh;
-    overflow: auto;
+    overflow: scroll
     
+  }
+
+
+
+  .minionHeader {
+    text-align:center;
+    background-color:rgb(207, 170, 89);
+    border: 1vh rgb(163, 122, 61);
+    border-style: outset;
+    margin-left:30vw;
+    margin-right:30vw;
+    margin-top:10vh;
+    height:12vh;
+    
+  }
+
+  .headerText {
+    line-height:60%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:200%;
+  }
+
+  .chosenMinion {
+    height:65vh;
+    width:20%;
+    background-color:rgb(207, 170, 89);
+    border: 1vh rgb(163, 122, 61);
+    border-style: outset;
+    text-align:center;
+    float:right;
+    margin-right:1vw;
+    margin-left:1vw;
+    overflow: scroll
+  }
+
+  .chosenText {
+    height:10%;
+    display:block;
+  }
+
+  .row2 {
+    height:100vh;
+    margin-top:5vh;
   }
