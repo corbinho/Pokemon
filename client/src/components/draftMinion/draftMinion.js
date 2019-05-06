@@ -178,9 +178,7 @@ class DraftMinion extends Component {
                           className="chosenMinionCard" id={p1deck.id} key={p1deck.id}
                         >
                           <h6 className="minionName">{p1deck.Name}</h6>
-                          <img className="minionType" src={p1deck.type} alt="" width="42" height="42"></img>
-                          <img className="minionWeakness" src={p1deck.WeakAgainst} alt="" width="42" height="1"></img>
-                          <img className="minionStrength" src={p1deck.StrongAgainst} alt="" width="5" height="1"></img>
+                          <img className="minionType" src={p1deck.Type} alt="" width="42" height="42"></img>
                         </div>
                       )}
                     </Draggable>
