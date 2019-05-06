@@ -106,6 +106,7 @@ class DraftMinion extends Component {
         <div className="container">
           <div className="minionHeader">
             <h1 className="headerText">Choose your minions</h1>
+            
           </div>
 
           <div className="row2">
@@ -115,7 +116,7 @@ class DraftMinion extends Component {
               {(provided) => (
 
                 <div className="minionContainer" ref={provided.innerRef}>
-
+                  
                   {this.state.minions.map((minion, index) => (
                     <Draggable
                       key={minion.id}
@@ -163,6 +164,7 @@ class DraftMinion extends Component {
                 <div
                   ref={provided.innerRef} className="chosenMinion">
                   <h3 className="chosenText">Chosen Minions</h3>
+                  <h6 className="chosenText">{this.state.player1deck.length}/9</h6>
                   {this.state.player1deck.map((p1deck, index) => (
                     <Draggable
                       key={p1deck.id}
