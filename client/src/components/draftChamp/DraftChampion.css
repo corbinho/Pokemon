@@ -6,17 +6,17 @@
   position: relative;
   width: 35vh;
   height: 47vh;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
   background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
-  display:inline-flex;
+  display: inline-flex;
   transform: scale(0.8);
 
-    /* Remove this margin! only for testing */
-  
-  margin-top:8vh;
+  /* Remove this margin! only for testing */
+
+  margin-top: 8vh;
 }
 
 .championCard:hover {
@@ -33,17 +33,17 @@
   background: #D4B48F;
   text-align: center;
   font-size: 3vh;
-  font-family:'ZCOOL KuaiLe', cursive;
+  font-family: 'ZCOOL KuaiLe', cursive;
   color: #ffffff;
   padding: 10px;
   box-sizing: border-box;
   text-shadow: 0px 0px 60px rgba(0, 0, 0, 0.5);
   z-index: 1;
-  height:12%;
-  border-radius:15%;
+  height: 12%;
+  border-radius: 15%;
   border: 1px solid black;
   border: 2vh rgb(163, 122, 61);
-  }
+}
 
 /* The Champion's Portrait */
 .championPortrait {
@@ -55,61 +55,61 @@
   border: 4px solid #968E86;
   border-radius: 100%;
   background-size: cover;
-  background-position: center;  
-  }  
+  background-position: center;
+}
 
 /* The Champion's Play Cost Orb */
 .championCost {
-  position:absolute;
+  position: absolute;
   background: #968E86;
   border: 4px solid #968E86;
-  border-radius:100%;
+  border-radius: 100%;
   bottom: -8%;
   left: -10%;
-  color:white;
-  }
+  color: white;
+}
 
-  /* The Champion's Health Orb */
-  .championHealth {
-  position:absolute;
+/* The Champion's Health Orb */
+.championHealth {
+  position: absolute;
   padding: 2.5vh 2.5vh;
   background: #bc3328;
   border: 4px solid #968E86;
-  border-radius:100%;
+  border-radius: 100%;
   bottom: -14%;
   right: -10%;
-  color:white;
-  }    
+  color: white;
+}
 
 
- /* The Champion's Strength Orb */
- .championStrength {
-  position:absolute;
+/* The Champion's Strength Orb */
+.championStrength {
+  position: absolute;
   border: 2px solid #968E86;
-  border-radius:100%;
+  border-radius: 100%;
   bottom: -3vh;
   right: 50%;
   width: 6vh;
   height: 6vh;
   background-size: cover;
   background-position: center;
-  max-width:100%;
-  padding-left:-1vh;
-  background-color:#968E86;
-  }
+  max-width: 100%;
+  padding-left: -1vh;
+  background-color: #968E86;
+}
 
 /* The Champion's Weakness Orb */
 .championWeakness {
-  position:absolute;
+  position: absolute;
   border: 2px solid #968E86;
-  border-radius:100%;
+  border-radius: 100%;
   bottom: -3vh;
   left: 50%;
   width: 6vh;
   height: 6vh;
   background-size: cover;
   background-position: center;
-  background-color:#968E86;
+  background-color: #968E86;
 }
 
 
@@ -117,98 +117,98 @@
 
 .championContainer {
   background:
-radial-gradient(circle farthest-side at 0% 50%,rgb(207, 170, 89) 23.5%,rgba(240,166,17,0) 0)21px 30px,
-radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
-linear-gradient(rgb(207, 170, 89) 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(150deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(30deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(90deg,#B71 2%,rgb(207, 170, 89) 0,rgb(207, 170, 89) 98%,#B71 0%)0 0 rgb(207, 170, 89);
-background-size: 40px 60px;
+    radial-gradient(circle farthest-side at 0% 50%, rgb(207, 170, 89) 23.5%, rgba(240, 166, 17, 0) 0)21px 30px,
+    radial-gradient(circle farthest-side at 0% 50%, #B71 24%, rgba(240, 166, 17, 0) 0)19px 30px,
+    linear-gradient(rgb(207, 170, 89) 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(150deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(30deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(90deg, #B71 2%, rgb(207, 170, 89) 0, rgb(207, 170, 89) 98%, #B71 0%)0 0 rgb(207, 170, 89);
+  background-size: 40px 60px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
-  display:inline-flex;
-  width:72%;
+  display: inline-flex;
+  width: 72%;
   padding-right: 1vw;
-  margin-left:1vw;
-  height:65vh;
-  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
-  border-radius:10%;
-  
+  margin-left: 1vw;
+  height: 65vh;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+  border-radius: 10%;
+
 }
 
 /* Outer most container */
 .container {
   background-image: url("chooseBackground.gif");
-  background-color:rgb(110, 63, 0);
+  background-color: rgb(110, 63, 0);
   background-repeat: no-repeat;
-  height:100%;
-  padding-top:.1%;
-}     
+  height: 100%;
+  padding-top: .1%;
+}
 
 
 .championHeader {
-  text-align:center;
+  text-align: center;
   background-image: radial-gradient(circle, rgb(207, 170, 89), #cab09b, rgb(207, 170, 89));
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
-  border-radius:20%;
-  margin-left:30vw;
-  margin-right:30vw;
-  margin-top:10vh;
-  height:12vh;
-  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
-  
+  border-radius: 20%;
+  margin-left: 30vw;
+  margin-right: 30vw;
+  margin-top: 10vh;
+  height: 12vh;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+
 }
 
 .headerText {
-  line-height:60%;
-  font-family:'ZCOOL KuaiLe', cursive;
-  font-size:200%;
+  line-height: 60%;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 200%;
 }
 
 .chosenChampion {
-  height:65vh;
-  width:20%;
+  height: 65vh;
+  width: 20%;
   background:
-radial-gradient(circle farthest-side at 0% 50%,rgb(207, 170, 89) 23.5%,rgba(240,166,17,0) 0)21px 30px,
-radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
-linear-gradient(rgb(207, 170, 89) 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(150deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(30deg,rgb(207, 170, 89) 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,rgb(207, 170, 89) 0)0 0,
-linear-gradient(90deg,#B71 2%,rgb(207, 170, 89) 0,rgb(207, 170, 89) 98%,#B71 0%)0 0 rgb(207, 170, 89);
-background-size: 40px 60px;
+    radial-gradient(circle farthest-side at 0% 50%, rgb(207, 170, 89) 23.5%, rgba(240, 166, 17, 0) 0)21px 30px,
+    radial-gradient(circle farthest-side at 0% 50%, #B71 24%, rgba(240, 166, 17, 0) 0)19px 30px,
+    linear-gradient(rgb(207, 170, 89) 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(150deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(30deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
+    linear-gradient(90deg, #B71 2%, rgb(207, 170, 89) 0, rgb(207, 170, 89) 98%, #B71 0%)0 0 rgb(207, 170, 89);
+  background-size: 40px 60px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
-  border-radius:10%;
-  text-align:center;
-  float:right;
-  margin-right:1vw;
-  margin-left:1vw;
-  box-shadow: 0px 0px 50px rgba(0,0,0,0.3);
+  border-radius: 10%;
+  text-align: center;
+  float: right;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
 }
 
 .chosenText {
-  height:10%;
-  display:block;
-  font-family:'ZCOOL KuaiLe', cursive;
+  height: 10%;
+  display: block;
+  font-family: 'ZCOOL KuaiLe', cursive;
 }
 
 .row2 {
-  height:100vh;
-  margin-top:5vh;
+  height: 100vh;
+  margin-top: 5vh;
 }
 
 .chosenChampionCard {
   transition: transform 0.15s;
-  position:relative;
+  position: relative;
   width: 35vh;
   height: 47vh;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
   background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
-  display:inline-flex;
+  display: inline-flex;
   transform: scale(0.8);
 
 }
