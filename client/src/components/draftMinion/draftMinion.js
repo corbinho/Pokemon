@@ -72,7 +72,7 @@ class DraftMinion extends Component {
       }
 
       this.setState(state);
-    } if (source.droppableId === 'droppable' && this.state.player1deck.length > 9) {
+    } if (source.droppableId === 'droppable' && this.state.player1deck.length > 8) {
       console.log("deck full")
       return;
     }
@@ -146,7 +146,7 @@ class DraftMinion extends Component {
                             <span className="minionAttack2Cost">{minion.Attack2Cost}</span>
                           </div>
 
-                          <p className="minionCost">{minion.playCost || 6}</p>
+                          <img className="minionCost" src={minion.Type} alt="" width="42" height="42"></img>
                           <img className="minionWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                           <img className="minionStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
                           <img className="minionPortrait" src={minion.Img} alt=""></img>
