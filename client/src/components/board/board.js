@@ -19,6 +19,7 @@ const reorder = (list, startIndex, endIndex) => {
     const sourceClone = Array.from(source);
   
     const destClone = Array.from(destination);
+    
   
     const [removed] = sourceClone.splice(droppableSource.index, 1);
   
@@ -27,7 +28,7 @@ const reorder = (list, startIndex, endIndex) => {
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
-    console.log(result);
+    // console.log(result);
     return result;
   };
 
@@ -120,7 +121,7 @@ class GameBoard extends Component {
     id2List = {
         playerHandA: 'playerAHand',
         fieldA: 'playerAField',
-        playerHandB: 'playerHandB',
+        playerHandB: 'playerBHand',
         fieldB: 'playerBField',
       };
 
@@ -128,6 +129,7 @@ class GameBoard extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
+        
     
         // dropped outside the list
         if (!destination) {
@@ -135,22 +137,7 @@ class GameBoard extends Component {
           return;
         }
     
-        if (source.droppableId === destination.droppableId) {
-          const items = reorder(
-            this.getList(source.droppableId),
-            source.index,
-            destination.index
-          );
-    
-          let state = { items };
-    
-          if (source.droppableId === 'droppable2') {
-            state = { selected: items };
-          }
-    
-          this.setState(state);
-        } 
-        else {
+        if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA") {
           const result = move(
             this.getList(source.droppableId),
             this.getList(destination.droppableId),
@@ -161,10 +148,25 @@ class GameBoard extends Component {
           this.setState({
             playerAField: result.fieldA,
             playerAHand: result.playerHandA,
-            playerBField: result.fieldB,
-            playerBHand: result.playerBHand,
+           
           });
-        }
+        } if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB") {
+            const result = move(
+              this.getList(source.droppableId),
+              this.getList(destination.droppableId),
+              source,
+              destination
+            );
+      
+            this.setState({
+              playerBField: result.fieldB,
+              playerBHand: result.playerHandB,
+            });
+          }
+
+          if (source.droppableId === "fieldA" && destination.droppableId === "fieldB"){
+            console.log(result);
+          }
       };
 
     render() {
@@ -245,6 +247,9 @@ class GameBoard extends Component {
                                 {(provided) => (
                                     <div className="fieldA" ref={provided.innerRef}>
                                         {this.state.playerAField.map((minion, index) => (
+                                            <Droppable droppableId={minion.id} key={minion.id}>
+                                            {(provided) => (
+                                                <div className = "droppableMinion" ref={provided.innerRef} key={minion.id}>
                                             <Draggable
                                                 key={minion.id}
                                                 draggableId={minion.id}
@@ -283,6 +288,11 @@ class GameBoard extends Component {
 
                                                 )}
                                             </Draggable>
+                                            {provided.placeholder}
+                                            </div>
+                                            
+                                            )}
+                                            </Droppable>
                                         ))}
                                         {provided.placeholder}
 
@@ -300,6 +310,9 @@ class GameBoard extends Component {
                                 {(provided) => (
                                     <div className="fieldB" ref={provided.innerRef}>
                                         {this.state.playerBField.map((minion, index) => (
+                                            <Droppable droppableId={minion.id} key={minion.id}>
+                                            {(provided) => (
+                                                <div className = "droppableMinion" ref={provided.innerRef} key={minion.id}>
                                             <Draggable
                                                 key={minion.id}
                                                 draggableId={minion.id}
@@ -338,6 +351,10 @@ class GameBoard extends Component {
 
                                                 )}
                                             </Draggable>
+                                            {provided.placeholder}
+                                            </div>
+                                            )}
+                                            </Droppable>
                                         ))}
                                         {provided.placeholder}
 
