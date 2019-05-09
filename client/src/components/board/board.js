@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./board.css";
+import "./boardCards.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const reorder = (list, startIndex, endIndex) => {
@@ -205,7 +206,7 @@ class GameBoard extends Component {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="minionHandCard"
+                                                        className="minionHandCardA"
                                                         id={minion.id}
                                                         key={minion.id}
                                                     >
@@ -224,7 +225,7 @@ class GameBoard extends Component {
                                                             <span className="minionHandAttack2Cost">{minion.Attack2Cost}</span>
                                                         </div>
 
-
+                                                        
                                                         <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                         <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
                                                         <img className="minionHandPortrait" src={minion.Img} alt=""></img>
@@ -392,7 +393,7 @@ class GameBoard extends Component {
                                                             ref={provided.innerRef}
                                                             {...provided.draggableProps}
                                                             {...provided.dragHandleProps}
-                                                            className="minionHandCard"
+                                                            className="minionHandCardB"
                                                             id={minion.id}
                                                             key={minion.id}
                                                         >
