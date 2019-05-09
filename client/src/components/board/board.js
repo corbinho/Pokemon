@@ -116,6 +116,8 @@ class GameBoard extends Component {
         }],
         playerBField: [],
         playerBGraveyard: [],
+        playerATurn: true,
+        playerBturn: false
     }
 
     id2List = {
@@ -164,8 +166,30 @@ class GameBoard extends Component {
             });
           }
 
-          if (source.droppableId === "fieldA" && destination.droppableId === "fieldB"){
+          if (source.droppableId !== "fieldA" && source.droppableId !== "fieldA" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB" ){
             console.log(result);
+            console.log("source card index " + result.source.droppableId);
+            console.log("destination card index " + result.destination.droppableId);
+            if (this.state.playerATurn){
+                var playerAField = this.state.playerAField;
+                var playerBField = this.state.playerBField;
+                var attackingCardIndex;
+                var defendingCardIndex;
+                for (var i = 0; i < playerAField.length; i++){
+                    if(playerAField[i].id === result.source.droppableId){
+                        attackingCardIndex = i   
+                    } 
+                }
+                for (var j=0; j<playerBField.length; j++){
+                    if(playerBField[j].id === result.destination.droppableId){
+                        defendingCardIndex = j
+                    }
+                }
+                console.log(playerAField);
+                console.log(attackingCardIndex);
+                console.log(defendingCardIndex);
+
+            }
           }
       };
 
