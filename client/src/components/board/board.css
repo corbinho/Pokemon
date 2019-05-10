@@ -25,7 +25,7 @@ margin:auto;
 
 .championA {
 background-color:rgb(83, 54, 0);
-height:18vh;
+height:22.5vh;
 width:12vw;
 display:inline-flex;
 position:absolute;
@@ -34,9 +34,9 @@ left:43.5%;
 
 .playerHandA {
 background-color:rgb(124, 124, 123);
-height:18vh;
+height:22.5vh;
 width:35vw;
-display:inline-flex;
+display:flex;
 position:absolute;
 left:0;
 top:0;
@@ -73,7 +73,7 @@ margin:auto;
 
 .championB {
 background-color:rgb(83, 54, 0);
-height:18vh;
+height:22.5vh;
 width:12vw;
 display:inline-flex;
 position:absolute;
@@ -83,7 +83,7 @@ bottom:0;
 
 .playerHandB {
 background-color:rgb(124, 124, 123);
-height:18vh;
+height:22.5vh;
 width:35vw;
 display:inline-flex;
 position:absolute;
