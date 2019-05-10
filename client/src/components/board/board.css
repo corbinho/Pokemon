@@ -99,4 +99,5 @@ background-color:rgb(219, 210, 192);
 height:27vh;
 width:80vw;
 margin:auto;
+display: flex;
 }

@@ -338,11 +338,11 @@
     margin-top:-13.5vh;
   }
   
-  .minionFieldCard:hover {
+  /* .minionFieldCard:hover {
     background: #6e5c4f;
     transform: scale(.9);
     z-index:20;
-  }
+  } */
   
   /* The Minion's Name Banner */
   .MinionFieldName {
@@ -516,3 +516,9 @@
     text-shadow: 2px 2px 4px #f8f6f6;
     font-weight: bold;
   }
+
+  .droppableMinion {
+    display: contents;
+  }
+
+  
