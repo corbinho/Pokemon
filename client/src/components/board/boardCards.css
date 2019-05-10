@@ -518,7 +518,7 @@
   }
 
   .droppableMinion {
-    display: contents;
+    display: block;
   }
 
   
