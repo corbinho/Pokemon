@@ -25,6 +25,32 @@ width:90vw;
 margin:auto;
 }
 
+.playerManaA {
+position:absolute;
+background-color:rgb(8, 143, 221);
+height:5.5vh;
+width:8vw;
+right:25vw;
+top:8vh;
+text-align:center;
+border-radius:40%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
+}
+
+.endTurnA {
+position:absolute;
+background-color:rgba(0, 150, 37, 0.651);
+height:5.5vh;
+width:10vw;
+right:8vw;
+top:8vh;
+text-align:center;
+border-radius:15%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
+}
+
 .championA {
 background-color:rgb(83, 54, 0);
 border-bottom-left-radius: 20%;
@@ -84,6 +110,32 @@ border-top-right-radius: 30%;
 height:22.9vh;
 width:90vw;
 margin:auto;
+}
+
+.playerManaB {
+position:absolute;
+background-color:rgb(8, 143, 221);
+height:5.5vh;
+width:8vw;
+left:25vw;
+top:8vh;
+text-align:center;
+border-radius:40%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
+}
+
+.endTurnB {
+position:absolute;
+background-color:rgba(0, 150, 37, 0.651);
+height:5.5vh;
+width:10vw;
+left:8vw;
+top:8vh;
+text-align:center;
+border-radius:15%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
 }
 
 .championB {

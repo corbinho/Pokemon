@@ -453,6 +453,15 @@ class GameBoard extends Component {
                     <div className="containerA">
 
                         <div className="rowA">
+
+                            <div className="playerManaA">
+                            {this.state.playerAMana}
+                            </div>
+
+                            <div className="endTurnA">
+                            End Turn
+                            </div>
+
                             <Droppable droppableId="playerChampionA">
                                 {(provided) => (
                                     <div className="championA" ref={provided.innerRef}>
@@ -645,6 +654,15 @@ class GameBoard extends Component {
                         </Droppable>
 
                         <div className="rowB">
+
+                            <div className="endTurnB">
+                                End Turn
+                            </div>
+
+                            <div className="playerManaB">
+                                {this.state.playerBMana}
+                            </div>
+                            
                             <Droppable droppableId="playerChampionB">
                                 {(provided) => (
                                     <div className="championB" ref={provided.innerRef}>
