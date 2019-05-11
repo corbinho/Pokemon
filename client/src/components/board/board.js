@@ -154,7 +154,7 @@ class GameBoard extends Component {
           return;
         }
     
-        if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA") {
+        if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA" && this.state.playerATurn === true) {
         let currentMana = this.state.playerAMana;
         if (currentMana>= 10){
           const result = move(
@@ -175,7 +175,7 @@ class GameBoard extends Component {
             console.log("out of mana to play card")
         }
           console.log("A current mana = " + currentMana)
-        } if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB") {
+        } if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
             let currentMana = this.state.playerBMana;
             if (currentMana >= 10){
             const result = move(
@@ -344,6 +344,7 @@ class GameBoard extends Component {
                     <div className="containerA">
 
                         <div className="rowA">
+                        
                             <div className="championA">
                                 {this.state.playerAChamp.map((champion) => (
                                     <div
