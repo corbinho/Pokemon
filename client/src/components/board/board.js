@@ -160,6 +160,18 @@ class GameBoard extends Component {
             return;
         }
 
+        if (source.droppableId > 0 && destination.droppableId === "fieldA"){
+            return
+        }
+
+        if (source.droppableId > 0 && destination.droppableId === "fieldB"){
+            return
+        }
+
+        if (source.droppableId === "fieldB" && destination.droppableId === "fieldB"){
+            return
+        }
+
         if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA" && this.state.playerATurn === true) {
             let currentMana = this.state.playerAMana;
             if (currentMana >= 10) {
@@ -305,7 +317,7 @@ class GameBoard extends Component {
             }
         }
 
-        if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB") {
+        if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB" ) {
             console.log(result);
             console.log("source card index " + result.source.droppableId);
             console.log("destination card index " + result.destination.droppableId);
