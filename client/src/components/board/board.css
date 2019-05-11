@@ -18,6 +18,8 @@
 .rowA {
 position:relative;
 background-color:rgb(194, 162, 103);
+border-bottom-left-radius: 30%;
+border-bottom-right-radius: 30%;
 height:22.5vh;
 width:90vw;
 margin:auto;
@@ -25,6 +27,8 @@ margin:auto;
 
 .championA {
 background-color:rgb(83, 54, 0);
+border-bottom-left-radius: 20%;
+border-bottom-right-radius: 20%;
 height:22.5vh;
 width:12vw;
 display:inline-flex;
@@ -34,6 +38,9 @@ left:43.5%;
 
 .playerHandA {
 background-color:rgb(124, 124, 123);
+border-bottom-left-radius: 30%;
+border-top-right-radius: 10%;
+border-bottom-right-radius: 10%;
 height:22.5vh;
 width:35vw;
 display:flex;
@@ -45,7 +52,12 @@ top:0;
 /* Card Field for side A */
 .fieldA {
 background-color:rgb(219, 210, 192);
-height:27vh;
+border-top-left-radius: 30%;
+border-top-right-radius: 30%;
+border-top: .3em solid rgb(153, 152, 137);
+border-style: outset;
+border-bottom:none;
+height:26vh;
 width:80vw;
 margin:auto;
 display: flex
@@ -67,6 +79,8 @@ border-top:solid 1px black;
 .rowB {
 position:relative;
 background-color:rgb(194, 162, 103);
+border-top-left-radius: 30%;
+border-top-right-radius: 30%;
 height:22.9vh;
 width:90vw;
 margin:auto;
@@ -74,6 +88,8 @@ margin:auto;
 
 .championB {
 background-color:rgb(83, 54, 0);
+border-top-left-radius: 20%;
+border-top-right-radius: 20%;
 height:22.5vh;
 width:12vw;
 display:inline-flex;
@@ -84,6 +100,9 @@ bottom:0;
 
 .playerHandB {
 background-color:rgb(124, 124, 123);
+border-top-right-radius: 30%;
+border-top-left-radius: 10%;
+border-bottom-left-radius: 10%;
 height:22.5vh;
 width:35vw;
 display:inline-flex;
@@ -97,7 +116,12 @@ bottom:0;
 /* Card Field for side B */
 .fieldB {
 background-color:rgb(219, 210, 192);
-height:27vh;
+border-bottom-left-radius: 30%;
+border-bottom-right-radius: 30%;
+border-bottom: .3em solid rgb(153, 152, 137);
+border-style: outset;
+border-top:none;
+height:26vh;
 width:80vw;
 margin:auto;
 display: flex;

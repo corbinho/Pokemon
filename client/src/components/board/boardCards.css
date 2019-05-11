@@ -319,7 +319,27 @@
 
 /* -------------------------------------Minion in field CSS---------------------------------- */
 
-.minionFieldCard {
+.minionFieldCardA {
+    /* background: #776557; */
+    transition: transform 0.15s;
+    position: relative;
+    width: 35vh;
+    height: 47vh;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1vh rgb(163, 122, 61);
+    border-style: outset;
+    background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
+    display: inline-flex;
+    transform: scale(0.4);
+  
+  
+    /* Remove this margin! only for testing */
+    margin-top: -9.5vh;
+    margin-right: -4vw;
+  }
+
+  .minionFieldCardB {
     /* background: #776557; */
     transition: transform 0.15s;
     position: relative;
@@ -336,6 +356,7 @@
   
     /* Remove this margin! only for testing */
     margin-top:-13.5vh;
+    margin-right: -4vw;
   }
   
   /* .minionFieldCard:hover {

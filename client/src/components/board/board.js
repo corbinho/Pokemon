@@ -284,7 +284,7 @@ class GameBoard extends Component {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="minionFieldCard"
+                                                        className="minionFieldCardA"
                                                         id={minion.id}
                                                         key={minion.id}
                                                     >
@@ -347,7 +347,7 @@ class GameBoard extends Component {
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className="minionFieldCard"
+                                                        className="minionFieldCardB"
                                                         id={minion.id}
                                                         key={minion.id}
                                                     >
