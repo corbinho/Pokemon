@@ -45,35 +45,41 @@ class GameBoard extends Component {
             "Img": "../images/Charizard.jpg"
         }],
         playerAHand: [{
-            "id": "11",
-            "Name": "Moltres",
-            "Type": "flying",
+            "id": "17",
+            "Name": "Vaporeon",
+            "Type": "../images/waterOrb.png",
+            "TypeText": "water",
+            "Attack1Name": "Surf",
+            "Attack1Power": 6,
+            "Attack1Cost": 9,
+            "Attack2Name": "Blizzard",
+            "Attack2Power": 9,
+            "Attack2Cost": 13,
+            "Health": 20,
+            "WeakAgainst": "grass",
+            "StrongAgainst": "fire",
+            "WeakAgainstImg": "../images/grassOrb.png",
+            "StrongAgainstImg": "../images/fireOrb.png",
+            "Img": "../images/vaporeon.jpg"
+          },
+          {
+            "id": "18",
+            "Name": "Zapdos",
+            "Type": "../images/electricOrb.png",
+            "TypeText": "electric",
             "Attack1Name": "Sky Attack",
             "Attack1Power": 6,
             "Attack1Cost": 9,
-            "Attack2Name": "Heat Wave",
+            "Attack2Name": "Thunder",
             "Attack2Power": 9,
             "Attack2Cost": 13,
             "Health": 20,
-            "WeakAgainstImg": "../images/iceOrb.png",
-            "StrongAgainstImg": "../images/fightingOrb.png",
-            "Img": "../images/Moltres.jpg"
-        },
-        {
-            "id": "12",
-            "Name": "Nidoqueen",
-            "Type": "poison",
-            "Attack1Name": "Sludge Bomb",
-            "Attack1Power": 6,
-            "Attack1Cost": 9,
-            "Attack2Name": "Shadow Ball",
-            "Attack2Power": 9,
-            "Attack2Cost": 13,
-            "Health": 20,
-            "WeakAgainstImg": "../images/psychicOrb.png",
-            "StrongAgainstImg": "../images/grassOrb.png",
-            "Img": "../images/nidoqueen.jpg"
-        }],
+            "WeakAgainst": "ground",
+            "StrongAgainst": "water",
+            "WeakAgainstImg": "../images/groundOrb.png",
+            "StrongAgainstImg": "../images/waterOrb.png",
+            "Img": "../images/Zapdos.jpg"
+          }],
         playerAField: [],
         playerAGraveyard: [],
         playerBChamp: [{
@@ -86,39 +92,47 @@ class GameBoard extends Component {
             "Img": "../images/Blastoise.jpg"
         }],
         playerBHand: [{
-            "id": "13",
-            "Name": "Ninetails",
+            "id": "15",
+            "Name": "Rapidash",
             "Type": "../images/fireOrb.png",
+            "TypeText": "fire",
             "Attack1Name": "Fire Blast",
             "Attack1Power": 6,
             "Attack1Cost": 9,
-            "Attack2Name": "Flamethrower",
+            "Attack2Name": "Flare Blitz",
             "Attack2Power": 9,
             "Attack2Cost": 13,
             "Health": 20,
+            "WeakAgainst": "water",
+            "StrongAgainst": "grass",
             "WeakAgainstImg": "../images/waterOrb.png",
             "StrongAgainstImg": "../images/grassOrb.png",
-            "Img": "../images/Ninetails.png"
-        },
-        {
-            "id": "14",
-            "Name": "Poliwhirl",
-            "Type": "../images/waterOrb.png",
-            "Attack1Name": "Hydro Pump",
+            "Img": "../images/Rapidash.jpg"
+          },
+          {
+            "id": "16",
+            "Name": "Snorlax",
+            "Type": "../images/normalOrb.png",
+            "TypeText": "normal",
+            "Attack1Name": "Pay Day",
             "Attack1Power": 6,
             "Attack1Cost": 9,
-            "Attack2Name": "Bubble Beam",
+            "Attack2Name": "Body Slam",
             "Attack2Power": 9,
             "Attack2Cost": 13,
             "Health": 20,
-            "WeakAgainstImg": "../images/electricOrb.png",
-            "StrongAgainstImg": "../images/fireOrb.png",
-            "Img": "../images/Poliwhirl.jpg"
-        }],
+            "WeakAgainst": "none",
+            "StrongAgainst": "none",
+            "WeakAgainstImg": "none",
+            "StrongAgainstImg": "none",
+            "Img": "../images/Snorlax.jpg"
+          }],
         playerBField: [],
         playerBGraveyard: [],
-        playerATurn: true,
-        playerBturn: false
+        playerATurn: false,
+        playerBturn: true,
+        playerAMana: 20,
+        playerBMana: 20,
     }
 
     id2List = {
@@ -141,30 +155,46 @@ class GameBoard extends Component {
         }
     
         if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA") {
+        let currentMana = this.state.playerAMana;
+        if (currentMana>= 10){
           const result = move(
             this.getList(source.droppableId),
             this.getList(destination.droppableId),
             source,
             destination
           );
+          currentMana -= 10;
     
           this.setState({
             playerAField: result.fieldA,
             playerAHand: result.playerHandA,
+            playerAMana: currentMana
            
           });
+        } else {
+            console.log("out of mana to play card")
+        }
+          console.log("A current mana = " + currentMana)
         } if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB") {
+            let currentMana = this.state.playerBMana;
+            if (currentMana >= 10){
             const result = move(
               this.getList(source.droppableId),
               this.getList(destination.droppableId),
               source,
               destination
             );
+            currentMana -= 10;
       
             this.setState({
               playerBField: result.fieldB,
               playerBHand: result.playerHandB,
+              playerBMana: currentMana
             });
+            console.log("B current mana = " + currentMana)
+        } else {
+            console.log("out of mana to play a card")
+        }
           }
 
           if (source.droppableId !== "fieldA" && source.droppableId !== "fieldA" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB" ){
@@ -174,14 +204,19 @@ class GameBoard extends Component {
             if (this.state.playerATurn){
                 var playerAField = this.state.playerAField;
                 var playerBField = this.state.playerBField;
+                var playerAMana = this.state.playerAMana;
+                var playerBGraveyard = this.state.playerBGraveyard
                 var attackingCardIndex;
                 var defendingCardIndex;
+
+                if (playerAMana >=6){
+                
                 for (var i = 0; i < playerAField.length; i++){
                     if(playerAField[i].id === result.source.droppableId){
                         attackingCardIndex = i   
                     } 
                 }
-                for (var j=0; j<playerBField.length; j++){
+                for (var j = 0; j < playerBField.length; j++){
                     if(playerBField[j].id === result.destination.droppableId){
                         defendingCardIndex = j
                     }
@@ -190,6 +225,113 @@ class GameBoard extends Component {
                 console.log(attackingCardIndex);
                 console.log(defendingCardIndex);
 
+                var attackingCardType = playerAField[attackingCardIndex].TypeText;
+                var defendingCardWeakness = playerBField[defendingCardIndex].WeakAgainst;
+                var defendingCardStrength = playerBField[defendingCardIndex].StrongAgainst;
+                console.log(attackingCardType);
+                console.log(defendingCardWeakness);
+
+                if (attackingCardType === defendingCardWeakness){
+                    playerBField[defendingCardIndex].Health -=  10;
+                    playerAMana -= 6;
+                } else if (attackingCardType === defendingCardStrength){
+                    playerBField[defendingCardIndex].Health -= 3;
+                    playerAField[attackingCardIndex].Health -= 3;
+                    playerAMana -= 6;
+                } else {
+                    playerBField[defendingCardIndex].Health -= 6;
+                    playerAMana -= 6;
+                }
+
+                if (playerBField[defendingCardIndex].Health <= 0){
+                    var removedBCard = playerBField.splice(defendingCardIndex, 1);
+                    playerBGraveyard.push(removedBCard);
+                } 
+
+                this.setState({
+                    playerAField: playerAField,
+                    playerBField: playerBField,
+                    playerAMana: playerAMana,
+                    playerBGraveyard: playerBGraveyard
+                })
+
+
+                console.log(this.state)
+
+
+
+            }
+            else {
+                //add some modal to say out of mana
+                console.log("out of mana to attack or moves")
+            }
+
+            } 
+            //player B's turn
+            else {
+                var playerAField = this.state.playerAField;
+                var playerBField = this.state.playerBField;
+                var playerBMana = this.state.playerBMana;
+                var playerAGraveyard = this.state.playerAGraveyard
+                var attackingCardIndex;
+                var defendingCardIndex;
+
+                if (playerBMana >=6){
+                
+                for (var i = 0; i < playerBField.length; i++){
+                    if(playerBField[i].id === result.source.droppableId){
+                        attackingCardIndex = i   
+                    } 
+                }
+                for (var j = 0; j < playerAField.length; j++){
+                    if(playerAField[j].id === result.destination.droppableId){
+                        defendingCardIndex = j
+                    }
+                }
+                console.log(playerBField);
+                console.log(attackingCardIndex);
+                console.log(defendingCardIndex);
+
+                var attackingCardType = playerBField[attackingCardIndex].TypeText;
+                var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
+                var defendingCardStrength = playerAField[defendingCardIndex].StrongAgainst;
+                console.log(attackingCardType);
+                console.log(defendingCardWeakness);
+
+                if (attackingCardType === defendingCardWeakness){
+                    playerAField[defendingCardIndex].Health -=  10;
+                    playerBMana -= 6;
+                } else if (attackingCardType === defendingCardStrength){
+                    playerAField[defendingCardIndex].Health -= 3;
+                    playerBField[attackingCardIndex].Health -= 3;
+                    playerBMana -= 6;
+                } else {
+                    playerAField[defendingCardIndex].Health -= 6;
+                    playerBMana -= 6;
+                }
+
+                if (playerAField[defendingCardIndex].Health <= 0){
+                    var removedACard = playerAField.splice(defendingCardIndex, 1);
+                    playerAGraveyard.push(removedACard);
+                } 
+
+                this.setState({
+                    playerAField: playerAField,
+                    playerBField: playerBField,
+                    playerBMana: playerBMana,
+                    playerAGraveyard: playerBGraveyard
+                })
+
+
+                console.log(this.state)
+
+
+
+            }
+            else {
+                //add some modal to say out of mana
+                console.log("out of mana to attack or moves")
+            }
             }
           }
       };
