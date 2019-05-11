@@ -230,9 +230,9 @@
   
   
   /* Ability 1 Div/Container */
-  .ability1 {
+  .ability {
     position: absolute;
-    width: 48%;
+    width: 96%;
     top: 62%;
     height: 20%;
     background: #968E86;
