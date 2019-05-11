@@ -502,17 +502,13 @@ class GameBoard extends Component {
                                                         <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
                                                         <p className="minionHandHealth">{minion.Health || 2}</p>
 
-                                                        <div className="ability1">
+                                                        <div className="ability">
                                                             <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                            <span className="minionHandAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                            <span className="minionHandAttack1Cost">{minion.Attack1Cost}</span>
+                                                            <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                            <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                         </div>
 
-                                                        <div className="ability2">
-                                                            <span className="minionHandAttack2">{minion.Attack2Name || "Ability 2"}</span>
-                                                            <span className="minionHandAttack2Power"><br></br>{minion.Attack2Power}</span>
-                                                            <span className="minionHandAttack2Cost">{minion.Attack2Cost}</span>
-                                                        </div>
+                                                       
 
 
                                                         <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -556,17 +552,13 @@ class GameBoard extends Component {
 
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
-                                                                <div className="ability1">
+                                                                <div className="ability">
                                                                     <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
+                                                                    <span className="minionFieldAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                                    <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                                 </div>
 
-                                                                <div className="ability2">
-                                                                    <span className="minionFieldAttack2">{minion.Attack2Name || "Ability 2"}</span>
-                                                                    <span className="minionFieldAttack2Power"><br></br>{minion.Attack2Power}</span>
-                                                                    <span className="minionFieldAttack2Cost">{minion.Attack2Cost}</span>
-                                                                </div>
+                                                                
 
 
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -619,17 +611,13 @@ class GameBoard extends Component {
 
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
-                                                                <div className="ability1">
+                                                                <div className="ability">
                                                                     <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
+                                                                    <span className="minionFieldAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                                    <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                                 </div>
 
-                                                                <div className="ability2">
-                                                                    <span className="minionFieldAttack2">{minion.Attack2Name || "Ability 2"}</span>
-                                                                    <span className="minionFieldAttack2Power"><br></br>{minion.Attack2Power}</span>
-                                                                    <span className="minionFieldAttack2Cost">{minion.Attack2Cost}</span>
-                                                                </div>
+                                                                
 
 
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -703,17 +691,13 @@ class GameBoard extends Component {
                                                         <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
                                                         <p className="minionHandHealth">{minion.Health || 2}</p>
 
-                                                        <div className="ability1">
+                                                        <div className="ability">
                                                             <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                            <span className="minionHandAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                            <span className="minionHandAttack1Cost">{minion.Attack1Cost}</span>
+                                                            <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                            <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                         </div>
 
-                                                        <div className="ability2">
-                                                            <span className="minionHandAttack2">{minion.Attack2Name || "Ability 2"}</span>
-                                                            <span className="minionHandAttack2Power"><br></br>{minion.Attack2Power}</span>
-                                                            <span className="minionHandAttack2Cost">{minion.Attack2Cost}</span>
-                                                        </div>
+                                                    
 
 
                                                         <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
