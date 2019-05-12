@@ -8,8 +8,9 @@
 
 /*----------------- Container for side A --------------------- */
 .containerA {
+ position:relative;
  background-color:rgb(177, 121, 19);
- height:49.5vh;
+ height:49.9vh;
  width:96vw;
  margin:auto;
  border-bottom:solid 1px black;
@@ -77,6 +78,7 @@ top:0;
 
 /* Card Field for side A */
 .fieldA {
+position:absolute;
 background-color:rgb(219, 210, 192);
 border-top-left-radius: 30%;
 border-top-right-radius: 30%;
@@ -85,6 +87,9 @@ border-style: outset;
 border-bottom:none;
 height:26vh;
 width:80vw;
+left:0;
+right:0;
+bottom:0;
 margin:auto;
 display: flex
 }
@@ -96,20 +101,25 @@ display: flex
 /*----------------- Container for side B --------------------- */
 .containerB {
 background-color:rgb(177, 121, 19);
-height:49.9vh;
+height:49.5vh;
 width:96vw;
 margin:auto;
 border-top:solid 1px black;
 }
 
 .rowB {
-position:relative;
+position:absolute;
 background-color:rgb(194, 162, 103);
 border-top-left-radius: 30%;
 border-top-right-radius: 30%;
-height:22.9vh;
+height:22.5vh;
 width:90vw;
+left:0;
+right:0;
+bottom:0;
 margin:auto;
+display:flex;
+
 }
 
 .playerManaB {
@@ -157,7 +167,7 @@ border-top-left-radius: 10%;
 border-bottom-left-radius: 10%;
 height:22.5vh;
 width:35vw;
-display:inline-flex;
+display:flex;
 position:absolute;
 right:0;
 bottom:0;

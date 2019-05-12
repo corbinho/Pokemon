@@ -95,9 +95,9 @@
   
   .minionHandCardA:hover {
     background: #6e5c4f;
-    transform: scale(.9);
-    z-index:20;
-    margin-top:0;
+    transform: translateY(20vh);
+    z-index:1;
+    margin:none;
   }
 
 /* -----------------------------------Side B Card-------------------------------- */
@@ -124,18 +124,10 @@
   
   .minionHandCardB:hover {
     background: #6e5c4f;
-    transform: scale(.9);
-    z-index:20;
-    margin-top:-28vh;
+    transform: translateY(-20vh);
+    z-index:1;
+    margin:none;
   }
-
-
-  
-
-
-
-
-
 
 
 
@@ -146,9 +138,10 @@
     top: 42%;
     background: #D4B48F;
     text-align: center;
-    font-size: 3vh;
+    font-size: 1.2em;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    line-height: 6vh;
     color: #ffffff;
-    padding: 10px;
     box-sizing: border-box;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
     z-index: 1;
@@ -248,6 +241,7 @@
   /* The Minion's Attack Name 1 */
   .minionHandAttack1 {
     font-size: 2.5vh;
+    font-family: 'ZCOOL KuaiLe', cursive;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     line-height: 5vh;
@@ -271,50 +265,6 @@
     font-weight: bold;
   }
   
-  
-  .ability2 {
-    position: absolute;
-    width: 48%;
-    top: 62%;
-    height: 20%;
-    right: 0%;
-    background: #968E86;
-    border: 1px black solid;
-    border-radius: 30%;
-    text-align: center;
-  }
-  
-  .ability2:hover {
-    background: rgb(126, 121, 117);
-  }
-  
-  /* The Minion's Attack 2 */
-  .minionHandAttack2 {
-    font-size: 2.5vh;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    line-height: 5vh;
-  }
-  
-  /* The Minion's Attack Damage 2 */
-  .minionHandAttack2Power {
-    font-size: 3vh;
-    color: rgb(226, 213, 30);
-    margin-right: 2vh;
-    text-shadow: 2px 2px 4px #000000;
-  }
-  
-  /* The Minion's Attack Cost 2 */
-  .minionHandAttack2Cost {
-    font-size: 3vh;
-    color: rgb(10, 14, 233);
-    text-shadow: 2px 2px 4px #f8f6f6;
-    font-weight: bold;
-  }
-
-
-
-
 
 
 /* -------------------------------------Minion in field CSS---------------------------------- */
@@ -337,7 +287,7 @@
     /* Remove this margin! only for testing */
     margin-top: -9.5vh;
     margin-right: -4vw;
-  }
+}
 
   .minionFieldCardB {
     /* background: #776557; */
@@ -359,11 +309,18 @@
     margin-right: -4vw;
   }
   
-  /* .minionFieldCard:hover {
+  .minionFieldCardA:hover {
     background: #6e5c4f;
     transform: scale(.9);
-    z-index:20;
-  } */
+    z-index:1;
+  }
+  
+  .minionFieldCardB:hover {
+    background: #6e5c4f;
+    transform: scale(.9);
+    z-index:1;
+  }
+
   
   /* The Minion's Name Banner */
   .MinionFieldName {
@@ -372,9 +329,10 @@
     top: 42%;
     background: #D4B48F;
     text-align: center;
-    font-size: 3vh;
+    font-size: 1.2em;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    line-height: 6vh;
     color: #ffffff;
-    padding: 10px;
     box-sizing: border-box;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
     z-index: 1;
@@ -491,47 +449,6 @@
   
   /* The Minion's Attack Cost 1 */
   .minionFieldAttack1Cost {
-    font-size: 3vh;
-    color: rgb(10, 14, 233);
-    text-shadow: 2px 2px 4px #f8f6f6;
-    font-weight: bold;
-  }
-  
-  
-  .ability2 {
-    position: absolute;
-    width: 48%;
-    top: 62%;
-    height: 20%;
-    right: 0%;
-    background: #968E86;
-    border: 1px black solid;
-    border-radius: 30%;
-    text-align: center;
-  }
-  
-  .ability2:hover {
-    background: rgb(126, 121, 117);
-  }
-  
-  /* The Minion's Attack 2 */
-  .minionFieldAttack2 {
-    font-size: 2.5vh;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    line-height: 5vh;
-  }
-  
-  /* The Minion's Attack Damage 2 */
-  .minionFieldAttack2Power {
-    font-size: 3vh;
-    color: rgb(226, 213, 30);
-    margin-right: 2vh;
-    text-shadow: 2px 2px 4px #000000;
-  }
-  
-  /* The Minion's Attack Cost 2 */
-  .minionFieldAttack2Cost {
     font-size: 3vh;
     color: rgb(10, 14, 233);
     text-shadow: 2px 2px 4px #f8f6f6;

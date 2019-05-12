@@ -135,8 +135,8 @@ class GameBoard extends Component {
         }],
         playerBField: [],
         playerBGraveyard: [],
-        playerATurn: true,
-        playerBturn: false,
+        playerATurn: false,
+        playerBturn: true,
         playerAMana: 20,
         playerBMana: 20,
     }
@@ -561,7 +561,7 @@ class GameBoard extends Component {
                                                                 id={minion.id}
                                                                 key={minion.id}
                                                             >
-
+                                                                <h3 className="MinionFieldName">{minion.Name || "Minion"}</h3>
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
                                                                 <div className="ability">
@@ -620,7 +620,7 @@ class GameBoard extends Component {
                                                                 id={minion.id}
                                                                 key={minion.id}
                                                             >
-
+                                                                <h3 className="MinionFieldName">{minion.Name || "Minion"}</h3>
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
                                                                 <div className="ability">
