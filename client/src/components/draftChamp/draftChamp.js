@@ -116,6 +116,44 @@ class DraftChamp extends Component {
    
         <div className="row2">
           
+        <Droppable droppableId="droppable3">
+              {(provided) => (
+               
+                <div
+                  ref={provided.innerRef} className="chosenChampion1">
+                  <h3 className = "chosenText">Chosen Champion</h3>
+                    {this.state.player1champion.map((p1champion, index) => (
+                      <Draggable
+                        key={p1champion.id}
+                        draggableId={p1champion.id}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+
+                            className="chosenChampionCard" id={p1champion.id} key={p1champion.id}>
+
+                            <h3 className="championName">{p1champion.name || "champion"}</h3>
+                            <p className="championHealth">{p1champion.Health || 2}</p>
+
+                            <img className="championCost" src={p1champion.type} alt="" width="42" height="42"></img>
+                            <img className="championWeakness" src={p1champion.WeakAgainst} alt="" width="42" height="1"></img>
+                            <img className="championStrength" src={p1champion.StrongAgainst} alt="" width="5" height="1"></img>
+                            <img className="championPortrait" src={p1champion.Img} alt=""></img>
+
+                          </div>
+
+                        )}
+                      </Draggable>
+                    ))}
+                  {provided.placeholder}
+                  </div>
+               
+              )}
+            </Droppable>
           
             <Droppable droppableId="droppable">
             
@@ -158,7 +196,7 @@ class DraftChamp extends Component {
               {(provided) => (
                
                 <div
-                  ref={provided.innerRef} className="chosenChampion">
+                  ref={provided.innerRef} className="chosenChampion2">
                   <h3 className = "chosenText">Chosen Champion</h3>
                     {this.state.player1champion.map((p1champion, index) => (
                       <Draggable
