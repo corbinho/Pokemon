@@ -16,7 +16,7 @@ const reorder = (list, startIndex, endIndex) => {
 */
 
 const move = (source, destination, droppableSource, droppableDestination) => {
-
+    
     const sourceClone = Array.from(source);
 
     const destClone = Array.from(destination);
@@ -34,55 +34,12 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 class GameBoard extends Component {
-    state = {
-        playerAChamp: [{
-            "id": "4",
-            "name": "Pikachu",
-            "type": "../images/electricOrb.png",
-            "TypeType": "electric",
-            "Health": 80,
-            "WeakAgainstText": "ground",
-            "StrongAgainstText": "water",
-            "WeakAgainst": "../images/groundOrb.png",
-            "StrongAgainst": "../images/waterOrb.png",
-            "Img": "../images/pikachu.jpg"
-          }],
-        playerAHand: [{
-            "id": "17",
-            "Name": "Vaporeon",
-            "Type": "../images/waterOrb.png",
-            "TypeText": "water",
-            "Attack1Name": "Surf",
-            "Attack1Power": 6,
-            "Attack1Cost": 9,
-            "Attack2Name": "Blizzard",
-            "Attack2Power": 9,
-            "Attack2Cost": 13,
-            "Health": 20,
-            "WeakAgainst": "grass",
-            "StrongAgainst": "fire",
-            "WeakAgainstImg": "../images/grassOrb.png",
-            "StrongAgainstImg": "../images/fireOrb.png",
-            "Img": "../images/vaporeon.jpg"
-        },
-        {
-            "id": "18",
-            "Name": "Zapdos",
-            "Type": "../images/electricOrb.png",
-            "TypeText": "electric",
-            "Attack1Name": "Sky Attack",
-            "Attack1Power": 6,
-            "Attack1Cost": 9,
-            "Attack2Name": "Thunder",
-            "Attack2Power": 9,
-            "Attack2Cost": 13,
-            "Health": 20,
-            "WeakAgainst": "ground",
-            "StrongAgainst": "water",
-            "WeakAgainstImg": "../images/groundOrb.png",
-            "StrongAgainstImg": "../images/waterOrb.png",
-            "Img": "../images/Zapdos.jpg"
-        }],
+    constructor(props) {
+    super(props);
+    
+    this.state = {
+        playerAChamp: this.props.p1champ,
+        playerAHand: this.props.p1deck,
         playerAField: [],
         playerAGraveyard: [],
         playerBChamp: [{
@@ -139,20 +96,75 @@ class GameBoard extends Component {
         playerBturn: true,
         playerAMana: 20,
         playerBMana: 20,
+        aMaxMana: 20,
+        bMaxMana: 20
     }
 
-    id2List = {
+
+    this.id2List = {
         playerHandA: 'playerAHand',
         fieldA: 'playerAField',
         playerHandB: 'playerBHand',
         fieldB: 'playerBField',
     };
+}
+
+    changeATurn = () => {
+        if (this.state.playerATurn === false){
+            return
+        } else {
+            let currentAMaxMana = this.state.aMaxMana
+            if (currentAMaxMana <= 45){
+            currentAMaxMana += 5
+            this.setState({
+                playerBTurn: false,
+                playerATurn: true,
+                aMaxMana: currentAMaxMana,
+                playerAMana: currentAMaxMana
+            })}
+            else {
+                currentAMaxMana = 50
+                this.setState({
+                    playerATurn: false,
+                    playerBTurn: true,
+                    aMaxMana: currentAMaxMana,
+                    playerAMana: currentAMaxMana
+                })
+            }
+        }
+    }
+
+    changeBTurn = () => {
+        if (this.state.playerBTurn === false){
+            return
+        } else {
+            let currentBMaxMana = this.state.bMaxMana
+            if (currentBMaxMana <= 45){
+            currentBMaxMana += 5
+            console.log(currentBMaxMana)
+            this.setState({
+                playerBTurn: false,
+                playerATurn: true,
+                bMaxMana: currentBMaxMana,
+                playerBMana: currentBMaxMana
+            })}
+            else {
+                currentBMaxMana = 50
+                this.setState({
+                    playerBTurn: false,
+                    playerATurn: true,
+                    bMaxMana: currentBMaxMana,
+                    playerBMana: currentBMaxMana
+                })
+            }
+        }
+    }
 
     getList = id => this.state[this.id2List[id]];
 
     onDragEnd = result => {
         const { source, destination } = result;
-
+        console.log(this.state.playerAHand)
 
         // dropped outside the list
         if (!destination) {
@@ -470,7 +482,9 @@ class GameBoard extends Component {
                             {this.state.playerAMana}
                             </div>
 
-                            <div className="endTurnA">
+                            <div className="endTurnA" onClick={
+                                this.changeATurn
+                            }>
                             End Turn
                             </div>
 
@@ -655,7 +669,9 @@ class GameBoard extends Component {
 
                         <div className="rowB">
 
-                            <div className="endTurnB">
+                            <div className="endTurnB" onClick={
+                                this.changeBTurn
+                            }>
                                 End Turn
                             </div>
 

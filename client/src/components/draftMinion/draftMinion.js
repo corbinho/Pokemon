@@ -3,6 +3,8 @@ import './draftMinion.css';
 import minionsList from "./minions"
 import DraftChamp from "../draftChamp/draftChamp";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import  GameBoard from "../board/board"
+
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -35,17 +37,21 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 
 class DraftMinion extends Component {
-
-  state = {
+  constructor(props) {
+  super(props);
+  this.state = {
     minions: minionsList.minionsList,
     player1deck: [],
-    player2deck: []
+    player2deck: [],
+    player1champion: this.props.p1champ,
+    player2champion: this.props.p2champ
   };
 
-  id2List = {
+  this.id2List = {
     droppable: 'minions',
     droppable2: 'player1deck'
   };
+}
 
   getList = id => this.state[this.id2List[id]];
 
@@ -101,6 +107,11 @@ class DraftMinion extends Component {
   // }
 
   render() {
+    if (this.state.player1deck.length === 9){
+      return (
+        <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ = {this.state.player1champion} p2champ = {this.state.player2champion}></GameBoard>
+      )
+    }
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="container">
@@ -192,9 +203,12 @@ class DraftMinion extends Component {
 
           </div>
         </div>
+        
       </DragDropContext>
+
     )
   }
 }
+
 
 export default DraftMinion;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import championList from "./champions"
 import "./DraftChampion.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import DraftMinion from "../draftMinion/draftMinion"
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -88,6 +89,10 @@ class DraftChamp extends Component {
     }
   };
 
+  
+
+
+
   // selectChampion = index => {
   //   let selectedChampion = [...this.state.champions]
   //   this.setState({
@@ -97,6 +102,11 @@ class DraftChamp extends Component {
   // }
 
   render() {
+    if (this.state.player1champion.length>0){
+      return (
+        <DraftMinion p1champ = {this.state.player1champion} p2champ = {this.state.player2champion}></DraftMinion>
+      )
+    } else 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
       <div className="container">
@@ -185,7 +195,7 @@ class DraftChamp extends Component {
           
           
         </div>
-      
+     
       </div>
       </DragDropContext>
       
