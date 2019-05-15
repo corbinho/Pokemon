@@ -16,7 +16,7 @@ const reorder = (list, startIndex, endIndex) => {
 */
 
 const move = (source, destination, droppableSource, droppableDestination) => {
-    
+
     const sourceClone = Array.from(source);
 
     const destClone = Array.from(destination);
@@ -35,98 +35,99 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 class GameBoard extends Component {
     constructor(props) {
-    super(props);
-    
-    this.state = {
-        playerAChamp: this.props.p1champ,
-        playerAHand: this.props.p1deck,
-        playerAField: [],
-        playerAGraveyard: [],
-        playerBChamp: [{
-            "id": "3",
-            "name": "Mewtwo",
-            "type": "../images/psychicOrb.png",
-            "TypeText": "psychic",
-            "Health": 80,
-            "WeakAgainstText": "dark",
-            "StrongAgainstText": "fighting",
-            "WeakAgainst": "../images/darkOrb.png",
-            "StrongAgainst": "../images/fightingOrb.png",
-            "Img": "../images/Mewtwo.jpg"
-          }],
-        playerBHand: [{
-            "id": "15",
-            "Name": "Rapidash",
-            "Type": "../images/fireOrb.png",
-            "TypeText": "fire",
-            "Attack1Name": "Fire Blast",
-            "Attack1Power": 6,
-            "Attack1Cost": 9,
-            "Attack2Name": "Flare Blitz",
-            "Attack2Power": 9,
-            "Attack2Cost": 13,
-            "Health": 20,
-            "WeakAgainst": "water",
-            "StrongAgainst": "grass",
-            "WeakAgainstImg": "../images/waterOrb.png",
-            "StrongAgainstImg": "../images/grassOrb.png",
-            "Img": "../images/Rapidash.jpg"
-        },
-        {
-            "id": "16",
-            "Name": "Snorlax",
-            "Type": "../images/normalOrb.png",
-            "TypeText": "normal",
-            "Attack1Name": "Pay Day",
-            "Attack1Power": 6,
-            "Attack1Cost": 9,
-            "Attack2Name": "Body Slam",
-            "Attack2Power": 9,
-            "Attack2Cost": 13,
-            "Health": 20,
-            "WeakAgainst": "none",
-            "StrongAgainst": "none",
-            "WeakAgainstImg": "none",
-            "StrongAgainstImg": "none",
-            "Img": "../images/Snorlax.jpg"
-        }],
-        playerBField: [],
-        playerBGraveyard: [],
-        playerATurn: false,
-        playerBturn: true,
-        playerAMana: 20,
-        playerBMana: 20,
-        aMaxMana: 20,
-        bMaxMana: 20
+        super(props);
+
+        this.state = {
+            playerAChamp: this.props.p1champ,
+            playerAHand: this.props.p1deck,
+            playerAField: [],
+            playerAGraveyard: [],
+            playerBChamp: [{
+                "id": "3",
+                "name": "Mewtwo",
+                "type": "../images/psychicOrb.png",
+                "TypeText": "psychic",
+                "Health": 80,
+                "WeakAgainstText": "dark",
+                "StrongAgainstText": "fighting",
+                "WeakAgainst": "../images/darkOrb.png",
+                "StrongAgainst": "../images/fightingOrb.png",
+                "Img": "../images/Mewtwo.jpg"
+            }],
+            playerBHand: [{
+                "id": "15",
+                "Name": "Rapidash",
+                "Type": "../images/fireOrb.png",
+                "TypeText": "fire",
+                "Attack1Name": "Fire Blast",
+                "Attack1Power": 6,
+                "Attack1Cost": 9,
+                "Attack2Name": "Flare Blitz",
+                "Attack2Power": 9,
+                "Attack2Cost": 13,
+                "Health": 20,
+                "WeakAgainst": "water",
+                "StrongAgainst": "grass",
+                "WeakAgainstImg": "../images/waterOrb.png",
+                "StrongAgainstImg": "../images/grassOrb.png",
+                "Img": "../images/Rapidash.jpg"
+            },
+            {
+                "id": "16",
+                "Name": "Snorlax",
+                "Type": "../images/normalOrb.png",
+                "TypeText": "normal",
+                "Attack1Name": "Pay Day",
+                "Attack1Power": 6,
+                "Attack1Cost": 9,
+                "Attack2Name": "Body Slam",
+                "Attack2Power": 9,
+                "Attack2Cost": 13,
+                "Health": 20,
+                "WeakAgainst": "none",
+                "StrongAgainst": "none",
+                "WeakAgainstImg": "none",
+                "StrongAgainstImg": "none",
+                "Img": "../images/Snorlax.jpg"
+            }],
+            playerBField: [],
+            playerBGraveyard: [],
+            playerATurn: false,
+            playerBturn: true,
+            playerAMana: 20,
+            playerBMana: 20,
+            aMaxMana: 20,
+            bMaxMana: 20
+        }
+
+
+        this.id2List = {
+            playerHandA: 'playerAHand',
+            fieldA: 'playerAField',
+            playerHandB: 'playerBHand',
+            fieldB: 'playerBField',
+        };
     }
 
-
-    this.id2List = {
-        playerHandA: 'playerAHand',
-        fieldA: 'playerAField',
-        playerHandB: 'playerBHand',
-        fieldB: 'playerBField',
-    };
-}
-
     changeATurn = () => {
-        if (this.state.playerATurn === false){
+        if (this.state.playerATurn === false) {
             return
         } else {
             let currentAMaxMana = this.state.aMaxMana
-            if (currentAMaxMana <= 45){
-            currentAMaxMana += 5
-            this.setState({
-                playerBTurn: false,
-                playerATurn: true,
-                aMaxMana: currentAMaxMana,
-                playerAMana: currentAMaxMana
-            })}
+            if (currentAMaxMana <= 45) {
+                currentAMaxMana += 5
+                this.setState({
+                    playerBTurn: true,
+                    playerATurn: false,
+                    aMaxMana: currentAMaxMana,
+                    playerAMana: currentAMaxMana
+                })
+            }
             else {
                 currentAMaxMana = 50
                 this.setState({
-                    playerATurn: false,
                     playerBTurn: true,
+                    playerATurn: false,
                     aMaxMana: currentAMaxMana,
                     playerAMana: currentAMaxMana
                 })
@@ -135,19 +136,20 @@ class GameBoard extends Component {
     }
 
     changeBTurn = () => {
-        if (this.state.playerBTurn === false){
+        if (this.state.playerBTurn === false) {
             return
         } else {
             let currentBMaxMana = this.state.bMaxMana
-            if (currentBMaxMana <= 45){
-            currentBMaxMana += 5
-            console.log(currentBMaxMana)
-            this.setState({
-                playerBTurn: false,
-                playerATurn: true,
-                bMaxMana: currentBMaxMana,
-                playerBMana: currentBMaxMana
-            })}
+            if (currentBMaxMana <= 45) {
+                currentBMaxMana += 5
+                console.log(currentBMaxMana)
+                this.setState({
+                    playerBTurn: false,
+                    playerATurn: true,
+                    bMaxMana: currentBMaxMana,
+                    playerBMana: currentBMaxMana
+                })
+            }
             else {
                 currentBMaxMana = 50
                 this.setState({
@@ -172,15 +174,15 @@ class GameBoard extends Component {
             return;
         }
 
-        if (source.droppableId > 0 && destination.droppableId === "fieldA"){
+        if (source.droppableId > 0 && destination.droppableId === "fieldA") {
             return
         }
 
-        if (source.droppableId > 0 && destination.droppableId === "fieldB"){
+        if (source.droppableId > 0 && destination.droppableId === "fieldB") {
             return
         }
 
-        if (source.droppableId === "fieldB" && destination.droppableId === "fieldB"){
+        if (source.droppableId === "fieldB" && destination.droppableId === "fieldB") {
             return
         }
 
@@ -227,9 +229,9 @@ class GameBoard extends Component {
             }
         }
         //attacking player A Champion
-        if(source.droppableId !== "playerHandB" && destination.droppableId === "playerChampionA"){
-            
-            if (this.state.playerBturn){
+        if (source.droppableId !== "playerHandB" && destination.droppableId === "playerChampionA") {
+
+            if (this.state.playerBturn) {
                 console.log("running this attack to champion")
                 var playerBField = this.state.playerBField;
                 var playerBMana = this.state.playerBMana;
@@ -237,51 +239,51 @@ class GameBoard extends Component {
                 var attackingCardIndex;
                 var defendingCardIndex = 0;
 
-                if (playerBMana >= 6){
-                    for (var i = 0; i < playerBField.length; i++){
+                if (playerBMana >= 6) {
+                    for (var i = 0; i < playerBField.length; i++) {
                         attackingCardIndex = i
                     }
-                
-                console.log(playerBField[attackingCardIndex])
-                console.log("attacking card index " + attackingCardIndex)
-                
-                var attackingCardType = playerBField[attackingCardIndex].TypeText;
-                var defendingCardWeakness = playerAChampion[defendingCardIndex].WeakAgainstText;
-                var defendingCardStrength = playerAChampion[defendingCardIndex].StrongAgainstText;
-               
-                console.log("attacking card type " + attackingCardType);
-                console.log("defending card weakness " + defendingCardWeakness);
 
-                if (attackingCardType === defendingCardWeakness) {
-                    playerAChampion[0].Health -= 10;
-                    playerBMana -= 6;
-                } else if (attackingCardType === defendingCardStrength) {
-                    playerAChampion[0].Health -= 3;
-                    playerBField[attackingCardIndex].Health -= 3;
-                    playerBMana -= 6;
-                } else {
-                    playerAChampion[0].Health -= 6;
-                    playerBMana -= 6;
+                    console.log(playerBField[attackingCardIndex])
+                    console.log("attacking card index " + attackingCardIndex)
+
+                    var attackingCardType = playerBField[attackingCardIndex].TypeText;
+                    var defendingCardWeakness = playerAChampion[defendingCardIndex].WeakAgainstText;
+                    var defendingCardStrength = playerAChampion[defendingCardIndex].StrongAgainstText;
+
+                    console.log("attacking card type " + attackingCardType);
+                    console.log("defending card weakness " + defendingCardWeakness);
+
+                    if (attackingCardType === defendingCardWeakness) {
+                        playerAChampion[0].Health -= 10;
+                        playerBMana -= 6;
+                    } else if (attackingCardType === defendingCardStrength) {
+                        playerAChampion[0].Health -= 3;
+                        playerBField[attackingCardIndex].Health -= 3;
+                        playerBMana -= 6;
+                    } else {
+                        playerAChampion[0].Health -= 6;
+                        playerBMana -= 6;
+                    }
+
+                    if (playerAChampion[0].Health <= 0) {
+                        //end game
+                    }
+
+                    this.setState({
+                        playerAChamp: playerAChampion,
+                        playerBField: playerBField,
+                        playerBMana: playerAMana
+                    })
                 }
-
-                if (playerAChampion[0].Health <= 0) {
-                    //end game
-                }
-
-                this.setState({
-                    playerAChamp: playerAChampion,
-                    playerBField: playerBField,
-                    playerBMana: playerAMana
-                })
             }
-            }
-        }        
+        }
 
         //attacking playerB Champ
 
-        if(source.droppableId !== "playerHandA" && destination.droppableId === "playerChampionB"){
-            
-            if (this.state.playerATurn){
+        if (source.droppableId !== "playerHandA" && destination.droppableId === "playerChampionB") {
+
+            if (this.state.playerATurn) {
                 console.log("running this attack to champion")
                 var playerAField = this.state.playerAField;
                 var playerAMana = this.state.playerAMana;
@@ -289,47 +291,47 @@ class GameBoard extends Component {
                 var attackingCardIndex;
                 var defendingCardIndex = 0;
 
-                if (playerAMana >= 6){
-                    for (var i = 0; i < playerAField.length; i++){
+                if (playerAMana >= 6) {
+                    for (var i = 0; i < playerAField.length; i++) {
                         attackingCardIndex = i
                     }
-                
-                console.log(playerAField[attackingCardIndex])
-                console.log("attacking card index " + attackingCardIndex)
-                
-                var attackingCardType = playerAField[attackingCardIndex].TypeText;
-                var defendingCardWeakness = playerBChampion[defendingCardIndex].WeakAgainstText;
-                var defendingCardStrength = playerBChampion[defendingCardIndex].StrongAgainstText;
-               
-                console.log("attacking card type " + attackingCardType);
-                console.log("defending card weakness " + defendingCardWeakness);
 
-                if (attackingCardType === defendingCardWeakness) {
-                    playerBChampion[0].Health -= 10;
-                    playerAMana -= 6;
-                } else if (attackingCardType === defendingCardStrength) {
-                    playerBChampion[0].Health -= 3;
-                    playerAField[attackingCardIndex].Health -= 3;
-                    playerAMana -= 6;
-                } else {
-                    playerBChampion[0].Health -= 6;
-                    playerAMana -= 6;
+                    console.log(playerAField[attackingCardIndex])
+                    console.log("attacking card index " + attackingCardIndex)
+
+                    var attackingCardType = playerAField[attackingCardIndex].TypeText;
+                    var defendingCardWeakness = playerBChampion[defendingCardIndex].WeakAgainstText;
+                    var defendingCardStrength = playerBChampion[defendingCardIndex].StrongAgainstText;
+
+                    console.log("attacking card type " + attackingCardType);
+                    console.log("defending card weakness " + defendingCardWeakness);
+
+                    if (attackingCardType === defendingCardWeakness) {
+                        playerBChampion[0].Health -= 10;
+                        playerAMana -= 6;
+                    } else if (attackingCardType === defendingCardStrength) {
+                        playerBChampion[0].Health -= 3;
+                        playerAField[attackingCardIndex].Health -= 3;
+                        playerAMana -= 6;
+                    } else {
+                        playerBChampion[0].Health -= 6;
+                        playerAMana -= 6;
+                    }
+
+                    if (playerBChampion[0].Health <= 0) {
+                        //end game
+                    }
+
+                    this.setState({
+                        playerBChamp: playerBChampion,
+                        playerAField: playerAField,
+                        playerAMana: playerBMana
+                    })
                 }
-
-                if (playerBChampion[0].Health <= 0) {
-                    //end game
-                }
-
-                this.setState({
-                    playerBChamp: playerBChampion,
-                    playerAField: playerAField,
-                    playerAMana: playerBMana
-                })
-            }
             }
         }
 
-        if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB" ) {
+        if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB") {
             console.log(result);
             console.log("source card index " + result.source.droppableId);
             console.log("destination card index " + result.destination.droppableId);
@@ -479,13 +481,13 @@ class GameBoard extends Component {
                         <div className="rowA">
 
                             <div className="playerManaA">
-                            {this.state.playerAMana}
+                                {this.state.playerAMana}
                             </div>
 
                             <div className="endTurnA" onClick={
                                 this.changeATurn
                             }>
-                            End Turn
+                                End Turn
                             </div>
 
                             <Droppable droppableId="playerChampionA">
@@ -534,7 +536,7 @@ class GameBoard extends Component {
                                                             <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                         </div>
 
-                                                       
+
 
 
                                                         <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -584,7 +586,7 @@ class GameBoard extends Component {
                                                                     <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                                 </div>
 
-                                                                
+
 
 
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -643,7 +645,7 @@ class GameBoard extends Component {
                                                                     <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                                 </div>
 
-                                                                
+
 
 
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
@@ -678,7 +680,7 @@ class GameBoard extends Component {
                             <div className="playerManaB">
                                 {this.state.playerBMana}
                             </div>
-                            
+
                             <Droppable droppableId="playerChampionB">
                                 {(provided) => (
                                     <div className="championB" ref={provided.innerRef}>
@@ -725,7 +727,7 @@ class GameBoard extends Component {
                                                             <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                         </div>
 
-                                                    
+
 
 
                                                         <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
