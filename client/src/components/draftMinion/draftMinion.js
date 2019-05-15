@@ -44,7 +44,9 @@ class DraftMinion extends Component {
     player1deck: [],
     player2deck: [],
     player1champion: this.props.p1champ,
-    player2champion: this.props.p2champ
+    player2champion: this.props.p2champ,
+    player1Turn: true,
+    player2Turn: false
   };
 
   this.id2List = {
@@ -89,7 +91,7 @@ class DraftMinion extends Component {
       return;
     }
 
-    if (source.droppableId === 'droppable' && destination.droppableId === "droppable2") {
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && (this.state.player1Turn)) {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
@@ -99,11 +101,13 @@ class DraftMinion extends Component {
 
       this.setState({
         minions: result.droppable,
-        player1deck: result.droppable2
+        player1deck: result.droppable2,
+        player1Turn: false,
+        player2Turn: true
       });
     }
 
-    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3") {
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && (this.state.player2Turn)) {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
@@ -113,7 +117,9 @@ class DraftMinion extends Component {
 
       this.setState({
         minions: result.droppable,
-        player2deck: result.droppable3
+        player2deck: result.droppable3,
+        player1Turn: true,
+        player2Turn: false
       });
     }
   };
