@@ -139,22 +139,6 @@ class DraftChamp extends Component {
 
   };
 
-  
-
-  
-
-  
-
-
-
-  // selectChampion = index => {
-  //   let selectedChampion = [...this.state.champions]
-  //   this.setState({
-  //     player1Champion: [...this.state.player1Champion, selectedChampion[index]]
-  //   })
-  //   console.log(this.state.player1Champion)
-  // }
-
   render() {
     if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0 && (this.state.player1Ready) & (this.state.player2Ready)){
       return (
