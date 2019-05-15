@@ -42,7 +42,8 @@ class DraftChamp extends Component {
 
   id2List = {
     droppable: 'champions',
-    droppable2: 'player1champion'
+    droppable2: 'player1champion',
+    droppable3: 'player2champion'
   };
 
   getList = id => this.state[this.id2List[id]];
@@ -70,11 +71,16 @@ class DraftChamp extends Component {
     }
 
       this.setState(state);
-    } if (source.droppableId === 'droppable' && this.state.player1champion.length > 0){
+    } if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1champion.length > 0){
       console.log("already have a hero")
       return;
     }
-    else {
+
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && this.state.player2champion.length > 0){
+      console.log("already have a hero")
+      return;
+    }
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable2") {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
@@ -87,7 +93,55 @@ class DraftChamp extends Component {
         player1champion: result.droppable2
       });
     }
+
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3") {
+      const result = move(
+        this.getList(source.droppableId),
+        this.getList(destination.droppableId),
+        source,
+        destination
+      );
+
+      this.setState({
+        champions: result.droppable,
+        player2champion: result.droppable3
+      });
+    }
+
+    if (destination.droppableId === 'droppable' && source.droppableId === "droppable3") {
+      const result = move(
+        this.getList(source.droppableId),
+        this.getList(destination.droppableId),
+        source,
+        destination
+      );
+
+      this.setState({
+        champions: result.droppable,
+        player2champion: result.droppable3
+      });
+    }
+    
+    if (destination.droppableId === 'droppable' && source.droppableId === "droppable2") {
+      const result = move(
+        this.getList(source.droppableId),
+        this.getList(destination.droppableId),
+        source,
+        destination
+      );
+
+      this.setState({
+        champions: result.droppable,
+        player1champion: result.droppable2
+      });
+    }
+
+
   };
+
+  
+
+  
 
   
 
@@ -102,7 +156,7 @@ class DraftChamp extends Component {
   // }
 
   render() {
-    if (this.state.player1champion.length>0){
+    if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0 && (this.state.player1Ready) & (this.state.player2Ready)){
       return (
         <DraftMinion p1champ = {this.state.player1champion} p2champ = {this.state.player2champion}></DraftMinion>
       )
@@ -122,10 +176,10 @@ class DraftChamp extends Component {
                 <div
                   ref={provided.innerRef} className="chosenChampion1">
                   <h3 className = "chosenText">Chosen Champion</h3>
-                    {this.state.player1champion.map((p1champion, index) => (
+                    {this.state.player2champion.map((p2Champion, index) => (
                       <Draggable
-                        key={p1champion.id}
-                        draggableId={p1champion.id}
+                        key={p2Champion.id}
+                        draggableId={p2Champion.id}
                         index={index}
                       >
                         {(provided) => (
@@ -134,15 +188,15 @@ class DraftChamp extends Component {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
 
-                            className="chosenChampionCard" id={p1champion.id} key={p1champion.id}>
+                            className="chosenChampionCard" id={p2Champion.id} key={p2Champion.id}>
 
-                            <h3 className="championName">{p1champion.name || "champion"}</h3>
-                            <p className="championHealth">{p1champion.Health || 2}</p>
+                            <h3 className="championName">{p2Champion.name || "champion"}</h3>
+                            <p className="championHealth">{p2Champion.Health || 2}</p>
 
-                            <img className="championCost" src={p1champion.type} alt="" width="42" height="42"></img>
-                            <img className="championWeakness" src={p1champion.WeakAgainst} alt="" width="42" height="1"></img>
-                            <img className="championStrength" src={p1champion.StrongAgainst} alt="" width="5" height="1"></img>
-                            <img className="championPortrait" src={p1champion.Img} alt=""></img>
+                            <img className="championCost" src={p2Champion.type} alt="" width="42" height="42"></img>
+                            <img className="championWeakness" src={p2Champion.WeakAgainst} alt="" width="42" height="1"></img>
+                            <img className="championStrength" src={p2Champion.StrongAgainst} alt="" width="5" height="1"></img>
+                            <img className="championPortrait" src={p2Champion.Img} alt=""></img>
 
                           </div>
 
@@ -215,7 +269,7 @@ class DraftChamp extends Component {
                             <h3 className="championName">{p1champion.name || "champion"}</h3>
                             <p className="championHealth">{p1champion.Health || 2}</p>
 
-                            <img className="championCost" src={p1champion.type} alt="" width="50" height="50"></img>
+                            <img className="championCost" src={p1champion.type} alt="" width="42" height="42"></img>
                             <img className="championWeakness" src={p1champion.WeakAgainst} alt="" width="42" height="1"></img>
                             <img className="championStrength" src={p1champion.StrongAgainst} alt="" width="5" height="1"></img>
                             <img className="championPortrait" src={p1champion.Img} alt=""></img>
