@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>{
-        <DraftChamp></DraftChamp>
+        <DraftMinion></DraftMinion>
       }
       </div>
     );

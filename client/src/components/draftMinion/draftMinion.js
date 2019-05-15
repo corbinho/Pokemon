@@ -49,7 +49,8 @@ class DraftMinion extends Component {
 
   this.id2List = {
     droppable: 'minions',
-    droppable2: 'player1deck'
+    droppable2: 'player1deck',
+    droppable3: 'player2deck'
   };
 }
 
@@ -78,11 +79,17 @@ class DraftMinion extends Component {
       }
 
       this.setState(state);
-    } if (source.droppableId === 'droppable' && this.state.player1deck.length > 8) {
+    } if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1deck.length > 8) {
       console.log("deck full")
       return;
     }
-    else {
+
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && this.state.player2deck.length > 8) {
+      console.log("deck full")
+      return;
+    }
+
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable2") {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
@@ -93,6 +100,20 @@ class DraftMinion extends Component {
       this.setState({
         minions: result.droppable,
         player1deck: result.droppable2
+      });
+    }
+
+    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3") {
+      const result = move(
+        this.getList(source.droppableId),
+        this.getList(destination.droppableId),
+        source,
+        destination
+      );
+
+      this.setState({
+        minions: result.droppable,
+        player2deck: result.droppable3
       });
     }
   };
@@ -107,7 +128,7 @@ class DraftMinion extends Component {
   // }
 
   render() {
-    if (this.state.player1deck.length === 9){
+    if (this.state.player1deck.length === 9 && this.state.player2deck.length === 9){
       return (
         <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ = {this.state.player1champion} p2champ = {this.state.player2champion}></GameBoard>
       )
@@ -121,6 +142,36 @@ class DraftMinion extends Component {
           </div>
 
           <div className="row2">
+          <Droppable droppableId="droppable3">
+              {(provided) => (
+                <div
+                  ref={provided.innerRef} className="chosenMinion">
+                  <h3 className="chosenText">Chosen Minions</h3>
+                  <h6 className="chosenText">{this.state.player2deck.length}/9</h6>
+                  {this.state.player2deck.map((p2deck, index) => (
+                    <Draggable
+                      key={p2deck.id}
+                      draggableId={p2deck.id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+
+                          className="chosenMinionCard" id={p2deck.id} key={p2deck.id}
+                        >
+                          <h6 className="minionName">{p2deck.Name}</h6>
+                          <img className="minionType" src={p2deck.Type} alt="" width="42" height="42"></img>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
 
             <Droppable droppableId="droppable">
 
@@ -200,8 +251,9 @@ class DraftMinion extends Component {
                 </div>
               )}
             </Droppable>
-
+           
           </div>
+          
         </div>
         
       </DragDropContext>
