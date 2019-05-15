@@ -286,5 +286,23 @@
 .chosenMinionCard {
   width: 80%;
   margin: 10%;
-  border-style: groove
+  border: 1vh rgb(163, 122, 61);
+  border-style: outset;
+  background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
+}
+
+.chosenMinionCard:hover {
+  background: #6e5c4f;
+}
+
+.minionName {
+color:white;
+font-size:.8em;
+text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+margin-bottom:none;
+}
+
+.chosenMinionPortrait {
+  border: .2em solid #968E86;
+  border-radius: 100%;
 }

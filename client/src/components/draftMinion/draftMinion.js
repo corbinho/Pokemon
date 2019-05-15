@@ -168,8 +168,13 @@ class DraftMinion extends Component {
 
                           className="chosenMinionCard" id={p2deck.id} key={p2deck.id}
                         >
-                          <h6 className="minionName">{p2deck.Name}</h6>
+                          <p className="minionName">{p2deck.Name}</p>
+                          <div>
+                          <img className="chosenMinionPortrait" src={p2deck.Img} alt="" width="60" height="60"></img>
+                          </div>
+                          <img className="chosenMinionWeakness" src={p2deck.WeakAgainstImg} alt="" width="20" height="20"></img>
                           <img className="minionType" src={p2deck.Type} alt="" width="42" height="42"></img>
+                          <img className="chosenMinionStrength" src={p2deck.StrongAgainstImg} alt="" width="20" height="20"></img>
                         </div>
                       )}
                     </Draggable>
@@ -247,8 +252,13 @@ class DraftMinion extends Component {
 
                           className="chosenMinionCard" id={p1deck.id} key={p1deck.id}
                         >
-                          <h6 className="minionName">{p1deck.Name}</h6>
+                          <p className="minionName">{p1deck.Name}</p>
+                          <div>
+                          <img className="chosenMinionPortrait" src={p1deck.Img} alt="" width="60" height="60"></img>
+                          </div>
+                          <img className="chosenMinionWeakness" src={p1deck.WeakAgainstImg} alt="" width="20" height="20"></img>
                           <img className="minionType" src={p1deck.Type} alt="" width="42" height="42"></img>
+                          <img className="chosenMinionStrength" src={p1deck.StrongAgainstImg} alt="" width="20" height="20"></img>
                         </div>
                       )}
                     </Draggable>

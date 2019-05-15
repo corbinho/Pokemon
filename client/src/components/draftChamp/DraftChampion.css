@@ -257,3 +257,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #807c76; 
 }
+
+::-webkit-scrollbar-corner {
+  background: rgb(145, 88, 4); 
+}
