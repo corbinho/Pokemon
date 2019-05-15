@@ -207,16 +207,10 @@ class DraftMinion extends Component {
                           <h3 className="MinionName">{minion.Name || "Minion"}</h3>
                           <p className="minionHealth">{minion.Health || 2}</p>
 
-                          <div className="ability1">
+                          <div className="ability">
                             <span className="minionAttack1">{minion.Attack1Name || "Ability 1"}</span>
                             <span className="minionAttack1Power"><br></br>{minion.Attack1Power}</span>
                             <span className="minionAttack1Cost">{minion.Attack1Cost}</span>
-                          </div>
-
-                          <div className="ability2">
-                            <span className="minionAttack2">{minion.Attack2Name || "Ability 2"}</span>
-                            <span className="minionAttack2Power"><br></br>{minion.Attack2Power}</span>
-                            <span className="minionAttack2Cost">{minion.Attack2Cost}</span>
                           </div>
 
                           <img className="minionCost" src={minion.Type} alt="" width="42" height="42"></img>
