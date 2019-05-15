@@ -215,7 +215,7 @@ class DraftChamp extends Component {
                             <h3 className="championName">{p1champion.name || "champion"}</h3>
                             <p className="championHealth">{p1champion.Health || 2}</p>
 
-                            <img className="championCost" src={p1champion.type} alt="" width="42" height="42"></img>
+                            <img className="championCost" src={p1champion.type} alt="" width="50" height="50"></img>
                             <img className="championWeakness" src={p1champion.WeakAgainst} alt="" width="42" height="1"></img>
                             <img className="championStrength" src={p1champion.StrongAgainst} alt="" width="5" height="1"></img>
                             <img className="championPortrait" src={p1champion.Img} alt=""></img>
