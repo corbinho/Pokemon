@@ -44,8 +44,8 @@ class DraftChamp extends Component {
       champions: championList.championList,
       player1champion: [],
       player2champion: [],
-      playerASocket: "a",
-      playerBSocket: "a"
+      playerASocket: "",
+      playerBSocket: ""
     }
     socket.on('receive code', (payload) => {
       this.updateCodeFromSockets(payload)
@@ -67,18 +67,28 @@ class DraftChamp extends Component {
     this.setState({
       champions: payload.newCode.champions,
       player1champion: payload.newCode.player1champion,
-      player2champion: payload.newCode.player2champion,
-      playerASocket: "a",
-      playerBSocket: "a"
-
-
+      player2champion: payload.newCode.player2champion
     })
   
   }
 
   componentDidMount = () => {
     socket.emit('joinGame', { room: "global" })
-    console.log(socket);
+    
+    if (this.state.playerASocket === ""){
+      console.log(socket);
+      console.log("setting A socket")
+      console.log(socket.id)
+      this.setState({
+        playerASocket: socket.id
+      })
+    } else {
+      this.setState({
+        playerBSocket: socket.id
+      })
+    }
+    console.log("player A socket: " + this.state.playerASocket);
+    console.log("player B socket: " + this.state.playerBSocket)
   }
 
   getList = id => this.state[this.id2List[id]];

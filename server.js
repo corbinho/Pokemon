@@ -24,6 +24,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('joinGame', function (data) {
     console.log('joining new game')
     socket.join(data.room);
+    //get all clients in the room
     var clients = io.sockets.adapter.rooms['global'].sockets;
 
     console.log(clients)
