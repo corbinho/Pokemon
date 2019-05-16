@@ -1,0 +1,21 @@
+.lobbyContainer {
+    background-color:brown;
+    height:100vh;
+    width:100vw;
+}
+
+.leftPanel {
+    background-color:beige;
+    float:left;
+    height:98vh;
+    width:48vw;
+    margin:auto;
+}
+
+.rightPanel {
+    background-color:beige;
+    float:right;
+    height:98vh;
+    width:48vw;
+    margin:auto;
+}
