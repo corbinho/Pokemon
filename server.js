@@ -25,14 +25,17 @@ io.sockets.on('connection', function (socket) {
     console.log('joining new game')
     socket.join(data.room);
     //get all clients in the room
-    var clients = io.sockets.adapter.rooms['global'].sockets;
+    let clients = io.sockets.adapter.rooms['global'].sockets;
 
     console.log(clients)
+
   })
 
   socket.on('update', function (data){
-    socket.broadcast.to('global').emit('receive code', data);
+    let clients = io.sockets.adapter.rooms['global'].sockets;
+    io.in('global').emit('receive code', data);
     console.log("updating")
+    io.in('global').emit('receive users', clients)
   })
 
   socket.on('disconnect', function () {
