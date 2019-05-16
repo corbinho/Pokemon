@@ -42,54 +42,8 @@ class GameBoard extends Component {
             playerAHand: this.props.p1deck,
             playerAField: [],
             playerAGraveyard: [],
-            playerBChamp: [{
-                "id": "3",
-                "name": "Mewtwo",
-                "type": "../images/psychicOrb.png",
-                "TypeText": "psychic",
-                "Health": 80,
-                "WeakAgainstText": "dark",
-                "StrongAgainstText": "fighting",
-                "WeakAgainst": "../images/darkOrb.png",
-                "StrongAgainst": "../images/fightingOrb.png",
-                "Img": "../images/Mewtwo.jpg"
-            }],
-            playerBHand: [{
-                "id": "15",
-                "Name": "Rapidash",
-                "Type": "../images/fireOrb.png",
-                "TypeText": "fire",
-                "Attack1Name": "Fire Blast",
-                "Attack1Power": 6,
-                "Attack1Cost": 9,
-                "Attack2Name": "Flare Blitz",
-                "Attack2Power": 9,
-                "Attack2Cost": 13,
-                "Health": 20,
-                "WeakAgainst": "water",
-                "StrongAgainst": "grass",
-                "WeakAgainstImg": "../images/waterOrb.png",
-                "StrongAgainstImg": "../images/grassOrb.png",
-                "Img": "../images/Rapidash.jpg"
-            },
-            {
-                "id": "16",
-                "Name": "Snorlax",
-                "Type": "../images/normalOrb.png",
-                "TypeText": "normal",
-                "Attack1Name": "Pay Day",
-                "Attack1Power": 6,
-                "Attack1Cost": 9,
-                "Attack2Name": "Body Slam",
-                "Attack2Power": 9,
-                "Attack2Cost": 13,
-                "Health": 20,
-                "WeakAgainst": "none",
-                "StrongAgainst": "none",
-                "WeakAgainstImg": "none",
-                "StrongAgainstImg": "none",
-                "Img": "../images/Snorlax.jpg"
-            }],
+            playerBChamp: this.props.p2champ,
+            playerBHand: this.props.p2deck,
             playerBField: [],
             playerBGraveyard: [],
             playerATurn: false,
@@ -256,14 +210,14 @@ class GameBoard extends Component {
 
                     if (attackingCardType === defendingCardWeakness) {
                         playerAChampion[0].Health -= 10;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     } else if (attackingCardType === defendingCardStrength) {
                         playerAChampion[0].Health -= 3;
                         playerBField[attackingCardIndex].Health -= 3;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     } else {
                         playerAChampion[0].Health -= 6;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     }
 
                     if (playerAChampion[0].Health <= 0) {
@@ -273,7 +227,7 @@ class GameBoard extends Component {
                     this.setState({
                         playerAChamp: playerAChampion,
                         playerBField: playerBField,
-                        playerBMana: playerAMana
+                        playerBMana: playerBMana
                     })
                 }
             }
@@ -308,14 +262,14 @@ class GameBoard extends Component {
 
                     if (attackingCardType === defendingCardWeakness) {
                         playerBChampion[0].Health -= 10;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     } else if (attackingCardType === defendingCardStrength) {
                         playerBChampion[0].Health -= 3;
                         playerAField[attackingCardIndex].Health -= 3;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     } else {
                         playerBChampion[0].Health -= 6;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     }
 
                     if (playerBChampion[0].Health <= 0) {
@@ -325,7 +279,7 @@ class GameBoard extends Component {
                     this.setState({
                         playerBChamp: playerBChampion,
                         playerAField: playerAField,
-                        playerAMana: playerBMana
+                        playerAMana: playerAMana
                     })
                 }
             }
@@ -367,14 +321,14 @@ class GameBoard extends Component {
 
                     if (attackingCardType === defendingCardWeakness) {
                         playerBField[defendingCardIndex].Health -= 10;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     } else if (attackingCardType === defendingCardStrength) {
                         playerBField[defendingCardIndex].Health -= 3;
                         playerAField[attackingCardIndex].Health -= 3;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     } else {
                         playerBField[defendingCardIndex].Health -= 6;
-                        playerAMana -= 6;
+                        playerAMana -= 9;
                     }
 
                     if (playerBField[defendingCardIndex].Health <= 0) {
@@ -434,14 +388,14 @@ class GameBoard extends Component {
 
                     if (attackingCardType === defendingCardWeakness) {
                         playerAField[defendingCardIndex].Health -= 10;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     } else if (attackingCardType === defendingCardStrength) {
                         playerAField[defendingCardIndex].Health -= 3;
                         playerBField[attackingCardIndex].Health -= 3;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     } else {
                         playerAField[defendingCardIndex].Health -= 6;
-                        playerBMana -= 6;
+                        playerBMana -= 9;
                     }
 
                     if (playerAField[defendingCardIndex].Health <= 0) {
