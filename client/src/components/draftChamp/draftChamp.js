@@ -57,6 +57,17 @@ class DraftChamp extends Component {
       droppable3: 'player2champion'
     };
 
+    socket.on('receive users', (payload) => {
+      console.log(payload)
+      const ids = Object.keys(payload)
+      console.log(ids)
+      this.setState({
+        playerASocket: ids[0],
+        playerBSocket: ids[1]
+      })
+      console.log(this.state)
+    })
+
   }
 
   updateCodeFromSockets(payload){
@@ -67,29 +78,59 @@ class DraftChamp extends Component {
     this.setState({
       champions: payload.newCode.champions,
       player1champion: payload.newCode.player1champion,
-      player2champion: payload.newCode.player2champion
+      player2champion: payload.newCode.player2champion,
+      playerASocket: payload.newCode.playerASocket,
+      playerBSocket: payload.newCode.playerBSocket
     })
   
   }
 
+  // updateCodeFromSocketsNoA(payload){
+  //   this.setState({
+  //     playerBSocket: payload.newCode.playerASocket
+  //   })
+  // }
+
   componentDidMount = () => {
+    
+    socket.on('connect', () => {
     socket.emit('joinGame', { room: "global" })
     
-    if (this.state.playerASocket === ""){
+    if (this.state.playerASocket === "" ){
       console.log(socket);
       console.log("setting A socket")
-      console.log(socket.id)
+      
       this.setState({
-        playerASocket: socket.id
-      })
+          playerASocket: socket.id
+        })
+
+        socket.emit('update', {
+          room: 'global',
+          newCode: this.state
+        })
+        console.log(this.state)
     } else {
       this.setState({
         playerBSocket: socket.id
       })
+
+      socket.emit('update', {
+        room: 'global',
+        newCode: this.state
+      })
     }
+    
+
     console.log("player A socket: " + this.state.playerASocket);
     console.log("player B socket: " + this.state.playerBSocket)
-  }
+    
+    
+    
+  })
+  
+}
+
+
 
   getList = id => this.state[this.id2List[id]];
 
