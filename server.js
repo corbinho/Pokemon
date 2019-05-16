@@ -16,47 +16,53 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pokemonDB");
 
 
 
-io.on('connection', function(socket){
+io.sockets.on('connection', function (socket) {
 
-    
-    console.log("User Connected " + socket.id)
-    
-    socket.on('joinGame' , function(data) {
-      console.log('joining new game')
-      socket.join(data.room);
-    })
 
-    socket.on('disconnect', function () {
-      console.log('a user disconnected')
-    });
+  console.log("User Connected " + socket.id)
+
+  socket.on('joinGame', function (data) {
+    console.log('joining new game')
+    socket.join(data.room);
+    var clients = io.sockets.adapter.rooms['global'].sockets;
+
+    console.log(clients)
+  })
+
+
+  socket.on('disconnect', function () {
+    console.log('a user disconnected')
+  });
+
+
 })
 
 
-  
 
-  // socket.on('joinGame', function (data) {
-  //   var room = io.nsps['/'].adapter.rooms[data.room];
-  //   if (room && room.length == 1) {
-  //     socket.join(data.room);
-  //     socket.broadcast.to(data.room).emit('player1', {});
-  //     socket.emit('player2', {room: data.room })
-  //   }
-  //   else {
-  //     socket.emit('err', { message: 'Sorry, The room is full!' });
-  //   }
 
-  // })
+// socket.on('joinGame', function (data) {
+//   var room = io.nsps['/'].adapter.rooms[data.room];
+//   if (room && room.length == 1) {
+//     socket.join(data.room);
+//     socket.broadcast.to(data.room).emit('player1', {});
+//     socket.emit('player2', {room: data.room })
+//   }
+//   else {
+//     socket.emit('err', { message: 'Sorry, The room is full!' });
+//   }
+
+// })
 
 //   socket.on("roomChanged", function(data) {
 //     console.log("roomChanged", data);
 // });
 
-  // socket.on('createGame', function(data){
-  //   socket.join('room-' + ++rooms);
-  //   socket.emit('newGame', {room: 'room-'+rooms});
-  // });
+// socket.on('createGame', function(data){
+//   socket.join('room-' + ++rooms);
+//   socket.emit('newGame', {room: 'room-'+rooms});
+// });
 
-  
+
 
 
 
