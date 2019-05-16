@@ -4,7 +4,7 @@ import "./DraftChampion.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DraftMinion from "../draftMinion/draftMinion";
 import io from 'socket.io-client';
-
+const socket = io()
 
 
 
@@ -47,6 +47,9 @@ class DraftChamp extends Component {
       playerASocket: "a",
       playerBSocket: "a"
     }
+    socket.on('receive code', (payload) => {
+      this.updateCodeFromSockets(payload)
+    })
 
     this.id2List = {
       droppable: 'champions',
@@ -56,12 +59,26 @@ class DraftChamp extends Component {
 
   }
 
-  componentDidMount = () => {
-    let socket = io.connect()
+  updateCodeFromSockets(payload){
     
+    console.log("this is running")
+    console.log(payload)
+    
+    this.setState({
+      champions: payload.newCode.champions,
+      player1champion: payload.newCode.player1champion,
+      player2champion: payload.newCode.player2champion,
+      playerASocket: "a",
+      playerBSocket: "a"
+
+
+    })
+  
+  }
+
+  componentDidMount = () => {
     socket.emit('joinGame', { room: "global" })
     console.log(socket);
-    
   }
 
   getList = id => this.state[this.id2List[id]];
@@ -156,6 +173,10 @@ class DraftChamp extends Component {
       });
     }
 
+    socket.emit('update', {
+      room: 'global',
+      newCode: this.state
+    })
 
   };
 

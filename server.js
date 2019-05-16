@@ -29,6 +29,10 @@ io.sockets.on('connection', function (socket) {
     console.log(clients)
   })
 
+  socket.on('update', function (data){
+    socket.broadcast.to('global').emit('receive code', data);
+    console.log("updating")
+  })
 
   socket.on('disconnect', function () {
     console.log('a user disconnected')
