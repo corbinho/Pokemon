@@ -22,6 +22,17 @@
     -->
     <title>React App</title>
   </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // var connectionOptions = {
+    //   'force new connection' : true,
+    //   'reconnectionAttemps': "Infinity",
+    //   'timeout': '10000',
+    //   'transports' : ['websocket']
+    // }
+    // var socket = io('3001', connectionOptions);
+    var socket = io();
+  </script>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
