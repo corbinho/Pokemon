@@ -58,9 +58,10 @@ class DraftChamp extends Component {
 
   componentDidMount = () => {
     let socket = io.connect()
-    console.log(socket);
+    
     socket.emit('joinGame', { room: "global" })
-  
+    console.log(socket);
+    
   }
 
   getList = id => this.state[this.id2List[id]];
