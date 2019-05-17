@@ -38,12 +38,13 @@ io.sockets.on('connection', function (socket) {
     io.in('global').emit('receive users', clients)
   })
 
-  socket.on('disconnect', function () {
-    console.log('a user disconnected')
+  socket.on('disconnect', function (socket) {
+    console.log('a user disconnected' + socket.id)
   });
 
   socket.on('updateMinions', function (data){
-    io.in('global').emit('receive minions', data);
+    socket.to('global').emit('receive minions', data);
+    console.log(data)
     console.log("updating minion code")
   })
 
