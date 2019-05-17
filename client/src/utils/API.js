@@ -23,9 +23,9 @@ export default {
     socket.emit('draftMinion', minions, minion)
   },
 
-  board: (currentState) => {
-
-    socket.emit('board', currentState)
+  turnChange: (aTurn, bTurn, MaxMana, playerMana) => {
+    socket.emit('boardTurnChange', aTurn, bTurn, MaxMana, playerMana )
   }
+
 
 };

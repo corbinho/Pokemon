@@ -68,20 +68,20 @@ class GameBoard extends Component {
             console.log(updates)
             if (updates.player1 && updates.player2) {
                 this.setState({
-                    playerAChamp: updates.playerAChamp,
-                    playerAHand: updates.playerAHand,
-                    playerAField: updates.playerAField,
-                    playerAGraveyard: updates.playerAGraveyard,
-                    playerBChamp: updates.playerBChamp,
-                    playerBHand: updates.playerBHand,
-                    playerBField: updates.playerBField,
-                    playerBGraveyard: updates.playerBGraveyard,
-                    playerATurn: updates.playerATurn,
-                    playerBturn: updates.playerBTurn,
-                    playerAMana: updates.playerAMana,
-                    playerBMana: updates.playerBMana,
-                    aMaxMana: updates.aMaxMana,
-                    bMaxMana: updates.bMaxMana
+                    playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                    playerAHand: updates.playerAHand || this.state.playerAHand,
+                    playerAField: updates.playerAField || this.state.playerAField,
+                    playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                    playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                    playerBHand: updates.playerBHand || this.state.playerBHand,
+                    playerBField: updates.playerBField || this.state.playerBField,
+                    playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                    playerATurn: updates.playerATurn || this.state.playerATurn,
+                    playerBturn: updates.playerBTurn || this.state.playerBturn,
+                    playerAMana: updates.playerAMana || this.state.playerAMana,
+                    playerBMana: updates.playerBMana || this.state.playerBMana,
+                    aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                    bMaxMana: updates.bMaxMana || this.state.bMaxMana
                 })
             }
         })
@@ -100,6 +100,12 @@ class GameBoard extends Component {
                     aMaxMana: currentAMaxMana,
                     playerAMana: currentAMaxMana
                 })
+                let playerBTurn = true
+                let playerATurn = false
+                let aMaxMana = currentAMaxMana
+                let playerAMana = currentAMaxMana
+
+                API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
             }
             else {
                 currentAMaxMana = 50
@@ -109,8 +115,15 @@ class GameBoard extends Component {
                     aMaxMana: currentAMaxMana,
                     playerAMana: currentAMaxMana
                 })
+
+                let playerBTurn = true
+                let playerATurn = false
+                let aMaxMana = currentAMaxMana
+                let playerAMana = currentAMaxMana
+
+                API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
             }
-            API.board(this.state)
+            
         }
     }
 
@@ -128,6 +141,13 @@ class GameBoard extends Component {
                     bMaxMana: currentBMaxMana,
                     playerBMana: currentBMaxMana
                 })
+
+                let playerBTurn = false
+                let playerATurn = true
+                let bMaxMana = currentBMaxMana
+                let playerBMana = currentBMaxMana
+
+                API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
             }
             else {
                 currentBMaxMana = 50
@@ -137,9 +157,17 @@ class GameBoard extends Component {
                     bMaxMana: currentBMaxMana,
                     playerBMana: currentBMaxMana
                 })
+
+                let playerBTurn = false
+                let playerATurn = true
+                let bMaxMana = currentBMaxMana
+                let playerBMana = currentBMaxMana
+
+                API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
             }
+
         }
-        API.board(this.state)
+        
     }
 
     getList = id => this.state[this.id2List[id]];
@@ -257,7 +285,7 @@ class GameBoard extends Component {
                     })
                 }
             }
-            API.board(this.state)
+            
         }
 
         //attacking playerB Champ
@@ -309,7 +337,7 @@ class GameBoard extends Component {
                         playerAMana: playerAMana
                     })
                 }
-                API.board(this.state)
+                
             }
         }
 
@@ -452,7 +480,7 @@ class GameBoard extends Component {
                 }
             }
         }
-        API.board(this.state)
+        
     };
     
     render() {
