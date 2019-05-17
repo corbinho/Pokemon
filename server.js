@@ -80,21 +80,19 @@ io.on('connection', function (socket) {
     io.emit('updateGame', game)
   })
 
-  socket.on('board', function(currentState){
-    game.playerAChamp = currentState.playerAChamp
-    game.playerAHand = currentState.playerAHand,
-    game.playerAField=  currentState.playerAField,
-    game.playerAGraveyard= currentState.playerAGraveyard,
-    game.playerBChamp = currentState.playerBChamp,
-    game.playerBHand = currentState.playerBHand,
-    game.playerBField = currentState.playerBField,
-    game.playerBGraveyard = currentState.playerBGraveyard,
-    game.playerATurn =currentState.playerATurn,
-    game.playerBturn = currentState.playerBTurn,
-    game.playerAMana = currentState.playerAMana,
-    game.playerBMana =currentState.playerBMana,
-    game.aMaxMana = currentState.aMaxMana,
-    game.bMaxMana = currentState.bMaxMana
+  socket.on('boardTurnChange', function(aTurn, bTurn, MaxMana, playerMana){
+    if (socket.id === game.player1.id){
+      game.playerATurn = aTurn,
+      game.playerBTurn = bTurn,
+      game.playerAMaxMana = MaxMana,
+      game.playerAMana = playerMana
+    }
+    else if (socket.id === game.player2.id){
+      game.playerATurn = aTurn,
+      game.playerBTurn = bTurn,
+      game.playerBMaxMana = MaxMana,
+      game.playerBMana = playerMana
+    }
 
     console.log(game)
 
