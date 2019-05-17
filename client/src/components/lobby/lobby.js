@@ -1,50 +1,56 @@
-// import React from "react";
-// import "../lobby/lobby.css"
+import React from "react";
+import "../lobby/lobby.css"
 
 
 
-// class Lobby extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       sockets: this.props.value
-//     }
+class Lobby extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sockets: this.props.value
+    }
 
-//   }
+  }
 
-//   createGame = () => {
-//   let player = function (name){
-//     this.name = name
-//   }
+  render() {
+    return <div className="lobbyContainer">
 
-//   let socket = io.connect('http://localhost:3001' , player , game)
-//   socket.emit('createGame')
-//   player = new Player (P1)
-  
-//   }
+      <div className="panels">
 
-//   joinGame = (game) => {
-//     let gameID = game
-//     socket.emit('joinGame', {room: gameID})
-//   } 
+      <div className="leftPanel">
 
-//   render() {
-//     return <div className="lobbyContainer">
+        
 
-//       <div className="leftPanel">
+      </div>
 
-//         <button className="createGameBtn" onClick={this.createGame} >Create a Game {this.state.playerASocket}</button>
 
-//       </div>
 
-//       <div className="rightPanel">
+      <div className="rightPanel">
 
-//         <button className="joinGameBtn" onClick={this.joinGame}>Join a Game {this.state.playerBSocket}</button>
+        <div className="createGame">
+          <div className="header">Create a New Game</div>
+          <input type="text" name="name" className="inputField" placeholder="Enter your name" required></input>
+          <br></br>
+          <button className="createGameBtn" onClick={this.createGame} >Create a Game {this.state.playerASocket}</button>
 
-//       </div>
+        </div>
 
-//     </div>;
-//   }
-// }
+        <div className="joinGame">
+          <div className="header">Join a Game</div>
+          <input type="text" name="name" className="inputField" placeholder="Enter your name" required></input>
+          <br></br>
+				  <input type="text" name="room" className="inputField" placeholder="Enter Game ID" required></input>
+          <br></br>
+          <button className="joinGameBtn" onClick={this.joinGame}>Join a Game {this.state.playerBSocket}</button>
 
-// export default Lobby;
+        </div>
+      
+
+      </div>
+
+      </div>
+    </div>;
+  }
+}
+
+export default Lobby;

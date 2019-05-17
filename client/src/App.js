@@ -19,7 +19,7 @@ class App extends Component {
       <div>{
         
         // <Lobby value={socket}></Lobby>
-       <DraftChamp></DraftChamp>
+       <Lobby></Lobby>
       }
       </div>
     );
