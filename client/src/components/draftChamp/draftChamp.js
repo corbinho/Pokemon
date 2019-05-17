@@ -59,7 +59,8 @@ class DraftChamp extends Component {
         if (updates.player1 && updates.player2) {
             this.setState({
                 player1champion: updates.player1.champion || [],
-                player2champion: updates.player2.champion || []
+                player2champion: updates.player2.champion || [],
+                champions: updates.champions
             })
         }
     })
@@ -110,7 +111,7 @@ class DraftChamp extends Component {
         destination
       );
 
-      API.draftChampion(result[destination.droppableId])
+      API.draftChampion(result.droppable, result[destination.droppableId])
     }
   };
 
