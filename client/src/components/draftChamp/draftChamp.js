@@ -3,8 +3,7 @@ import championList from "./champions"
 import "./DraftChampion.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DraftMinion from "../draftMinion/draftMinion";
-import io from 'socket.io-client';
-const socket = io()
+import API from '../../utils/API';
 
 
 
@@ -44,12 +43,7 @@ class DraftChamp extends Component {
       champions: championList.championList,
       player1champion: [],
       player2champion: [],
-      playerASocket: "",
-      playerBSocket: ""
     }
-    socket.on('receive code', (payload) => {
-      this.updateCodeFromSockets(payload)
-    })
 
     this.id2List = {
       droppable: 'champions',
@@ -57,70 +51,19 @@ class DraftChamp extends Component {
       droppable3: 'player2champion'
     };
 
-    socket.on('receive users', (payload) => {
-      
-      const ids = Object.keys(payload)
-      
-      this.setState({
-        playerASocket: ids[0],
-        playerBSocket: ids[1]
-      })
-      
-    })
-
   }
-
-  updateCodeFromSockets(payload){
-    
-    this.setState({
-      champions: payload.newCode.champions,
-      player1champion: payload.newCode.player1champion,
-      player2champion: payload.newCode.player2champion,
-      playerASocket: payload.newCode.playerASocket,
-      playerBSocket: payload.newCode.playerBSocket
-    })
-  
-  }
-
-  // updateCodeFromSocketsNoA(payload){
-  //   this.setState({
-  //     playerBSocket: payload.newCode.playerASocket
-  //   })
-  // }
 
   componentDidMount = () => {
-    
-    socket.on('connect', () => {
-    socket.emit('joinGame', { room: "global" })
-    
-    if (this.state.playerASocket === "" ){
-      
-      
-      
-      this.setState({
-          playerASocket: socket.id
-        })
-
-        socket.emit('update', {
-          room: 'global',
-          newCode: this.state
-        })
-        
-    } else {
-      this.setState({
-        playerBSocket: socket.id
-      })
-
-      socket.emit('update', {
-        room: 'global',
-        newCode: this.state
-      })
-    }
-    
-    
-  })
-  
-}
+    API.joinGame(updates => {
+        console.log(updates)
+        if (updates.player1 && updates.player2) {
+            this.setState({
+                player1champion: updates.player1.champion || [],
+                player2champion: updates.player2.champion || []
+            })
+        }
+    })
+  }
 
 
 
@@ -128,8 +71,6 @@ class DraftChamp extends Component {
 
   onDragEnd = result => {
     const { source, destination } = result;
-
-    
 
     // dropped outside the list
     if (!destination) {
@@ -160,7 +101,8 @@ class DraftChamp extends Component {
       console.log("already have a hero")
       return;
     }
-    if (source.droppableId === 'droppable' && destination.droppableId === "droppable2") {
+
+    if (source.droppableId === 'droppable' || destination.droppableId === 'droppable') {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
@@ -168,59 +110,8 @@ class DraftChamp extends Component {
         destination
       );
 
-      this.setState({
-        champions: result.droppable,
-        player1champion: result.droppable2
-      });
+      API.draftChampion(result[destination.droppableId])
     }
-
-    if (source.droppableId === 'droppable' && destination.droppableId === "droppable3") {
-      const result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
-        source,
-        destination
-      );
-
-      this.setState({
-        champions: result.droppable,
-        player2champion: result.droppable3
-      });
-    }
-
-    if (destination.droppableId === 'droppable' && source.droppableId === "droppable3") {
-      const result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
-        source,
-        destination
-      );
-
-      this.setState({
-        champions: result.droppable,
-        player2champion: result.droppable3
-      });
-    }
-
-    if (destination.droppableId === 'droppable' && source.droppableId === "droppable2") {
-      const result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
-        source,
-        destination
-      );
-
-      this.setState({
-        champions: result.droppable,
-        player1champion: result.droppable2
-      });
-    }
-
-    socket.emit('update', {
-      room: 'global',
-      newCode: this.state
-    })
-
   };
 
   render() {

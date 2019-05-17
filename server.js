@@ -7,81 +7,65 @@ const mongoose = require("mongoose");
 const http = require("http").Server(app);
 const socketIO = require('socket.io');
 
-let rooms = 0;
 
 const io = socketIO(http)
-// io.set('transports', ['websocket'])
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pokemonDB");
 
+// keep track of the game
+let game = {
+    player1: false,
+    player2: false
+};
 
-
-io.sockets.on('connection', function (socket) {
-
-
+io.on('connection', function (socket) {
   console.log("User Connected " + socket.id)
 
   socket.on('joinGame', function (data) {
     console.log('joining new game')
-    socket.join(data.room);
-    //get all clients in the room
-    let clients = io.sockets.adapter.rooms['global'].sockets;
 
-    console.log(clients)
+    // socket is assigned to player 1
+    if (!game.player1) game.player1 = {id: socket.id};
+    // socket is assigned to player 2
+    else if (!game.player2) game.player2 = {id: socket.id};
+    // game is full so I guess this person is just gonna spectate?
+    else {}
 
+    console.log(game)
   })
 
-  socket.on('update', function (data){
-    let clients = io.sockets.adapter.rooms['global'].sockets;
-    io.in('global').emit('receive code', data);
-    console.log("updating")
-    io.in('global').emit('receive users', clients)
-  })
-
-  socket.on('disconnect', function (socket) {
-    console.log('a user disconnected' + socket.id)
+  socket.on('disconnect', function () {
+    if (socket.id === game.player1) {
+        game.player1 = game.player2;
+        game.player2 = false;
+        resetGame()
+    }
+    else if (socket.id === game.player2) {
+        game.player2 = false;
+        resetGame()
+    }
+    console.log(socket)
+    console.log(game)
   });
 
-  socket.on('updateMinions', function (data){
-    socket.to('global').emit('receive minions', data);
-    console.log(data)
-    console.log("updating minion code")
+  socket.on('draftChampion', function(champion) {
+      if (socket.id === game.player1.id) {
+        game.player1.champion = champion;
+      }
+      else if (socket.id === game.player2.id) {
+        game.player2.champion = champion;
+      }
+      console.log(game)
+
+      io.emit('updateGame', game)
   })
-
-
 })
 
-
-
-
-// socket.on('joinGame', function (data) {
-//   var room = io.nsps['/'].adapter.rooms[data.room];
-//   if (room && room.length == 1) {
-//     socket.join(data.room);
-//     socket.broadcast.to(data.room).emit('player1', {});
-//     socket.emit('player2', {room: data.room })
-//   }
-//   else {
-//     socket.emit('err', { message: 'Sorry, The room is full!' });
-//   }
-
-// })
-
-//   socket.on("roomChanged", function(data) {
-//     console.log("roomChanged", data);
-// });
-
-// socket.on('createGame', function(data){
-//   socket.join('room-' + ++rooms);
-//   socket.emit('newGame', {room: 'room-'+rooms});
-// });
-
-
-
-
-
-
-
+function resetGame() {
+    // this function still needs to be implemented
+    // you can probably just make the browser refresh
+    // if someone rage quits
+}
 
 app.all('/', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
