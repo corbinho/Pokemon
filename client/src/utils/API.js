@@ -19,7 +19,13 @@ export default {
     // socket.on
   },
   draftMinion: (minions , minion, cb) => {
-    
+  
     socket.emit('draftMinion', minions, minion)
+  },
+
+  board: (currentState) => {
+
+    socket.emit('board', currentState)
   }
+
 };

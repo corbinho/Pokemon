@@ -14,8 +14,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pokemonDB");
 
 // keep track of the game
 let game = {
-    player1: false,
-    player2: false
+  player1: false,
+  player2: false
 };
 
 io.on('connection', function (socket) {
@@ -25,44 +25,44 @@ io.on('connection', function (socket) {
     console.log('joining new game')
 
     // socket is assigned to player 1
-    if (!game.player1) game.player1 = {id: socket.id};
+    if (!game.player1) game.player1 = { id: socket.id };
     // socket is assigned to player 2
-    else if (!game.player2) game.player2 = {id: socket.id};
+    else if (!game.player2) game.player2 = { id: socket.id };
     // game is full so I guess this person is just gonna spectate?
-    else {}
+    else { }
 
     console.log(game)
   })
 
   socket.on('disconnect', function () {
     if (socket.id === game.player1) {
-        game.player1 = game.player2;
-        game.player2 = false;
-        resetGame()
+      game.player1 = game.player2;
+      game.player2 = false;
+      resetGame()
     }
     else if (socket.id === game.player2) {
-        game.player2 = false;
-        resetGame()
+      game.player2 = false;
+      resetGame()
     }
     console.log(socket)
     console.log(game)
   });
 
-  socket.on('draftChampion', function(champions, champion) {
-      if (socket.id === game.player1.id) {
-        game.player1.champion = champion;
-        game.champions = champions
-      }
-      else if (socket.id === game.player2.id) {
-        game.player2.champion = champion;
-        game.champions = champions
-      }
-      console.log(game)
+  socket.on('draftChampion', function (champions, champion) {
+    if (socket.id === game.player1.id) {
+      game.player1.champion = champion;
+      game.champions = champions
+    }
+    else if (socket.id === game.player2.id) {
+      game.player2.champion = champion;
+      game.champions = champions
+    }
+    console.log(game)
 
-      io.emit('updateGame', game)
+    io.emit('updateGame', game)
   })
 
-  socket.on('draftMinion', function(minions, minion) {
+  socket.on('draftMinion', function (minions, minion) {
     if (socket.id === game.player1.id) {
       game.player1.minions = minion;
       game.player1.turn = false;
@@ -78,13 +78,34 @@ io.on('connection', function (socket) {
     console.log(game)
 
     io.emit('updateGame', game)
-})
+  })
+
+  socket.on('board', function(currentState){
+    game.playerAChamp = currentState.playerAChamp
+    game.playerAHand = currentState.playerAHand,
+    game.playerAField=  currentState.playerAField,
+    game.playerAGraveyard= currentState.playerAGraveyard,
+    game.playerBChamp = currentState.playerBChamp,
+    game.playerBHand = currentState.playerBHand,
+    game.playerBField = currentState.playerBField,
+    game.playerBGraveyard = currentState.playerBGraveyard,
+    game.playerATurn =currentState.playerATurn,
+    game.playerBturn = currentState.playerBTurn,
+    game.playerAMana = currentState.playerAMana,
+    game.playerBMana =currentState.playerBMana,
+    game.aMaxMana = currentState.aMaxMana,
+    game.bMaxMana = currentState.bMaxMana
+
+    console.log(game)
+
+    io.emit('updateGame', game)
+  })
 })
 
 function resetGame() {
-    // this function still needs to be implemented
-    // you can probably just make the browser refresh
-    // if someone rage quits
+  // this function still needs to be implemented
+  // you can probably just make the browser refresh
+  // if someone rage quits
 }
 
 app.all('/', function (req, res, next) {
