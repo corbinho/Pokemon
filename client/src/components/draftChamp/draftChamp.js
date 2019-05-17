@@ -33,7 +33,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
   result[droppableDestination.droppableId] = destClone;
-  console.log(result)
+  
   return result;
 };
 
@@ -58,22 +58,19 @@ class DraftChamp extends Component {
     };
 
     socket.on('receive users', (payload) => {
-      console.log(payload)
+      
       const ids = Object.keys(payload)
-      console.log(ids)
+      
       this.setState({
         playerASocket: ids[0],
         playerBSocket: ids[1]
       })
-      console.log(this.state)
+      
     })
 
   }
 
   updateCodeFromSockets(payload){
-    
-    console.log("this is running")
-    console.log(payload)
     
     this.setState({
       champions: payload.newCode.champions,
@@ -97,8 +94,8 @@ class DraftChamp extends Component {
     socket.emit('joinGame', { room: "global" })
     
     if (this.state.playerASocket === "" ){
-      console.log(socket);
-      console.log("setting A socket")
+      
+      
       
       this.setState({
           playerASocket: socket.id
@@ -108,7 +105,7 @@ class DraftChamp extends Component {
           room: 'global',
           newCode: this.state
         })
-        console.log(this.state)
+        
     } else {
       this.setState({
         playerBSocket: socket.id
@@ -119,11 +116,6 @@ class DraftChamp extends Component {
         newCode: this.state
       })
     }
-    
-
-    console.log("player A socket: " + this.state.playerASocket);
-    console.log("player B socket: " + this.state.playerBSocket)
-    
     
     
   })
@@ -137,7 +129,7 @@ class DraftChamp extends Component {
   onDragEnd = result => {
     const { source, destination } = result;
 
-    console.log(this.props)
+    
 
     // dropped outside the list
     if (!destination) {

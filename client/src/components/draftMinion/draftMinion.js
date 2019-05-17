@@ -3,7 +3,9 @@ import './draftMinion.css';
 import minionsList from "./minions"
 import DraftChamp from "../draftChamp/draftChamp";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import  GameBoard from "../board/board"
+import GameBoard from "../board/board"
+import io from 'socket.io-client';
+const socket = io()
 
 
 const reorder = (list, startIndex, endIndex) => {
@@ -31,30 +33,57 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
   result[droppableDestination.droppableId] = destClone;
-  console.log(result)
+  
   return result;
 };
 
 
 class DraftMinion extends Component {
   constructor(props) {
-  super(props);
-  this.state = {
-    minions: minionsList.minionsList,
-    player1deck: [],
-    player2deck: [],
-    player1champion: this.props.p1champ,
-    player2champion: this.props.p2champ,
-    player1Turn: true,
-    player2Turn: false
-  };
+    super(props);
+    this.state = {
+      minions: minionsList.minionsList,
+      player1deck: [],
+      player2deck: [],
+      player1champion: this.props.p1champ,
+      player2champion: this.props.p2champ,
+      player1Turn: true,
+      player2Turn: false
+    };
 
-  this.id2List = {
-    droppable: 'minions',
-    droppable2: 'player1deck',
-    droppable3: 'player2deck'
-  };
-}
+    this.id2List = {
+      droppable: 'minions',
+      droppable2: 'player1deck',
+      droppable3: 'player2deck'
+    };
+
+    socket.on('receive minions', (payload) => {
+      console.log("received new code")
+      console.log(payload)
+      this.updateMinionCodeFromSockets(payload)
+    })
+
+  }
+
+  updateMinionCodeFromSockets(payload) {
+
+    console.log("this is running to update minion socket state")
+    console.log(payload)
+
+    this.setState({
+      minions: payload.minions,
+      player1deck: payload.player1deck,
+      player2deck: payload.player1deck,
+    })
+
+  }
+
+  // componentDidMount = () => {
+  //   socket.on('connect', () => {
+  //     socket.emit('joinGame', { room: "global" })
+  //     console.log("both logged on")
+  //   })
+  // }
 
   getList = id => this.state[this.id2List[id]];
 
@@ -122,21 +151,18 @@ class DraftMinion extends Component {
         player2Turn: false
       });
     }
+
+    socket.emit('updateMinions', {
+      room: 'global',
+      newCode: this.state
+    })
+
   };
 
-
-  // selectMinion = index => {
-  //   let selectedMinion = [...this.state.minions]
-  //   this.setState({
-  //     player1deck: [...this.state.player1deck, selectedMinion[index]]
-  //   })
-  //   console.log(this.state.player1deck)
-  // }
-
   render() {
-    if (this.state.player1deck.length === 9 && this.state.player2deck.length === 9){
+    if (this.state.player1deck.length === 9 && this.state.player2deck.length === 9) {
       return (
-        <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ = {this.state.player1champion} p2champ = {this.state.player2champion}></GameBoard>
+        <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion}></GameBoard>
       )
     }
     return (
@@ -144,11 +170,11 @@ class DraftMinion extends Component {
         <div className="container">
           <div className="minionHeader">
             <h1 className="headerText">Choose your minions</h1>
-            
+
           </div>
 
           <div className="row2">
-          <Droppable droppableId="droppable3">
+            <Droppable droppableId="droppable3">
               {(provided) => (
                 <div
                   ref={provided.innerRef} className="chosenMinion">
@@ -170,7 +196,7 @@ class DraftMinion extends Component {
                         >
                           <p className="minionName">{p2deck.Name}</p>
                           <div>
-                          <img className="chosenMinionPortrait" src={p2deck.Img} alt="" width="60" height="60"></img>
+                            <img className="chosenMinionPortrait" src={p2deck.Img} alt="" width="60" height="60"></img>
                           </div>
                           <img className="chosenMinionWeakness" src={p2deck.WeakAgainstImg} alt="" width="20" height="20"></img>
                           <img className="minionType" src={p2deck.Type} alt="" width="42" height="42"></img>
@@ -189,7 +215,7 @@ class DraftMinion extends Component {
               {(provided) => (
 
                 <div className="minionContainer" ref={provided.innerRef}>
-                  
+
                   {this.state.minions.map((minion, index) => (
                     <Draggable
                       key={minion.id}
@@ -201,7 +227,7 @@ class DraftMinion extends Component {
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           className="minionCard"
-                          id={minion.id} 
+                          id={minion.id}
                           key={minion.id}
                         >
                           <h3 className="MinionName">{minion.Name || "Minion"}</h3>
@@ -219,8 +245,8 @@ class DraftMinion extends Component {
                           <img className="minionPortrait" src={minion.Img} alt=""></img>
 
                         </div>
-            )}
-            </Draggable>
+                      )}
+                    </Draggable>
                   ))}
                   {provided.placeholder}
                 </div>
@@ -248,7 +274,7 @@ class DraftMinion extends Component {
                         >
                           <p className="minionName">{p1deck.Name}</p>
                           <div>
-                          <img className="chosenMinionPortrait" src={p1deck.Img} alt="" width="60" height="60"></img>
+                            <img className="chosenMinionPortrait" src={p1deck.Img} alt="" width="60" height="60"></img>
                           </div>
                           <img className="chosenMinionWeakness" src={p1deck.WeakAgainstImg} alt="" width="20" height="20"></img>
                           <img className="minionType" src={p1deck.Type} alt="" width="42" height="42"></img>
@@ -261,11 +287,11 @@ class DraftMinion extends Component {
                 </div>
               )}
             </Droppable>
-           
+
           </div>
-          
+
         </div>
-        
+
       </DragDropContext>
 
     )
