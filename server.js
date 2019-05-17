@@ -42,6 +42,11 @@ io.sockets.on('connection', function (socket) {
     console.log('a user disconnected')
   });
 
+  socket.on('updateMinions', function (data){
+    io.in('global').emit('receive minions', data);
+    console.log("updating minion code")
+  })
+
 
 })
 

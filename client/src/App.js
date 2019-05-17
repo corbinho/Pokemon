@@ -17,9 +17,13 @@ class App extends Component {
   render() {
     return (
       <div>{
+
+       
+
         
         // <Lobby value={socket}></Lobby>
        <Lobby></Lobby>
+
       }
       </div>
     );
