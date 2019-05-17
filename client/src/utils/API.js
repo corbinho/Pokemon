@@ -17,5 +17,9 @@ export default {
   draftChampion: (champion, cb) => {
     socket.emit('draftChampion', champion)
     // socket.on
+  },
+  draftMinion: (minions , minion, cb) => {
+    console.log(minions)
+    socket.emit('draftMinion', minions, minion)
   }
 };

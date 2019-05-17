@@ -4,8 +4,7 @@ import minionsList from "./minions"
 import DraftChamp from "../draftChamp/draftChamp";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import GameBoard from "../board/board"
-import io from 'socket.io-client';
-const socket = io()
+import API from '../../utils/API';
 
 
 const reorder = (list, startIndex, endIndex) => {
@@ -38,11 +37,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 class DraftMinion extends Component {
-  componentDidMount() {
-    console.log("mounted")
-   
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -61,26 +55,41 @@ class DraftMinion extends Component {
       droppable3: 'player2deck'
     };
 
-    socket.on('receive minions', (payload) => {
-      console.log("received new code")
-      console.log(payload)
-      this.updateMinionCodeFromSockets(payload)
-    })
+    // socket.on('receive minions', (payload) => {
+    //   console.log("received new code")
+    //   console.log(payload)
+    //   this.updateMinionCodeFromSockets(payload)
+    // })
 
   }
 
-  updateMinionCodeFromSockets(payload) {
-
-    console.log("this is running to update minion socket state")
-    console.log(payload)
-
-    this.setState({
-      minions: payload.newCode.minions,
-      player1deck: payload.newCode.player1deck,
-      player2deck: payload.newCode.player2deck,
+  componentDidMount = () => {
+    API.joinGame(updates => {
+        console.log(updates)
+        if (updates.player1 && updates.player2) {
+            this.setState({
+                player1deck: updates.player1.minions || [],
+                player2deck: updates.player2.minions || [],
+                player1Turn: updates.player1.turn, 
+                player2Turn: updates.player2.turn,
+                minions: updates.minions
+            })
+        }
     })
-
   }
+
+  // updateMinionCodeFromSockets(payload) {
+
+  //   console.log("this is running to update minion socket state")
+  //   console.log(payload)
+
+  //   this.setState({
+  //     minions: payload.newCode.minions,
+  //     player1deck: payload.newCode.player1deck,
+  //     player2deck: payload.newCode.player2deck,
+  //   })
+
+  // }
 
   // componentDidMount = () => {
   //   socket.on('connect', () => {
@@ -138,6 +147,8 @@ class DraftMinion extends Component {
         player1Turn: false,
         player2Turn: true
       });
+
+      API.draftMinion(result.droppable , result[destination.droppableId])
     }
 
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && (this.state.player2Turn)) {
@@ -154,12 +165,14 @@ class DraftMinion extends Component {
         player1Turn: true,
         player2Turn: false
       });
+
+      API.draftMinion(result.droppable , result[destination.droppableId])
     }
 
-    socket.emit('updateMinions', {
-      room: 'global',
-      newCode: this.state
-    })
+    // socket.emit('updateMinions', {
+    //   room: 'global',
+    //   newCode: this.state
+    // })
 
   };
 

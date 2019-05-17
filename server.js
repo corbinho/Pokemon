@@ -59,6 +59,24 @@ io.on('connection', function (socket) {
 
       io.emit('updateGame', game)
   })
+
+  socket.on('draftMinion', function(minions, minion) {
+    if (socket.id === game.player1.id) {
+      game.player1.minions = minion;
+      game.player1.turn = false;
+      game.player2.turn = true;
+      game.minions = minions
+    }
+    else if (socket.id === game.player2.id) {
+      game.player2.minions = minion;
+      game.player2.turn = false;
+      game.player1.turn = true;
+      game.minions = minions
+    }
+    console.log(game)
+
+    io.emit('updateGame', game)
+})
 })
 
 function resetGame() {
