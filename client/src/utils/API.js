@@ -14,12 +14,12 @@ export default {
     socket.emit('joinGame', { })
     socket.on('updateGame', cb)
   },
-  draftChampion: (champion, cb) => {
-    socket.emit('draftChampion', champion)
+  draftChampion: (champions, champion, cb) => {
+    socket.emit('draftChampion', champions, champion)
     // socket.on
   },
   draftMinion: (minions , minion, cb) => {
-    console.log(minions)
+    
     socket.emit('draftMinion', minions, minion)
   }
 };

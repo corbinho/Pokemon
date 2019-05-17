@@ -48,12 +48,14 @@ io.on('connection', function (socket) {
     console.log(game)
   });
 
-  socket.on('draftChampion', function(champion) {
+  socket.on('draftChampion', function(champions, champion) {
       if (socket.id === game.player1.id) {
         game.player1.champion = champion;
+        game.champions = champions
       }
       else if (socket.id === game.player2.id) {
         game.player2.champion = champion;
+        game.champions = champions
       }
       console.log(game)
 
