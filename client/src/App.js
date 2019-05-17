@@ -18,11 +18,8 @@ class App extends Component {
     return (
       <div>{
 
-       
-
-        
         // <Lobby value={socket}></Lobby>
-       <Lobby></Lobby>
+       <DraftChamp></DraftChamp>
 
       }
       </div>

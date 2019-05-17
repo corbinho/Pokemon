@@ -37,8 +37,12 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
-
 class DraftMinion extends Component {
+  componentDidMount() {
+    console.log("mounted")
+   
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -71,9 +75,9 @@ class DraftMinion extends Component {
     console.log(payload)
 
     this.setState({
-      minions: payload.minions,
-      player1deck: payload.player1deck,
-      player2deck: payload.player1deck,
+      minions: payload.newCode.minions,
+      player1deck: payload.newCode.player1deck,
+      player2deck: payload.newCode.player2deck,
     })
 
   }
