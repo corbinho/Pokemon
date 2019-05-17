@@ -55,12 +55,6 @@ class DraftMinion extends Component {
       droppable3: 'player2deck'
     };
 
-    // socket.on('receive minions', (payload) => {
-    //   console.log("received new code")
-    //   console.log(payload)
-    //   this.updateMinionCodeFromSockets(payload)
-    // })
-
   }
 
   componentDidMount = () => {
@@ -77,26 +71,6 @@ class DraftMinion extends Component {
         }
     })
   }
-
-  // updateMinionCodeFromSockets(payload) {
-
-  //   console.log("this is running to update minion socket state")
-  //   console.log(payload)
-
-  //   this.setState({
-  //     minions: payload.newCode.minions,
-  //     player1deck: payload.newCode.player1deck,
-  //     player2deck: payload.newCode.player2deck,
-  //   })
-
-  // }
-
-  // componentDidMount = () => {
-  //   socket.on('connect', () => {
-  //     socket.emit('joinGame', { room: "global" })
-  //     console.log("both logged on")
-  //   })
-  // }
 
   getList = id => this.state[this.id2List[id]];
 

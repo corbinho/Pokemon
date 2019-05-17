@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./board.css";
 import "./boardCards.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import API from '../../utils/API';
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -29,7 +30,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
-    // console.log(result);
     return result;
 };
 
@@ -63,6 +63,30 @@ class GameBoard extends Component {
         };
     }
 
+    componentDidMount = () => {
+        API.joinGame(updates => {
+            console.log(updates)
+            if (updates.player1 && updates.player2) {
+                this.setState({
+                    playerAChamp: updates.playerAChamp,
+                    playerAHand: updates.playerAHand,
+                    playerAField: updates.playerAField,
+                    playerAGraveyard: updates.playerAGraveyard,
+                    playerBChamp: updates.playerBChamp,
+                    playerBHand: updates.playerBHand,
+                    playerBField: updates.playerBField,
+                    playerBGraveyard: updates.playerBGraveyard,
+                    playerATurn: updates.playerATurn,
+                    playerBturn: updates.playerBTurn,
+                    playerAMana: updates.playerAMana,
+                    playerBMana: updates.playerBMana,
+                    aMaxMana: updates.aMaxMana,
+                    bMaxMana: updates.bMaxMana
+                })
+            }
+        })
+      }
+
     changeATurn = () => {
         if (this.state.playerATurn === false) {
             return
@@ -86,6 +110,7 @@ class GameBoard extends Component {
                     playerAMana: currentAMaxMana
                 })
             }
+            API.board(this.state)
         }
     }
 
@@ -114,6 +139,7 @@ class GameBoard extends Component {
                 })
             }
         }
+        API.board(this.state)
     }
 
     getList = id => this.state[this.id2List[id]];
@@ -231,6 +257,7 @@ class GameBoard extends Component {
                     })
                 }
             }
+            API.board(this.state)
         }
 
         //attacking playerB Champ
@@ -282,6 +309,7 @@ class GameBoard extends Component {
                         playerAMana: playerAMana
                     })
                 }
+                API.board(this.state)
             }
         }
 
@@ -354,6 +382,8 @@ class GameBoard extends Component {
                     console.log("out of mana to attack or moves")
                 }
 
+                
+
             }
             //player B's turn
             else {
@@ -422,6 +452,7 @@ class GameBoard extends Component {
                 }
             }
         }
+        API.board(this.state)
     };
     
     render() {
