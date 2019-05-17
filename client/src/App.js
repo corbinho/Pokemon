@@ -17,7 +17,13 @@ class App extends Component {
   render() {
     return (
       <div>{
-       <DraftChamp></DraftChamp>
+
+       
+
+        
+        // <Lobby value={socket}></Lobby>
+       <Lobby></Lobby>
+
       }
       </div>
     );
