@@ -77,7 +77,7 @@ class GameBoard extends Component {
                     playerBField: updates.playerBField || this.state.playerBField,
                     playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
                     playerATurn: updates.playerATurn || this.state.playerATurn,
-                    playerBturn: updates.playerBTurn || this.state.playerBturn,
+                    playerBturn: updates.playerBturn || this.state.playerBturn,
                     playerAMana: updates.playerAMana || this.state.playerAMana,
                     playerBMana: updates.playerBMana || this.state.playerBMana,
                     aMaxMana: updates.aMaxMana || this.state.aMaxMana,
@@ -99,13 +99,15 @@ class GameBoard extends Component {
                     playerATurn: false,
                     aMaxMana: currentAMaxMana,
                     playerAMana: currentAMaxMana
+                }, function(){
+                    API.board(this.state)
                 })
                 let playerBTurn = true
                 let playerATurn = false
                 let aMaxMana = currentAMaxMana
                 let playerAMana = currentAMaxMana
 
-                API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
+                // API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
             }
             else {
                 currentAMaxMana = 50
@@ -114,14 +116,16 @@ class GameBoard extends Component {
                     playerATurn: false,
                     aMaxMana: currentAMaxMana,
                     playerAMana: currentAMaxMana
+                }, function(){
+                    API.board(this.state)
                 })
 
-                let playerBTurn = true
-                let playerATurn = false
-                let aMaxMana = currentAMaxMana
-                let playerAMana = currentAMaxMana
+                // let playerBTurn = true
+                // let playerATurn = false
+                // let aMaxMana = currentAMaxMana
+                // let playerAMana = currentAMaxMana
 
-                API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
+                // API.turnChange(playerATurn, playerBTurn, aMaxMana, playerAMana)
             }
             
         }
@@ -140,6 +144,8 @@ class GameBoard extends Component {
                     playerATurn: true,
                     bMaxMana: currentBMaxMana,
                     playerBMana: currentBMaxMana
+                }, function(){
+                    API.board(this.state)
                 })
 
                 let playerBTurn = false
@@ -147,7 +153,7 @@ class GameBoard extends Component {
                 let bMaxMana = currentBMaxMana
                 let playerBMana = currentBMaxMana
 
-                API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
+                // API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
             }
             else {
                 currentBMaxMana = 50
@@ -156,6 +162,8 @@ class GameBoard extends Component {
                     playerATurn: true,
                     bMaxMana: currentBMaxMana,
                     playerBMana: currentBMaxMana
+                }, function(){
+                    API.board(this.state)
                 })
 
                 let playerBTurn = false
@@ -163,7 +171,7 @@ class GameBoard extends Component {
                 let bMaxMana = currentBMaxMana
                 let playerBMana = currentBMaxMana
 
-                API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
+                // API.turnChange(playerATurn, playerBTurn, bMaxMana, playerBMana)
             }
 
         }
@@ -210,6 +218,8 @@ class GameBoard extends Component {
                     playerAHand: result.playerHandA,
                     playerAMana: currentMana
 
+                }, function(){
+                    API.board(this.state)
                 });
             } else {
                 console.log("out of mana to play card")
@@ -230,6 +240,8 @@ class GameBoard extends Component {
                     playerBField: result.fieldB,
                     playerBHand: result.playerHandB,
                     playerBMana: currentMana
+                }, function(){
+                    API.board(this.state)
                 });
                 console.log("B current mana = " + currentMana)
             } else {
@@ -282,6 +294,8 @@ class GameBoard extends Component {
                         playerAChamp: playerAChampion,
                         playerBField: playerBField,
                         playerBMana: playerBMana
+                    }, function(){
+                        API.board(this.state)
                     })
                 }
             }
@@ -335,6 +349,8 @@ class GameBoard extends Component {
                         playerBChamp: playerBChampion,
                         playerAField: playerAField,
                         playerAMana: playerAMana
+                    }, function(){
+                        API.board(this.state)
                     })
                 }
                 
@@ -397,6 +413,8 @@ class GameBoard extends Component {
                         playerBField: playerBField,
                         playerAMana: playerAMana,
                         playerBGraveyard: playerBGraveyard
+                    }, function(){
+                        API.board(this.state)
                     })
 
 
@@ -466,6 +484,8 @@ class GameBoard extends Component {
                         playerBField: playerBField,
                         playerBMana: playerBMana,
                         playerAGraveyard: playerBGraveyard
+                    }, function(){
+                        API.board(this.state)
                     })
 
 

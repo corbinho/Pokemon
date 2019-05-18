@@ -98,6 +98,28 @@ io.on('connection', function (socket) {
 
     io.emit('updateGame', game)
   })
+
+  socket.on('board' , function(allState){
+      game.playerAChamp = allState.playerAChamp
+      game.playerAHand = allState.playerAHand
+      game.playerAField = allState.playerAField
+      game.playerAGraveyard = allState.playerAGraveyard
+      game.playerBChamp = allState.playerBChamp
+      game.playerBHand = allState.playerBHand
+      game.playerBField = allState.playerBField
+      game.playerBGraveyard = allState.playerBGraveyard
+      game.playerATurn = allState.playerATurn
+      game.playerBturn = allState.playerBturn
+      game.playerAMana = allState.playerAMana
+      game.playerBMana = allState.playerBMana
+      game.aMaxMana = allState.aMaxMana
+      game.bMaxMana = allState.bMaxMana
+
+      console.log(game)
+      io.emit('updateGame', game)
+  })
+  
+
 })
 
 function resetGame() {
