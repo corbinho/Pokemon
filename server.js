@@ -80,23 +80,34 @@ io.on('connection', function (socket) {
     io.emit('updateGame', game)
   })
 
-  socket.on('boardTurnChange', function(aTurn, bTurn, MaxMana, playerMana){
+  // socket.on('boardTurnChange', function(aTurn, bTurn, MaxMana, playerMana){
+  //   if (socket.id === game.player1.id){
+  //     game.playerATurn = aTurn,
+  //     game.playerBTurn = bTurn,
+  //     game.playerAMaxMana = MaxMana,
+  //     game.playerAMana = playerMana
+  //   }
+  //   else if (socket.id === game.player2.id){
+  //     game.playerATurn = aTurn,
+  //     game.playerBTurn = bTurn,
+  //     game.playerBMaxMana = MaxMana,
+  //     game.playerBMana = playerMana
+  //   }
+
+  //   console.log(game)
+
+  //   io.emit('updateGame', game)
+  // })
+
+  socket.on('checkSocket', function(){
+    let returnedSocket
     if (socket.id === game.player1.id){
-      game.playerATurn = aTurn,
-      game.playerBTurn = bTurn,
-      game.playerAMaxMana = MaxMana,
-      game.playerAMana = playerMana
+       returnedSocket = true
+    } else {
+        returnedSocket = false
     }
-    else if (socket.id === game.player2.id){
-      game.playerATurn = aTurn,
-      game.playerBTurn = bTurn,
-      game.playerBMaxMana = MaxMana,
-      game.playerBMana = playerMana
-    }
-
-    console.log(game)
-
-    io.emit('updateGame', game)
+   
+    io.emit('giveSocket', returnedSocket)
   })
 
   socket.on('board' , function(allState){
