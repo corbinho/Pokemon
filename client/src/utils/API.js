@@ -26,7 +26,10 @@ export default {
   board: (allState) => {
     console.log(allState)
     socket.emit('board', allState)
-  }
+  },
 
+  checkSocket: (cb) => {
+    socket.emit('checkSocket', cb)
+  }
 
 };

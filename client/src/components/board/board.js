@@ -3,6 +3,7 @@ import "./board.css";
 import "./boardCards.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import API from '../../utils/API';
+import { isUndefined } from "util";
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -67,6 +68,7 @@ class GameBoard extends Component {
         API.joinGame(updates => {
             console.log(updates)
             if (updates.player1 && updates.player2) {
+                if(updates.playerATurn || updates.playerBturn){
                 this.setState({
                     playerAChamp: updates.playerAChamp || this.state.playerAChamp,
                     playerAHand: updates.playerAHand || this.state.playerAHand,
@@ -76,18 +78,39 @@ class GameBoard extends Component {
                     playerBHand: updates.playerBHand || this.state.playerBHand,
                     playerBField: updates.playerBField || this.state.playerBField,
                     playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
-                    playerATurn: updates.playerATurn || this.state.playerATurn,
-                    playerBturn: updates.playerBturn || this.state.playerBturn,
+                    playerATurn: updates.playerATurn,
+                    playerBturn: updates.playerBturn,
                     playerAMana: updates.playerAMana || this.state.playerAMana,
                     playerBMana: updates.playerBMana || this.state.playerBMana,
                     aMaxMana: updates.aMaxMana || this.state.aMaxMana,
                     bMaxMana: updates.bMaxMana || this.state.bMaxMana
-                })
+                }, function() {console.log(this.state)}
+                )
+            } else {
+                this.setState({
+                    playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                    playerAHand: updates.playerAHand || this.state.playerAHand,
+                    playerAField: updates.playerAField || this.state.playerAField,
+                    playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                    playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                    playerBHand: updates.playerBHand || this.state.playerBHand,
+                    playerBField: updates.playerBField || this.state.playerBField,
+                    playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                    playerATurn: this.state.playerATurn,
+                    playerBturn: this.state.playerBturn,
+                    playerAMana: updates.playerAMana || this.state.playerAMana,
+                    playerBMana: updates.playerBMana || this.state.playerBMana,
+                    aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                    bMaxMana: updates.bMaxMana || this.state.bMaxMana
+                }, function() {console.log(this.state)}
+                )
+            }
             }
         })
     }
 
     changeATurn = () => {
+
         if (this.state.playerATurn === false) {
             return
         } else {
@@ -118,9 +141,11 @@ class GameBoard extends Component {
             }
 
         }
+    
     }
 
     changeBTurn = () => {
+        
         if (this.state.playerBturn === false) {
             return
         } else {
@@ -152,6 +177,7 @@ class GameBoard extends Component {
             }
 
         }
+    
 
     }
 
@@ -362,6 +388,11 @@ class GameBoard extends Component {
                     console.log(attackingCardIndex);
                     console.log(defendingCardIndex);
 
+                    if (defendingCardIndex === undefined){
+                        console.log('youre attacking something that doesnt exist')
+                        return
+                    } else {
+
                     var attackingCardType = playerAField[attackingCardIndex].TypeText;
                     var defendingCardWeakness = playerBField[defendingCardIndex].WeakAgainst;
                     var defendingCardStrength = playerBField[defendingCardIndex].StrongAgainst;
@@ -393,12 +424,8 @@ class GameBoard extends Component {
                     }, function () {
                         API.board(this.state)
                     })
-
-
                     console.log(this.state)
-
-
-
+                }
                 }
                 else {
                     //add some modal to say out of mana
@@ -432,6 +459,11 @@ class GameBoard extends Component {
                     console.log(playerBField);
                     console.log(attackingCardIndex);
                     console.log(defendingCardIndex);
+
+                    if (defendingCardIndex === undefined){
+                        console.log('youre attacking something that doesnt exist')
+                        return
+                    } else {
 
                     var attackingCardType = playerBField[attackingCardIndex].TypeText;
                     var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
@@ -470,7 +502,7 @@ class GameBoard extends Component {
 
 
 
-                }
+                }}
                 else {
                     //add some modal to say out of mana
                     console.log("out of mana to attack or moves")
