@@ -125,7 +125,7 @@ class GameOver extends React.Component {
 
                         {/* Right Block */}
                         <div className="right">
-                            <h6>Winner!</h6>
+                            
                         <div className="playerHeader">
                                 Player 2
                             <h6>Champion Health Remaining {this.state.playerAChamp[0].Health}/100</h6>
