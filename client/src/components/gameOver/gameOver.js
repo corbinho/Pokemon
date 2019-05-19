@@ -4,6 +4,22 @@ import "../gameOver/gameOver.css"
 
 
 class GameOver extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            winner: this.props.winner,
+            playerAChamp: this.props.playerAChamp,
+            playerBChamp: this.props.playerBChamp,
+            playerAField: this.props.playerAField,
+            playerBField: this.props.playerBField,
+            playerAHand: this.props.playerAHand,
+            playerBHand: this.props.playerBHand,
+            playerAGraveyard: this.props.playerAGraveyard,
+            playerBGraveyard: this.props.playerBGraveyard
+        }
+
+
+    }
 
     render() {
         return <div className="gameOverContainer">
