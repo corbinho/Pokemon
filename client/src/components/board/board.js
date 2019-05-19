@@ -115,28 +115,33 @@ class GameBoard extends Component {
             return
         } else {
             let currentAMaxMana = this.state.aMaxMana
+            let newMana;
             if (currentAMaxMana <= 45) {
-                currentAMaxMana += 5
-                this.setState({
-                    playerBturn: true,
-                    playerATurn: false,
-                    aMaxMana: currentAMaxMana,
-                    playerAMana: currentAMaxMana
-                }, function () {
-                    API.board(this.state)
-                })
+                currentAMaxMana += 5;
+                newMana = currentAMaxMana
+                API.changeAsTurn(currentAMaxMana, newMana)
+                // this.setState({
+                //     playerBturn: true,
+                //     playerATurn: false,
+                //     aMaxMana: currentAMaxMana,
+                //     playerAMana: currentAMaxMana
+                // }, function () {
+                //     API.board(this.state)
+                // })
 
             }
             else {
-                currentAMaxMana = 50
-                this.setState({
-                    playerBturn: true,
-                    playerATurn: false,
-                    aMaxMana: currentAMaxMana,
-                    playerAMana: currentAMaxMana
-                }, function () {
-                    API.board(this.state)
-                })
+                currentAMaxMana = 50;
+                newMana = currentAMaxMana;
+                API.changeAsTurn(currentAMaxMana, newMana)
+                // this.setState({
+                //     playerBturn: true,
+                //     playerATurn: false,
+                //     aMaxMana: currentAMaxMana,
+                //     playerAMana: currentAMaxMana
+                // }, function () {
+                //     API.board(this.state)
+                // })
 
             }
 
@@ -150,29 +155,34 @@ class GameBoard extends Component {
             return
         } else {
             let currentBMaxMana = this.state.bMaxMana
+            let newMana;
             if (currentBMaxMana <= 45) {
                 currentBMaxMana += 5
-                console.log(currentBMaxMana)
-                this.setState({
-                    playerBturn: false,
-                    playerATurn: true,
-                    bMaxMana: currentBMaxMana,
-                    playerBMana: currentBMaxMana
-                }, function () {
-                    API.board(this.state)
-                })
+                newMana = currentBMaxMana;
+                API.changeBsTurn(currentBMaxMana, newMana);
+                // console.log(currentBMaxMana)
+                // this.setState({
+                //     playerBturn: false,
+                //     playerATurn: true,
+                //     bMaxMana: currentBMaxMana,
+                //     playerBMana: currentBMaxMana
+                // }, function () {
+                //     API.board(this.state)
+                // })
 
             }
             else {
-                currentBMaxMana = 50
-                this.setState({
-                    playerBturn: false,
-                    playerATurn: true,
-                    bMaxMana: currentBMaxMana,
-                    playerBMana: currentBMaxMana
-                }, function () {
-                    API.board(this.state)
-                })
+                currentBMaxMana = 50;
+                newMana = currentBMaxMana;
+                API.changeBsTurn(currentBMaxMana, newMana)
+                // this.setState({
+                //     playerBturn: false,
+                //     playerATurn: true,
+                //     bMaxMana: currentBMaxMana,
+                //     playerBMana: currentBMaxMana
+                // }, function () {
+                //     API.board(this.state)
+                // })
 
             }
 
