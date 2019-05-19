@@ -151,7 +151,7 @@ class DraftMinion extends Component {
   };
 
   render() {
-    if (this.state.player1deck.length === 9 && this.state.player2deck.length === 9) {
+    if (this.state.player1deck.length === 5 && this.state.player2deck.length === 5) {
       return (
         <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion}></GameBoard>
       )
@@ -170,7 +170,7 @@ class DraftMinion extends Component {
                 <div
                   ref={provided.innerRef} className="chosenMinion">
                   <h3 className="chosenText">Chosen Minions</h3>
-                  <h6 className="chosenText">{this.state.player2deck.length}/9</h6>
+                  <h6 className="chosenText">{this.state.player2deck.length}/5</h6>
                   {this.state.player2deck.map((p2deck, index) => (
                     <Draggable
                       key={p2deck.id}
@@ -248,7 +248,7 @@ class DraftMinion extends Component {
                 <div
                   ref={provided.innerRef} className="chosenMinion">
                   <h3 className="chosenText">Chosen Minions</h3>
-                  <h6 className="chosenText">{this.state.player1deck.length}/9</h6>
+                  <h6 className="chosenText">{this.state.player1deck.length}/5</h6>
                   {this.state.player1deck.map((p1deck, index) => (
                     <Draggable
                       key={p1deck.id}
