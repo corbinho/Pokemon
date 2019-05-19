@@ -4,6 +4,7 @@ import "./boardCards.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import API from '../../utils/API';
 import { isUndefined } from "util";
+import GameOver from '../gameOver/gameOver'
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -215,6 +216,8 @@ class GameBoard extends Component {
             return
         }
 
+
+        //playing a card
         if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA" && this.state.playerATurn === true) {
             let currentMana = this.state.playerAMana;
             if (currentMana >= 10) {
@@ -238,7 +241,9 @@ class GameBoard extends Component {
                 console.log("out of mana to play card")
             }
             console.log("A current mana = " + currentMana)
-        } if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
+        } 
+        //playing a card
+        if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
             let currentMana = this.state.playerBMana;
             if (currentMana >= 10) {
                 const result = move(
@@ -262,6 +267,7 @@ class GameBoard extends Component {
             }
         }
         //attacking player A Champion
+
         if (source.droppableId !== "playerHandB" && destination.droppableId === "playerChampionA") {
 
             if (this.state.playerBturn) {
@@ -269,12 +275,15 @@ class GameBoard extends Component {
                 var playerBField = this.state.playerBField;
                 var playerBMana = this.state.playerBMana;
                 var playerAChampion = this.state.playerAChamp;
+                var playerBGraveyard = this.state.playerBGraveyard
                 var attackingCardIndex;
                 var defendingCardIndex = 0;
 
                 if (playerBMana >= 9) {
                     for (var i = 0; i < playerBField.length; i++) {
+                        if (playerBField[i].id === result.source.droppableId){
                         attackingCardIndex = i
+                        }
                     }
 
                     console.log(playerBField[attackingCardIndex])
@@ -299,14 +308,17 @@ class GameBoard extends Component {
                         playerBMana -= 9;
                     }
 
-                    if (playerAChampion[0].Health <= 0) {
-                        //end game
+                    if (playerBField[attackingCardIndex].Health <= 0) {
+                        var removedBCard = playerBField.splice(attackingCardIndex, 1);
+                        playerBGraveyard.push(removedBCard);
                     }
+
 
                     this.setState({
                         playerAChamp: playerAChampion,
                         playerBField: playerBField,
-                        playerBMana: playerBMana
+                        playerBMana: playerBMana,
+                        playerBGraveyard: playerBGraveyard
                     }, function () {
                         API.board(this.state)
                     })
@@ -324,12 +336,15 @@ class GameBoard extends Component {
                 var playerAField = this.state.playerAField;
                 var playerAMana = this.state.playerAMana;
                 var playerBChampion = this.state.playerBChamp;
+                var playerAGraveyard = this.state.playerAGraveyard
                 var attackingCardIndex;
                 var defendingCardIndex = 0;
 
                 if (playerAMana >= 9) {
                     for (var i = 0; i < playerAField.length; i++) {
+                    if (playerAField[i].id === result.source.droppableId){
                         attackingCardIndex = i
+                    }
                     }
 
                     console.log(playerAField[attackingCardIndex])
@@ -354,14 +369,16 @@ class GameBoard extends Component {
                         playerAMana -= 9;
                     }
 
-                    if (playerBChampion[0].Health <= 0) {
-                        //end game
+                    if (playerAField[attackingCardIndex].Health <= 0) {
+                        var removedACard = playerAField.splice(attackingCardIndex, 1);
+                        playerAGraveyard.push(removedACard);
                     }
 
                     this.setState({
                         playerBChamp: playerBChampion,
                         playerAField: playerAField,
-                        playerAMana: playerAMana
+                        playerAMana: playerAMana,
+                        playerAGraveyard: playerAGraveyard
                     }, function () {
                         API.board(this.state)
                     })
@@ -379,6 +396,7 @@ class GameBoard extends Component {
                 var playerBField = this.state.playerBField;
                 var playerAMana = this.state.playerAMana;
                 var playerBGraveyard = this.state.playerBGraveyard;
+                var playerAGraveyard = this.state.playerAGraveyard;
                 var attackingCardIndex;
                 var defendingCardIndex;
 
@@ -426,11 +444,17 @@ class GameBoard extends Component {
                         playerBGraveyard.push(removedBCard);
                     }
 
+                    if (playerAField[attackingCardIndex].Health <= 0) {
+                        var removedACard = playerAField.splice(attackingCardIndex, 1);
+                        playerAGraveyard.push(removedACard);
+                    }
+
                     this.setState({
                         playerAField: playerAField,
                         playerBField: playerBField,
                         playerAMana: playerAMana,
-                        playerBGraveyard: playerBGraveyard
+                        playerBGraveyard: playerBGraveyard,
+                        playerAGraveyard: playerAGraveyard
                     }, function () {
                         API.board(this.state)
                     })
@@ -450,7 +474,8 @@ class GameBoard extends Component {
                 var playerAField = this.state.playerAField;
                 var playerBField = this.state.playerBField;
                 var playerBMana = this.state.playerBMana;
-                var playerAGraveyard = this.state.playerAGraveyard
+                var playerAGraveyard = this.state.playerAGraveyard;
+                var playerBGraveyard = this.state.playerBGraveyard;
                 var attackingCardIndex;
                 var defendingCardIndex;
 
@@ -498,11 +523,17 @@ class GameBoard extends Component {
                         playerAGraveyard.push(removedACard);
                     }
 
+                    if (playerBField[attackingCardIndex].Health <= 0) {
+                        var removedBCard = playerBField.splice(attackingCardIndex, 1);
+                        playerBGraveyard.push(removedBCard);
+                    }
+
                     this.setState({
                         playerAField: playerAField,
                         playerBField: playerBField,
                         playerBMana: playerBMana,
-                        playerAGraveyard: playerAGraveyard
+                        playerAGraveyard: playerAGraveyard,
+                        playerBGraveyard: playerBGraveyard
                     }, function () {
                         API.board(this.state)
                     })
@@ -523,6 +554,15 @@ class GameBoard extends Component {
     };
 
     render() {
+        if (this.state.playerAChamp[0].Health <= 0 || (this.state.playerAField.length === 0 && this.state.playerAHand.length === 0)){
+            return (
+                <GameOver value = {this.state} winner = {'playerB'}></GameOver>
+            )
+        } else if (this.state.playerBChamp[0].Health <= 0 || (this.state.playerBField.length === 0 && this.state.playerBHand.length === 0)){
+            return(
+                <GameOver value = {this.state} winner = {'playerA'}></GameOver>
+            )
+        } else 
         return (
             
             <DragDropContext onDragEnd={this.onDragEnd}>
