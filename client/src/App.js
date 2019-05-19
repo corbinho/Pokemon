@@ -5,9 +5,9 @@ import "./App.css";
 import DraftMinion from "./components/draftMinion/draftMinion";
 import DraftChamp from "./components/draftChamp/draftChamp";
 import GameBoard from "./components/board/board";
-import * as io from 'socket.io-client';
+import GameOver from "./components/gameOver/gameOver"
 import Lobby from './components/lobby/lobby'
-// import SocketContext from "../src/components/SocketContext"
+
 
 
 
@@ -19,7 +19,7 @@ class App extends Component {
       <div>{
 
         // <Lobby value={socket}></Lobby>
-       <DraftChamp></DraftChamp>
+       <GameOver></GameOver>
 
       }
       </div>
