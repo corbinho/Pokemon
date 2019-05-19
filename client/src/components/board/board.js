@@ -492,7 +492,7 @@ class GameBoard extends Component {
                         playerAField: playerAField,
                         playerBField: playerBField,
                         playerBMana: playerBMana,
-                        playerAGraveyard: playerBGraveyard
+                        playerAGraveyard: playerAGraveyard
                     }, function () {
                         API.board(this.state)
                     })
