@@ -155,7 +155,7 @@ class DraftMinion extends Component {
       return (
         <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion}></GameBoard>
       )
-    }
+    } 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="container">
