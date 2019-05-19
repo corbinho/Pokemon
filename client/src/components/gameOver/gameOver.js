@@ -41,7 +41,7 @@ class GameOver extends React.Component {
                         {/* Left Block */}
                         <div className="left">
                             <div className="playerHeader">
-                                <h6>Winner!</h6>
+                                
                             </div>
                             <div className="playerHeader">
                                 Player 1
@@ -57,6 +57,7 @@ class GameOver extends React.Component {
 
                             <div className="winLose">
                                 <p className="winLoseMsg">Victory!</p>
+                                <p> {this.state.playerBChamp[0].name}</p>
                             </div>
 
                             <br></br>
@@ -111,6 +112,7 @@ class GameOver extends React.Component {
 
                             <div className="winLose">
                                 <p className="winLoseMsg">Victory!</p>
+                                <p> {this.state.playerAChamp[0].name}</p>
                             </div>
 
                             <br></br>
