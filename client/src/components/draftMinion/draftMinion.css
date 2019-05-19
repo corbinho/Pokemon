@@ -10,7 +10,7 @@
   border-style: outset;
   background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
   display: inline-flex;
-
+  flex-shrink:0;
 
   /* Remove this margin! only for testing */
   margin-left: 30px;
@@ -174,15 +174,15 @@
     linear-gradient(30deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
     linear-gradient(90deg, #B71 2%, rgb(207, 170, 89) 0, rgb(207, 170, 89) 98%, #B71 0%)0 0 rgb(207, 170, 89);
   background-size: 40px 60px;
-
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
-  display: inline-block;
-  width: 72%;
+  display: flex;
+  width: 60%;
   padding-right: 1vw;
   margin-left: 1vw;
   height: 65vh;
-  overflow: scroll;
+  flex-shrink:0;
+  overflow-y: scroll;
 
 }
 
@@ -224,7 +224,7 @@
     linear-gradient(30deg, rgb(207, 170, 89) 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, rgb(207, 170, 89) 0)0 0,
     linear-gradient(90deg, #B71 2%, rgb(207, 170, 89) 0, rgb(207, 170, 89) 98%, #B71 0%)0 0 rgb(207, 170, 89);
   background-size: 40px 60px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 

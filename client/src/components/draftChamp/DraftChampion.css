@@ -11,11 +11,10 @@
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
   background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
-  display: inline-flex;
   transform: scale(0.8);
+  flex-shrink:0;
 
-  /* Remove this margin! only for testing */
-
+  
   margin-top: 8vh;
 }
 
@@ -126,12 +125,14 @@
   background-size: 40px 60px;
   border: 1vh rgb(163, 122, 61);
   border-style: outset;
-  display:inline-block;
+  display:flex;
   height: 65vh;
   width: 53vw;
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
   border-radius: 10%;
-  overflow: scroll;
+  overflow: auto;
+  flex-shrink:0;
+
 
 }
 
@@ -217,6 +218,7 @@
   height: 40vh;
   margin-top: none;
   display:flex;
+
 }
 
 .chosenChampionCard {
