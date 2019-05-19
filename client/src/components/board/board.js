@@ -514,6 +514,7 @@ class GameBoard extends Component {
 
     render() {
         return (
+            
             <DragDropContext onDragEnd={this.onDragEnd}>
 
                 <div className="outerContainer">
