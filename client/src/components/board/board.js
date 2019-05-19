@@ -285,6 +285,10 @@ class GameBoard extends Component {
                         attackingCardIndex = i
                         }
                     }
+                    if (attackingCardIndex === undefined){
+                        console.log("not attacking with a minion")
+                        return
+                    } else {
 
                     console.log(playerBField[attackingCardIndex])
                     console.log("attacking card index " + attackingCardIndex)
@@ -323,6 +327,7 @@ class GameBoard extends Component {
                         API.board(this.state)
                     })
                 }
+                }
             }
 
         }
@@ -342,11 +347,15 @@ class GameBoard extends Component {
 
                 if (playerAMana >= 9) {
                     for (var i = 0; i < playerAField.length; i++) {
-                    if (playerAField[i].id === result.source.droppableId){
+                    if (playerAField[i].id === result.source.droppableId)
+                    {
                         attackingCardIndex = i
                     }
                     }
-
+                    if (attackingCardIndex === undefined){
+                        console.log("not attacking with a minion")
+                        return
+                    } else {
                     console.log(playerAField[attackingCardIndex])
                     console.log("attacking card index " + attackingCardIndex)
 
@@ -382,6 +391,7 @@ class GameBoard extends Component {
                     }, function () {
                         API.board(this.state)
                     })
+                }
                 }
 
             }
@@ -419,6 +429,9 @@ class GameBoard extends Component {
                     if (defendingCardIndex === undefined){
                         console.log('youre attacking something that doesnt exist')
                         return
+                    } else if(attackingCardIndex === undefined){
+                        console.log('not attacking with a minion')
+
                     } else {
 
                     var attackingCardType = playerAField[attackingCardIndex].TypeText;
@@ -498,7 +511,10 @@ class GameBoard extends Component {
                     if (defendingCardIndex === undefined){
                         console.log('youre attacking something that doesnt exist')
                         return
-                    } else {
+                    } else if(attackingCardIndex === undefined){
+                        console.log('not attacking with a minion')
+                    }
+                    else {
 
                     var attackingCardType = playerBField[attackingCardIndex].TypeText;
                     var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
