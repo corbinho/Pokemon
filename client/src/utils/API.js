@@ -30,6 +30,16 @@ export default {
 
   checkSocket: (cb) => {
     socket.emit('checkSocket', cb)
+  },
+
+  changeAsTurn: (currentAMaxMana, newMana) => {
+    socket.emit('changeATurn', currentAMaxMana, newMana)
+  },
+
+  changeBsTurn: (currentBMaxMana, newMana) => {
+    socket.emit('changeBTurn', currentBMaxMana, newMana)
   }
+
+
 
 };

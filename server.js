@@ -62,6 +62,40 @@ io.on('connection', function (socket) {
     io.emit('updateGame', game)
   })
 
+  socket.on('changeATurn', function(currentAMaxMana, newMana){
+      if(socket.id === game.player1.id){
+        console.log("not the right socket, trying to change A's turn")
+        return
+      }
+      else if (socket.id === game.player2.id){
+        console.log("changing A's turn")
+        game.aMaxMana = currentAMaxMana;
+        game.playerAMana = newMana;
+        game.playerBturn = true;
+        game.playerATurn = false
+      }
+
+      io.emit('updateGame', game)
+
+  })
+
+  socket.on('changeBTurn', function(currentBMaxMana, newMana){
+    if(socket.id === game.player2.id){
+      console.log("not the right socket, trying to change B's turn")
+      return
+    }
+    else if (socket.id === game.player1.id){
+      console.log("changing B's turn")
+      game.bMaxMana = currentBMaxMana;
+      game.playerBMana = newMana;
+      game.playerBturn = false;
+      game.playerATurn = true
+    }
+
+    io.emit('updateGame', game)
+
+})
+
   socket.on('draftMinion', function (minions, minion) {
     if (socket.id === game.player1.id) {
       game.player1.minions = minion;
@@ -79,25 +113,6 @@ io.on('connection', function (socket) {
 
     io.emit('updateGame', game)
   })
-
-  // socket.on('boardTurnChange', function(aTurn, bTurn, MaxMana, playerMana){
-  //   if (socket.id === game.player1.id){
-  //     game.playerATurn = aTurn,
-  //     game.playerBTurn = bTurn,
-  //     game.playerAMaxMana = MaxMana,
-  //     game.playerAMana = playerMana
-  //   }
-  //   else if (socket.id === game.player2.id){
-  //     game.playerATurn = aTurn,
-  //     game.playerBTurn = bTurn,
-  //     game.playerBMaxMana = MaxMana,
-  //     game.playerBMana = playerMana
-  //   }
-
-  //   console.log(game)
-
-  //   io.emit('updateGame', game)
-  // })
 
   socket.on('checkSocket', function(){
     let returnedSocket
