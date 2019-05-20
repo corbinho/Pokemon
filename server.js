@@ -45,11 +45,17 @@ io.on('connection', function (socket) {
       game.champions = championList.championList
       game.player1.champion = [];
       game.player2.champion = [];
+      game.playerAChamp = [];
+      game.playerBChamp = [];
       game.minions = minionsList.minionsList
       game.player1.minions = [];
       game.player2.minions = [];
       game.playerAField = [];
       game.playerBField = [];
+      game.playerAHand = [];
+      game.playerBHand = [];
+      game.playerAGraveyard = [];
+      game.playerBGraveyard = []
       game.playerAMana = 20;
       game.playerBMana = 20;
       game.aMaxMana = 20;
