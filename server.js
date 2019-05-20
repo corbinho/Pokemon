@@ -6,6 +6,8 @@ const routes = require("./routes")
 const mongoose = require("mongoose");
 const http = require("http").Server(app);
 const socketIO = require('socket.io');
+const championList = require('./client/src/components/draftChamp/champions')
+const minionsList = require("./client/src/components/draftMinion/minions")
 
 
 const io = socketIO(http)
@@ -35,17 +37,34 @@ io.on('connection', function (socket) {
   })
 
   socket.on('disconnect', function () {
-    if (socket.id === game.player1) {
-      game.player1 = game.player2;
+    // if (socket.id === game.player1) {
+      // game.player1 = game.player2;
+      // game.player2 = false;
+      game.player1 = false;
       game.player2 = false;
-      resetGame()
-    }
-    else if (socket.id === game.player2) {
-      game.player2 = false;
-      resetGame()
-    }
-    console.log(socket)
-    console.log(game)
+      game.champions = championList.championList
+      game.player1.champion = [];
+      game.player2.champion = [];
+      game.minions = minionsList.minionsList
+      game.player1.minions = [];
+      game.player2.minions = [];
+      game.playerAField = [];
+      game.playerBField = [];
+      game.playerAMana = 20;
+      game.playerBMana = 20;
+      game.aMaxMana = 20;
+      game.bMaxMana = 20;
+      // resetGame()
+      console.log(game);
+      io.emit('updateGame', game)
+
+    // }
+    // else if (socket.id === game.player2) {
+      // game.player2 = false;
+    //   resetGame()
+    // }
+    console.log("disconnected")
+    console.log(game);
   });
 
   socket.on('draftChampion', function (champions, champion) {
@@ -149,9 +168,7 @@ io.on('connection', function (socket) {
 })
 
 function resetGame() {
-  // this function still needs to be implemented
-  // you can probably just make the browser refresh
-  // if someone rage quits
+  
 }
 
 app.all('/', function (req, res, next) {
