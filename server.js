@@ -55,7 +55,7 @@ io.on('connection', function (socket) {
       game.playerAHand = [];
       game.playerBHand = [];
       game.playerAGraveyard = [];
-      game.playerBGraveyard = []
+      game.playerBGraveyard = [];
       game.playerAMana = 20;
       game.playerBMana = 20;
       game.aMaxMana = 20;
