@@ -57,7 +57,6 @@ class GameOver extends React.Component {
 
                             <div className="winLose">
                                 <p className="winLoseMsg">Victory!</p>
-                                <p> {this.state.playerBChamp[0].name}</p>
                             </div>
 
                             <br></br>
