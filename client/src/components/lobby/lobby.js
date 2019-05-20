@@ -19,6 +19,11 @@ class Lobby extends React.Component {
 
       <div className="leftPanel">
 
+        <div className="imgContainer">
+        
+            <p className="title">PokeDecks</p>
+          
+        </div>
         
 
       </div>

@@ -39,8 +39,35 @@
     float:left;
 }
 
+.imgContainer {
+    position:relative;
+    background-color:rgb(194, 162, 103);
+    border: .3em solid rgb(110, 75, 8);
+    height:94.5vh;
+    width:44vw;
+    margin:auto;
+    margin-top:1vh;
+    background-image: url("./lobby.jpg"); 
+    background-size: cover;
+    background-position: center;
+   
+}
 
+.title {
+    position:absolute;
+    color:white;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    font-size:5em;
+    left:0;
+    right:0;
+    top:22vh;
+    height:20vh;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 
+}
 
 
 
