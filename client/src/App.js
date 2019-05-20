@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div>{
 
-       <Lobby></Lobby>
+       <DraftMinion></DraftMinion>
 
       }
       </div>
