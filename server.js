@@ -40,11 +40,11 @@ io.on('connection', function (socket) {
     // if (socket.id === game.player1) {
       // game.player1 = game.player2;
       // game.player2 = false;
-      game.player1 = false;
-      game.player2 = false;
+      game.player1 = false
+      game.player2 = false
       game.champions = championList.championList
-      game.player1.champion = [];
-      game.player2.champion = [];
+      game.player1.champion = []
+      game.player2.champion = []
       game.playerAChamp = []
       game.playerBChamp = []
       game.minions = minionsList.minionsList
