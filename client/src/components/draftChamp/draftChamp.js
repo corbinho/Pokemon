@@ -70,6 +70,8 @@ class DraftChamp extends Component {
 
   getList = id => this.state[this.id2List[id]];
 
+  
+
   onDragEnd = result => {
     const { source, destination } = result;
 
