@@ -31,10 +31,17 @@ let roomno = 1;
 io.on('connection', function (socket) {
   console.log("User Connected " + socket.id)
 
-  socket.on('joinGame', function (data) {
+  let socketInGame = false;
     
-    //Increase roomno 2 clients are present in a room.
-    if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length === 2) {
+    for (let i = 0; i < io.nsps['/'].adapter.rooms.length; i++){
+      if (socket.id === io.nsps['/'].adapter.rooms[i].game.player1.id || socket.id === io.nsps['/'].adapter.rooms[i].game.player2.id){
+        socketInGame = true
+      } 
+    }
+
+    console.log(socketInGame)
+
+    if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length === 2 && socketInGame === false) {
       roomno++
     };
     
@@ -43,9 +50,6 @@ io.on('connection', function (socket) {
     if (!io.nsps['/'].adapter.rooms['room-' + roomno].game){
       io.nsps['/'].adapter.rooms['room-' + roomno].game = new Game(roomno);
     } 
-
-    
-    
 
     console.log(io.nsps['/'].adapter.rooms['room-' + roomno])
 
@@ -62,6 +66,12 @@ io.on('connection', function (socket) {
 
     //Send this event to everyone in the room.
     console.log("You are in room no. " + roomno);
+
+  socket.on('joinGame', function (data) {
+    
+    //Increase roomno 2 clients are present in a room.
+
+    
 
     socket.on('disconnect', function () {
       // if (socket.id === game.player1) {

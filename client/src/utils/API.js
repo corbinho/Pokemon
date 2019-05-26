@@ -32,6 +32,10 @@ export default {
     socket.emit('checkSocket', cb)
   },
 
+  startGame: () => {
+    socket.emit('startGame')
+  },
+
   changeAsTurn: (currentAMaxMana, newMana) => {
     socket.emit('changeATurn', currentAMaxMana, newMana)
   },
