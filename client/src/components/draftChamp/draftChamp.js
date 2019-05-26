@@ -103,7 +103,7 @@ class DraftChamp extends Component {
       return;
     }
 
-    if (source.droppableId === 'droppable' || destination.droppableId === 'droppable') {
+    if (source.droppableId === 'droppable' || destination.droppableId !== 'droppable') {
       const result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
