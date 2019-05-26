@@ -120,7 +120,7 @@ class DraftChamp extends Component {
   render() {
     if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0) {
       return (
-        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion}></DraftMinion>
+        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions}></DraftMinion>
         
       )
     } else

@@ -88,12 +88,12 @@ io.on('connection', function (socket) {
       game.aMaxMana = 20;
       game.bMaxMana = 20;
       
-      console.log(game);
+      
       io.to('room-' + game.gameId).emit('updateGame', game)
   
       
       console.log("disconnected")
-      console.log(game);
+      
     });
 
     socket.on('draftChampion', function (champions, champion) {
@@ -157,7 +157,7 @@ io.on('connection', function (socket) {
         game.player1.turn = true;
         game.minions = minions
       }
-      console.log(game)
+      
   
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
@@ -178,7 +178,7 @@ io.on('connection', function (socket) {
       game.aMaxMana = allState.aMaxMana
       game.bMaxMana = allState.bMaxMana
   
-      console.log(game)
+      
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
     

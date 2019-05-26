@@ -46,7 +46,8 @@ class DraftMinion extends Component {
       player1champion: this.props.p1champ,
       player2champion: this.props.p2champ,
       player1Turn: true,
-      player2Turn: false
+      player2Turn: false,
+      champions: this.props.champions
     };
 
     this.id2List = {
@@ -66,7 +67,10 @@ class DraftMinion extends Component {
                 player2deck: updates.player2.minions || [],
                 player1Turn: updates.player1.turn, 
                 player2Turn: updates.player2.turn,
-                minions: updates.minions
+                minions: updates.minions,
+                player1champion: updates.player1.champion,
+                player2champion: updates.player2.champion,
+                champions: updates.champions
             })
         }
     })
