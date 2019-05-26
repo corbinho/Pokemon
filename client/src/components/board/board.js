@@ -672,7 +672,7 @@ class GameBoard extends Component {
                                     {this.state.playerAField.map((minion, index) => (
                                         <Droppable droppableId={minion.id} key={minion.id}>
                                             {(provided) => (
-                                                <div className="droppableMinion" ref={provided.innerRef} key={minion.id}>
+                                                <div className="droppableMinion" ref={provided.innerRef} key={minion.id} >
                                                     <Draggable
                                                         key={minion.id}
                                                         draggableId={minion.id}
@@ -735,7 +735,8 @@ class GameBoard extends Component {
                                                     <Draggable
                                                         key={minion.id}
                                                         draggableId={minion.id}
-                                                        index={index}>
+                                                        index={index}
+                                                        >
                                                         {(provided) => (
                                                             <div
                                                                 ref={provided.innerRef}
@@ -817,7 +818,8 @@ class GameBoard extends Component {
                                             <Draggable
                                                 key={minion.id}
                                                 draggableId={minion.id}
-                                                index={index}>
+                                                index={index}
+                                            >
                                                 {(provided) => (
                                                     <div
                                                         ref={provided.innerRef}
