@@ -24,7 +24,7 @@ let roomno = 1;
 
 io.on('connection', function (socket) {
 
-  socket.on('joinNewGame', function(){
+  socket.on('joinNewGame', function(name){
   console.log("User Connected " + socket.id)
 
   let socketInGame = false;
@@ -55,6 +55,7 @@ io.on('connection', function (socket) {
     else if (!io.nsps['/'].adapter.rooms['room-' + roomno].game.player2) io.nsps['/'].adapter.rooms['room-' + roomno].game.player2 = { id: socket.id };
     // game is full so I guess this person is just gonna spectate?
     else { }
+    
 
     console.log(io.nsps['/'].adapter.rooms['room-' + roomno].game)
 

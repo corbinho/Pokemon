@@ -36,6 +36,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
+
+
 class DraftChamp extends Component {
   constructor(props) {
     super(props);
@@ -43,14 +45,28 @@ class DraftChamp extends Component {
       champions: championList.championList,
       player1champion: [],
       player2champion: [],
+      player1name: "",
+      player2name: ""
     }
 
     this.id2List = {
       droppable: 'champions',
       droppable2: 'player1champion',
       droppable3: 'player2champion'
-    };
+    }
 
+  }
+
+  assignNames = () => {
+    if (this.state.player1name === ""){
+      this.setState({
+        player1name: this.props.name
+      })
+    } else {
+      this.setState({
+        player2name: this.props.name
+      })
+    }
   }
 
   componentDidMount = () => {
@@ -64,7 +80,11 @@ class DraftChamp extends Component {
             })
         }
     })
+    this.assignNames();
+    
   }
+
+  
 
   getList = id => this.state[this.id2List[id]];
 
