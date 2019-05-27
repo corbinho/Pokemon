@@ -27,6 +27,7 @@ export default {
 
   leaveGame: () => {
     socket.emit('leaveGame')
+    
   },
 
   board: (allState) => {

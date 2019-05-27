@@ -113,7 +113,7 @@ io.on('connection', function (socket) {
         return
       }
       else if (socket.id === game.player2.id) {
-        console.log("changing A's turn")
+        
         game.aMaxMana = currentAMaxMana;
         game.playerAMana = newMana;
         game.playerBturn = true;
@@ -130,7 +130,7 @@ io.on('connection', function (socket) {
         return
       }
       else if (socket.id === game.player1.id) {
-        console.log("changing B's turn")
+        
         game.bMaxMana = currentBMaxMana;
         game.playerBMana = newMana;
         game.playerBturn = false;
@@ -202,8 +202,9 @@ io.on('connection', function (socket) {
       game.aMaxMana = 20;
       game.bMaxMana = 20;
       
-      io.to('room-' + game.gameId).emit('updateGame', game)
       socket.leave('room-' + game.gameId)
+      io.to('room-' + game.gameId).emit('updateGame', game)
+      
     })
     
   })
