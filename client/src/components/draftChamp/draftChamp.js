@@ -32,7 +32,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
   result[droppableDestination.droppableId] = destClone;
-  
+
   return result;
 };
 
@@ -58,7 +58,7 @@ class DraftChamp extends Component {
   }
 
   assignNames = () => {
-    if (this.state.player1name === ""){
+    if (this.state.player1name === "") {
       this.setState({
         player1name: this.props.name
       })
@@ -72,24 +72,24 @@ class DraftChamp extends Component {
   componentDidMount = () => {
     API.assignNames(this.props.name)
     API.joinGame(updates => {
-        console.log(updates)
-        if (updates.player1 && updates.player2) {
-            this.setState({
-                player1champion: updates.player1.champion || [],
-                player2champion: updates.player2.champion || [],
-                champions: updates.champions || championList.championList,
-                player1name : updates.player1name || "",
-                player2name : updates.player2name || "",
-            })
-        }
-    }) 
+      console.log(updates)
+      if (updates.player1 && updates.player2) {
+        this.setState({
+          player1champion: updates.player1.champion || [],
+          player2champion: updates.player2.champion || [],
+          champions: updates.champions || championList.championList,
+          player1name: updates.player1name || "",
+          player2name: updates.player2name || "",
+        })
+      }
+    })
   }
 
-  
+
 
   getList = id => this.state[this.id2List[id]];
 
-  
+
   onDragEnd = result => {
     const { source, destination } = result;
 
@@ -139,16 +139,32 @@ class DraftChamp extends Component {
   render() {
     if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0) {
       return (
-        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions} p1name ={this.state.player1name} p2name = {this.state.player2name}></DraftMinion>
-        
+        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions} p1name={this.state.player1name} p2name={this.state.player2name}></DraftMinion>
+
       )
     } else
       return (
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="container">
-            <div className="championHeader">
-              <h1 className="headerText">Choose your champion</h1>
+
+
+            <div className="row1">
+
+              <div className="player2Name">
+                <h1 className="headerText">{this.state.player2name || "Waiting for Opponent"}</h1>
+              </div>
+
+              <div className="championHeader">
+                <h1 className="headerText">Choose your champion</h1>
+              </div>
+
+              <div className="player1Name">
+                <h1 className="headerText">{this.state.player1name || "Waiting for Opponent"}</h1>
+              </div>
+
             </div>
+
+
 
             <div className="row2">
 
