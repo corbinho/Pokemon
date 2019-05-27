@@ -121,33 +121,13 @@ class GameBoard extends Component {
                 currentAMaxMana += 5;
                 newMana = currentAMaxMana
                 API.changeAsTurn(currentAMaxMana, newMana)
-                // this.setState({
-                //     playerBturn: true,
-                //     playerATurn: false,
-                //     aMaxMana: currentAMaxMana,
-                //     playerAMana: currentAMaxMana
-                // }, function () {
-                //     API.board(this.state)
-                // })
-
             }
             else {
                 currentAMaxMana = 50;
                 newMana = currentAMaxMana;
                 API.changeAsTurn(currentAMaxMana, newMana)
-                // this.setState({
-                //     playerBturn: true,
-                //     playerATurn: false,
-                //     aMaxMana: currentAMaxMana,
-                //     playerAMana: currentAMaxMana
-                // }, function () {
-                //     API.board(this.state)
-                // })
-
             }
-
         }
-    
     }
 
     changeBTurn = () => {
@@ -161,35 +141,13 @@ class GameBoard extends Component {
                 currentBMaxMana += 5
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana);
-                // console.log(currentBMaxMana)
-                // this.setState({
-                //     playerBturn: false,
-                //     playerATurn: true,
-                //     bMaxMana: currentBMaxMana,
-                //     playerBMana: currentBMaxMana
-                // }, function () {
-                //     API.board(this.state)
-                // })
-
             }
             else {
                 currentBMaxMana = 50;
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana)
-                // this.setState({
-                //     playerBturn: false,
-                //     playerATurn: true,
-                //     bMaxMana: currentBMaxMana,
-                //     playerBMana: currentBMaxMana
-                // }, function () {
-                //     API.board(this.state)
-                // })
-
             }
-
         }
-    
-
     }
 
     getList = id => this.state[this.id2List[id]];
@@ -203,21 +161,18 @@ class GameBoard extends Component {
             console.log("not in destination")
             return;
         }
-
         if (source.droppableId > 0 && destination.droppableId === "fieldA") {
             return
         }
-
         if (source.droppableId > 0 && destination.droppableId === "fieldB") {
             return
         }
-
         if (source.droppableId === "fieldB" && destination.droppableId === "fieldB") {
             return
         }
 
 
-        //playing a card
+        //playing a card for top player
         if (source.droppableId === "playerHandA" && destination.droppableId === "fieldA" && this.state.playerATurn === true) {
             let currentMana = this.state.playerAMana;
             if (currentMana >= 10) {
@@ -228,21 +183,24 @@ class GameBoard extends Component {
                     destination
                 );
                 currentMana -= 10;
+                let playerAField = result.fieldA
+                let playerAHand = result.playerHandA
+                let playerAMana = currentMana
+                // this.setState({
+                //     playerAField: result.fieldA,
+                //     playerAHand: result.playerHandA,
+                //     playerAMana: currentMana
 
-                this.setState({
-                    playerAField: result.fieldA,
-                    playerAHand: result.playerHandA,
-                    playerAMana: currentMana
-
-                }, function () {
-                    API.board(this.state)
-                });
+                // }, function () {
+                //     API.board(this.state)
+                // });
+                API.playAHand(playerAField, playerAHand, playerAMana)
             } else {
                 console.log("out of mana to play card")
             }
             console.log("A current mana = " + currentMana)
         } 
-        //playing a card
+        //playing a card for bottom player
         if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
             let currentMana = this.state.playerBMana;
             if (currentMana >= 10) {
@@ -253,14 +211,17 @@ class GameBoard extends Component {
                     destination
                 );
                 currentMana -= 10;
-
-                this.setState({
-                    playerBField: result.fieldB,
-                    playerBHand: result.playerHandB,
-                    playerBMana: currentMana
-                }, function () {
-                    API.board(this.state)
-                });
+                let playerBField = result.fieldB
+                let playerBHand = result.playerHandB
+                let playerBMana = currentMana
+                // this.setState({
+                //     playerBField: result.fieldB,
+                //     playerBHand: result.playerHandB,
+                //     playerBMana: currentMana
+                // }, function () {
+                //     API.board(this.state)
+                // });
+                API.playBHand(playerBField, playerBHand, playerBMana)
                 console.log("B current mana = " + currentMana)
             } else {
                 console.log("out of mana to play a card")
@@ -316,16 +277,17 @@ class GameBoard extends Component {
                         var removedBCard = playerBField.splice(attackingCardIndex, 1);
                         playerBGraveyard.push(removedBCard);
                     }
+                    
 
-
-                    this.setState({
-                        playerAChamp: playerAChampion,
-                        playerBField: playerBField,
-                        playerBMana: playerBMana,
-                        playerBGraveyard: playerBGraveyard
-                    }, function () {
-                        API.board(this.state)
-                    })
+                    // this.setState({
+                    //     playerAChamp: playerAChampion,
+                    //     playerBField: playerBField,
+                    //     playerBMana: playerBMana,
+                    //     playerBGraveyard: playerBGraveyard
+                    // }, function () {
+                    //     API.board(this.state)
+                    // })
+                    API.attackAChampion(playerAChampion, playerBField, playerBMana, playerBGraveyard)
                 }
                 }
             }
@@ -383,20 +345,21 @@ class GameBoard extends Component {
                         playerAGraveyard.push(removedACard);
                     }
 
-                    this.setState({
-                        playerBChamp: playerBChampion,
-                        playerAField: playerAField,
-                        playerAMana: playerAMana,
-                        playerAGraveyard: playerAGraveyard
-                    }, function () {
-                        API.board(this.state)
-                    })
+                    // this.setState({
+                    //     playerBChamp: playerBChampion,
+                    //     playerAField: playerAField,
+                    //     playerAMana: playerAMana,
+                    //     playerAGraveyard: playerAGraveyard
+                    // }, function () {
+                    //     API.board(this.state)
+                    // })
+                    API.attackBChampion(playerBChampion, playerAField, playerAMana, playerAGraveyard)
                 }
                 }
 
             }
         }
-
+        //attacking a minion
         if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB") {
             console.log(result);
             console.log("source card index " + result.source.droppableId);
@@ -462,25 +425,23 @@ class GameBoard extends Component {
                         playerAGraveyard.push(removedACard);
                     }
 
-                    this.setState({
-                        playerAField: playerAField,
-                        playerBField: playerBField,
-                        playerAMana: playerAMana,
-                        playerBGraveyard: playerBGraveyard,
-                        playerAGraveyard: playerAGraveyard
-                    }, function () {
-                        API.board(this.state)
-                    })
-                    console.log(this.state)
+                    // this.setState({
+                    //     playerAField: playerAField,
+                    //     playerBField: playerBField,
+                    //     playerAMana: playerAMana,
+                    //     playerBGraveyard: playerBGraveyard,
+                    //     playerAGraveyard: playerAGraveyard
+                    // }, function () {
+                    //     API.board(this.state)
+                    // })
+                    API.attackBMinion(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
+                    
                 }
                 }
                 else {
                     //add some modal to say out of mana
                     console.log("out of mana to attack or moves")
                 }
-
-
-
             }
             //player B's turn
             else {
@@ -544,15 +505,17 @@ class GameBoard extends Component {
                         playerBGraveyard.push(removedBCard);
                     }
 
-                    this.setState({
-                        playerAField: playerAField,
-                        playerBField: playerBField,
-                        playerBMana: playerBMana,
-                        playerAGraveyard: playerAGraveyard,
-                        playerBGraveyard: playerBGraveyard
-                    }, function () {
-                        API.board(this.state)
-                    })
+                    // this.setState({
+                    //     playerAField: playerAField,
+                    //     playerBField: playerBField,
+                    //     playerBMana: playerBMana,
+                    //     playerAGraveyard: playerAGraveyard,
+                    //     playerBGraveyard: playerBGraveyard
+                    // }, function () {
+                    //     API.board(this.state)
+                    // })
+
+                    API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
 
 
                     console.log(this.state)

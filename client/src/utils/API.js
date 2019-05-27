@@ -39,6 +39,32 @@ export default {
     socket.emit('board', allState)
   },
 
+  playAHand: (playerAField, playerAHand, playerAMana) => {
+    socket.emit('playAHand', playerAField, playerAHand, playerAMana)
+  },
+
+  playBHand: (playerBField, playerBHand, playerBMana) => {
+    socket.emit('playBHand', playerBField, playerBHand, playerBMana)
+  },
+
+  attackAChampion: (playerAChampion, playerBField, playerBMana, playerBGraveyard) => {
+    socket.emit('attackAChampion', playerAChampion, playerBField, playerBMana, playerBGraveyard)
+  },
+
+  attackBChampion: (playerBChampion, playerAField, playerAMana, playerAGraveyard) => {
+    socket.emit('attackBChampion', playerBChampion, playerAField, playerAMana, playerAGraveyard)
+  },
+
+  attackBMinion: (playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard) => {
+    socket.emit('attackBMinion', playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
+  },
+
+  attackAMinion: (playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard) => {
+    socket.emit('attackAMinion', playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
+  },
+
+
+
   joinNewGame: () => {
     console.log("joining a game")
     socket.emit('joinNewGame')

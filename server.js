@@ -198,6 +198,88 @@ io.on('connection', function (socket) {
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
 
+    socket.on('playAHand', function(playerAField, playerAHand, playerAMana){
+
+      if (socket.id === game.player2.id){
+      game.playerAField = playerAField
+      game.playerAHand = playerAHand
+      game.playerAMana = playerAMana
+      } else {
+        return
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+
+    })
+
+    socket.on('playBHand', function(playerBField, playerBHand, playerBMana){
+
+      if (socket.id === game.player1.id){
+      game.playerBField = playerBField
+      game.playerBHand = playerBHand
+      game.playerBMana = playerBMana
+      } else {
+        return
+      }
+      
+      io.to('room-' + game.gameId).emit('updateGame', game)
+
+    })
+
+    socket.on('attackAChampion', function(playerAChampion, playerBField, playerBMana, playerBGraveyard){
+      if (socket.id === game.player1.id){
+        game.playerAChamp = playerAChampion,
+        game.playerBField = playerBField,
+        game.playerBMana = playerBMana,
+        game.playerBGraveyard = playerBGraveyard
+      } else {
+        return
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+    })
+
+    socket.on('attackBChampion', function(playerBChampion, playerAField, playerAMana, playerAGraveyard){
+      if (socket.id === game.player2.id){
+        game.playerBChamp = playerBChampion,
+        game.playerAField = playerAField,
+        game.playerAMana = playerAMana,
+        game.playerAGraveyard = playerAGraveyard
+      } else {
+        return
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+    })
+
+    socket.on('attackBMinion', function(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard){
+      if (socket.id === game.player2.id){
+        game.playerAField = playerAField,
+        game.playerBField = playerBField,
+        game.playerAMana = playerAMana,
+        game.playerBGraveyard = playerBGraveyard,
+        game.playerAGraveyard = playerAGraveyard
+      } else {
+        return
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+    })
+
+    socket.on('attackAMinion', function(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard){
+      if (socket.id === game.player1.id){
+        game.playerAField = playerAField,
+        game.playerBField = playerBField,
+        game.playerBMana = playerBMana,
+        game.playerBGraveyard = playerBGraveyard,
+        game.playerAGraveyard = playerAGraveyard
+      } else {
+        return
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+    })    
+
     socket.on('leaveGame', function(){
 
       console.log("leaving room " + 'room-' + game.gameId)
