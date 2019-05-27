@@ -70,18 +70,19 @@ class DraftChamp extends Component {
   }
 
   componentDidMount = () => {
+    API.assignNames(this.props.name)
     API.joinGame(updates => {
         console.log(updates)
         if (updates.player1 && updates.player2) {
             this.setState({
                 player1champion: updates.player1.champion || [],
                 player2champion: updates.player2.champion || [],
-                champions: updates.champions
+                champions: updates.champions || championList.championList,
+                player1name : updates.player1name || "",
+                player2name : updates.player2name || "",
             })
         }
-    })
-    this.assignNames();
-    
+    }) 
   }
 
   
@@ -138,7 +139,7 @@ class DraftChamp extends Component {
   render() {
     if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0) {
       return (
-        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions}></DraftMinion>
+        <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions} p1name ={this.state.player1name} p2name = {this.state.player2name}></DraftMinion>
         
       )
     } else
