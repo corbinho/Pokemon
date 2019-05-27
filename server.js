@@ -17,7 +17,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pokemonDB");
 function Game(id){
   this.gameId = id
   this.player1 = false,
-  this.player2 = false
+  this.player2 = false,
+  this.player1name = "",
+  this.player2name = ""
 }
 
 let roomno = 1;
@@ -56,6 +58,7 @@ io.on('connection', function (socket) {
     // game is full so I guess this person is just gonna spectate?
     else { }
     
+    
 
     console.log(io.nsps['/'].adapter.rooms['room-' + roomno].game)
 
@@ -63,6 +66,19 @@ io.on('connection', function (socket) {
 
     //Send this event to everyone in the room.
     console.log("You are in room no. " + roomno);
+
+    socket.on('assignNames', function (name){
+      
+      if (game.player1name === ""){
+        console.log("assigning to player 1 name " + name)
+        game.player1name = name
+      } else {
+        console.log("assigning to player 2 name " + name)
+        game.player2name = name
+      }
+
+      io.to('room-' + game.gameId).emit('updateGame', game)
+    })
 
   socket.on('joinGame', function (data) {
 
@@ -95,6 +111,7 @@ io.on('connection', function (socket) {
       console.log("disconnected")
       
     });
+
 
     socket.on('draftChampion', function (champions, champion) {
       if (socket.id === game.player1.id) {

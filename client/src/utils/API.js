@@ -30,6 +30,10 @@ export default {
     
   },
 
+  assignNames: (name) => {
+    socket.emit('assignNames', name)
+  },
+
   board: (allState) => {
     console.log(allState)
     socket.emit('board', allState)
