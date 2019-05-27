@@ -26,17 +26,32 @@ width:90vw;
 margin:auto;
 }
 
-.playerManaA {
+.playerNameA {
 position:absolute;
-background-color:rgb(8, 143, 221);
+background-color:rgb(172, 66, 66);
 height:5.5vh;
 width:8vw;
-right:25vw;
+right:28vw;
 top:8vh;
 text-align:center;
 border-radius:40%;
 line-height:5.5vh;
 border: .3em solid rgb(158, 148, 129);
+font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.playerManaA {
+position:absolute;
+background-color:rgb(8, 143, 221);
+height:5.5vh;
+width:8vw;
+right:16.5vw;
+top:8vh;
+text-align:center;
+border-radius:40%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
+font-family: 'ZCOOL KuaiLe', cursive;
 }
 
 .endTurnA {
@@ -44,13 +59,19 @@ position:absolute;
 background-color:rgba(0, 150, 37, 0.651);
 height:5.5vh;
 width:10vw;
-right:8vw;
+right:3vw;
 top:8vh;
 text-align:center;
 border-radius:15%;
 line-height:5.5vh;
 border: .3em solid rgb(158, 148, 129);
 cursor:pointer;
+font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.endTurnA:hover{
+background-color:rgba(3, 82, 22, 0.651);
+top:8.1vh;    
 }
 
 .championA {
@@ -128,12 +149,13 @@ position:absolute;
 background-color:rgb(8, 143, 221);
 height:5.5vh;
 width:8vw;
-left:25vw;
+left:16.5vw;
 top:8vh;
 text-align:center;
 border-radius:40%;
 line-height:5.5vh;
 border: .3em solid rgb(158, 148, 129);
+font-family: 'ZCOOL KuaiLe', cursive;
 }
 
 .endTurnB {
@@ -141,14 +163,34 @@ position:absolute;
 background-color:rgba(0, 150, 37, 0.651);
 height:5.5vh;
 width:10vw;
-left:8vw;
+left:3vw;
 top:8vh;
 text-align:center;
 border-radius:15%;
 line-height:5.5vh;
 border: .3em solid rgb(158, 148, 129);
 cursor:pointer;
+font-family: 'ZCOOL KuaiLe', cursive;
 }
+.endTurnB:hover{
+background-color:rgba(3, 82, 22, 0.651);
+top:8.1vh;    
+}
+
+.playerNameB {
+position:absolute;
+background-color:rgb(172, 66, 66);
+height:5.5vh;
+width:8vw;
+left:28vw;
+top:8vh;
+text-align:center;
+border-radius:40%;
+line-height:5.5vh;
+border: .3em solid rgb(158, 148, 129);
+font-family: 'ZCOOL KuaiLe', cursive;
+}
+
 
 .championB {
 background-color:rgb(83, 54, 0);

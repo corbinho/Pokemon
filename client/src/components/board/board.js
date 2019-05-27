@@ -53,7 +53,9 @@ class GameBoard extends Component {
             playerAMana: 20,
             playerBMana: 20,
             aMaxMana: 20,
-            bMaxMana: 20
+            bMaxMana: 20,
+            player1name: this.props.p1name,
+            player2name: this.props.p2name
         }
 
 
@@ -69,43 +71,43 @@ class GameBoard extends Component {
         API.joinGame(updates => {
             console.log(updates)
             if (updates.player1 && updates.player2) {
-                if(updates.playerATurn || updates.playerBturn){
-                this.setState({
-                    playerAChamp: updates.playerAChamp || this.state.playerAChamp,
-                    playerAHand: updates.playerAHand || this.state.playerAHand,
-                    playerAField: updates.playerAField || this.state.playerAField,
-                    playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
-                    playerBChamp: updates.playerBChamp || this.state.playerBChamp,
-                    playerBHand: updates.playerBHand || this.state.playerBHand,
-                    playerBField: updates.playerBField || this.state.playerBField,
-                    playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
-                    playerATurn: updates.playerATurn,
-                    playerBturn: updates.playerBturn,
-                    playerAMana: updates.playerAMana || this.state.playerAMana,
-                    playerBMana: updates.playerBMana || this.state.playerBMana,
-                    aMaxMana: updates.aMaxMana || this.state.aMaxMana,
-                    bMaxMana: updates.bMaxMana || this.state.bMaxMana
-                }, function() {console.log(this.state)}
-                )
-            } else {
-                this.setState({
-                    playerAChamp: updates.playerAChamp || this.state.playerAChamp,
-                    playerAHand: updates.playerAHand || this.state.playerAHand,
-                    playerAField: updates.playerAField || this.state.playerAField,
-                    playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
-                    playerBChamp: updates.playerBChamp || this.state.playerBChamp,
-                    playerBHand: updates.playerBHand || this.state.playerBHand,
-                    playerBField: updates.playerBField || this.state.playerBField,
-                    playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
-                    playerATurn: this.state.playerATurn,
-                    playerBturn: this.state.playerBturn,
-                    playerAMana: updates.playerAMana || this.state.playerAMana,
-                    playerBMana: updates.playerBMana || this.state.playerBMana,
-                    aMaxMana: updates.aMaxMana || this.state.aMaxMana,
-                    bMaxMana: updates.bMaxMana || this.state.bMaxMana
-                }, function() {console.log(this.state)}
-                )
-            }
+                if (updates.playerATurn || updates.playerBturn) {
+                    this.setState({
+                        playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                        playerAHand: updates.playerAHand || this.state.playerAHand,
+                        playerAField: updates.playerAField || this.state.playerAField,
+                        playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                        playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                        playerBHand: updates.playerBHand || this.state.playerBHand,
+                        playerBField: updates.playerBField || this.state.playerBField,
+                        playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                        playerATurn: updates.playerATurn,
+                        playerBturn: updates.playerBturn,
+                        playerAMana: updates.playerAMana || this.state.playerAMana,
+                        playerBMana: updates.playerBMana || this.state.playerBMana,
+                        aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana
+                    }, function () { console.log(this.state) }
+                    )
+                } else {
+                    this.setState({
+                        playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                        playerAHand: updates.playerAHand || this.state.playerAHand,
+                        playerAField: updates.playerAField || this.state.playerAField,
+                        playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                        playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                        playerBHand: updates.playerBHand || this.state.playerBHand,
+                        playerBField: updates.playerBField || this.state.playerBField,
+                        playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                        playerATurn: this.state.playerATurn,
+                        playerBturn: this.state.playerBturn,
+                        playerAMana: updates.playerAMana || this.state.playerAMana,
+                        playerBMana: updates.playerBMana || this.state.playerBMana,
+                        aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana
+                    }, function () { console.log(this.state) }
+                    )
+                }
             }
         })
     }
@@ -131,7 +133,7 @@ class GameBoard extends Component {
     }
 
     changeBTurn = () => {
-        
+
         if (this.state.playerBturn === false) {
             return
         } else {
@@ -199,7 +201,7 @@ class GameBoard extends Component {
                 console.log("out of mana to play card")
             }
             console.log("A current mana = " + currentMana)
-        } 
+        }
         //playing a card for bottom player
         if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
             let currentMana = this.state.playerBMana;
@@ -242,53 +244,53 @@ class GameBoard extends Component {
 
                 if (playerBMana >= 9) {
                     for (var i = 0; i < playerBField.length; i++) {
-                        if (playerBField[i].id === result.source.droppableId){
-                        attackingCardIndex = i
+                        if (playerBField[i].id === result.source.droppableId) {
+                            attackingCardIndex = i
                         }
                     }
-                    if (attackingCardIndex === undefined){
+                    if (attackingCardIndex === undefined) {
                         console.log("not attacking with a minion")
                         return
                     } else {
 
-                    console.log(playerBField[attackingCardIndex])
-                    console.log("attacking card index " + attackingCardIndex)
+                        console.log(playerBField[attackingCardIndex])
+                        console.log("attacking card index " + attackingCardIndex)
 
-                    var attackingCardType = playerBField[attackingCardIndex].TypeText;
-                    var defendingCardWeakness = playerAChampion[defendingCardIndex].WeakAgainstText;
-                    var defendingCardStrength = playerAChampion[defendingCardIndex].StrongAgainstText;
+                        var attackingCardType = playerBField[attackingCardIndex].TypeText;
+                        var defendingCardWeakness = playerAChampion[defendingCardIndex].WeakAgainstText;
+                        var defendingCardStrength = playerAChampion[defendingCardIndex].StrongAgainstText;
 
-                    console.log("attacking card type " + attackingCardType);
-                    console.log("defending card weakness " + defendingCardWeakness);
+                        console.log("attacking card type " + attackingCardType);
+                        console.log("defending card weakness " + defendingCardWeakness);
 
-                    if (attackingCardType === defendingCardWeakness) {
-                        playerAChampion[0].Health -= 10;
-                        playerBMana -= 9;
-                    } else if (attackingCardType === defendingCardStrength) {
-                        playerAChampion[0].Health -= 3;
-                        playerBField[attackingCardIndex].Health -= 3;
-                        playerBMana -= 9;
-                    } else {
-                        playerAChampion[0].Health -= 6;
-                        playerBMana -= 9;
+                        if (attackingCardType === defendingCardWeakness) {
+                            playerAChampion[0].Health -= 10;
+                            playerBMana -= 9;
+                        } else if (attackingCardType === defendingCardStrength) {
+                            playerAChampion[0].Health -= 3;
+                            playerBField[attackingCardIndex].Health -= 3;
+                            playerBMana -= 9;
+                        } else {
+                            playerAChampion[0].Health -= 6;
+                            playerBMana -= 9;
+                        }
+
+                        if (playerBField[attackingCardIndex].Health <= 0) {
+                            var removedBCard = playerBField.splice(attackingCardIndex, 1);
+                            playerBGraveyard.push(removedBCard);
+                        }
+
+
+                        // this.setState({
+                        //     playerAChamp: playerAChampion,
+                        //     playerBField: playerBField,
+                        //     playerBMana: playerBMana,
+                        //     playerBGraveyard: playerBGraveyard
+                        // }, function () {
+                        //     API.board(this.state)
+                        // })
+                        API.attackAChampion(playerAChampion, playerBField, playerBMana, playerBGraveyard)
                     }
-
-                    if (playerBField[attackingCardIndex].Health <= 0) {
-                        var removedBCard = playerBField.splice(attackingCardIndex, 1);
-                        playerBGraveyard.push(removedBCard);
-                    }
-                    
-
-                    // this.setState({
-                    //     playerAChamp: playerAChampion,
-                    //     playerBField: playerBField,
-                    //     playerBMana: playerBMana,
-                    //     playerBGraveyard: playerBGraveyard
-                    // }, function () {
-                    //     API.board(this.state)
-                    // })
-                    API.attackAChampion(playerAChampion, playerBField, playerBMana, playerBGraveyard)
-                }
                 }
             }
 
@@ -309,52 +311,51 @@ class GameBoard extends Component {
 
                 if (playerAMana >= 9) {
                     for (var i = 0; i < playerAField.length; i++) {
-                    if (playerAField[i].id === result.source.droppableId)
-                    {
-                        attackingCardIndex = i
+                        if (playerAField[i].id === result.source.droppableId) {
+                            attackingCardIndex = i
+                        }
                     }
-                    }
-                    if (attackingCardIndex === undefined){
+                    if (attackingCardIndex === undefined) {
                         console.log("not attacking with a minion")
                         return
                     } else {
-                    console.log(playerAField[attackingCardIndex])
-                    console.log("attacking card index " + attackingCardIndex)
+                        console.log(playerAField[attackingCardIndex])
+                        console.log("attacking card index " + attackingCardIndex)
 
-                    var attackingCardType = playerAField[attackingCardIndex].TypeText;
-                    var defendingCardWeakness = playerBChampion[defendingCardIndex].WeakAgainstText;
-                    var defendingCardStrength = playerBChampion[defendingCardIndex].StrongAgainstText;
+                        var attackingCardType = playerAField[attackingCardIndex].TypeText;
+                        var defendingCardWeakness = playerBChampion[defendingCardIndex].WeakAgainstText;
+                        var defendingCardStrength = playerBChampion[defendingCardIndex].StrongAgainstText;
 
-                    console.log("attacking card type " + attackingCardType);
-                    console.log("defending card weakness " + defendingCardWeakness);
+                        console.log("attacking card type " + attackingCardType);
+                        console.log("defending card weakness " + defendingCardWeakness);
 
-                    if (attackingCardType === defendingCardWeakness) {
-                        playerBChampion[0].Health -= 10;
-                        playerAMana -= 9;
-                    } else if (attackingCardType === defendingCardStrength) {
-                        playerBChampion[0].Health -= 3;
-                        playerAField[attackingCardIndex].Health -= 3;
-                        playerAMana -= 9;
-                    } else {
-                        playerBChampion[0].Health -= 6;
-                        playerAMana -= 9;
+                        if (attackingCardType === defendingCardWeakness) {
+                            playerBChampion[0].Health -= 10;
+                            playerAMana -= 9;
+                        } else if (attackingCardType === defendingCardStrength) {
+                            playerBChampion[0].Health -= 3;
+                            playerAField[attackingCardIndex].Health -= 3;
+                            playerAMana -= 9;
+                        } else {
+                            playerBChampion[0].Health -= 6;
+                            playerAMana -= 9;
+                        }
+
+                        if (playerAField[attackingCardIndex].Health <= 0) {
+                            var removedACard = playerAField.splice(attackingCardIndex, 1);
+                            playerAGraveyard.push(removedACard);
+                        }
+
+                        // this.setState({
+                        //     playerBChamp: playerBChampion,
+                        //     playerAField: playerAField,
+                        //     playerAMana: playerAMana,
+                        //     playerAGraveyard: playerAGraveyard
+                        // }, function () {
+                        //     API.board(this.state)
+                        // })
+                        API.attackBChampion(playerBChampion, playerAField, playerAMana, playerAGraveyard)
                     }
-
-                    if (playerAField[attackingCardIndex].Health <= 0) {
-                        var removedACard = playerAField.splice(attackingCardIndex, 1);
-                        playerAGraveyard.push(removedACard);
-                    }
-
-                    // this.setState({
-                    //     playerBChamp: playerBChampion,
-                    //     playerAField: playerAField,
-                    //     playerAMana: playerAMana,
-                    //     playerAGraveyard: playerAGraveyard
-                    // }, function () {
-                    //     API.board(this.state)
-                    // })
-                    API.attackBChampion(playerBChampion, playerAField, playerAMana, playerAGraveyard)
-                }
                 }
 
             }
@@ -389,54 +390,54 @@ class GameBoard extends Component {
                     console.log(attackingCardIndex);
                     console.log(defendingCardIndex);
 
-                    if (defendingCardIndex === undefined){
+                    if (defendingCardIndex === undefined) {
                         console.log('youre attacking something that doesnt exist')
                         return
-                    } else if(attackingCardIndex === undefined){
+                    } else if (attackingCardIndex === undefined) {
                         console.log('not attacking with a minion')
 
                     } else {
 
-                    var attackingCardType = playerAField[attackingCardIndex].TypeText;
-                    var defendingCardWeakness = playerBField[defendingCardIndex].WeakAgainst;
-                    var defendingCardStrength = playerBField[defendingCardIndex].StrongAgainst;
-                    console.log(attackingCardType);
-                    console.log(defendingCardWeakness);
+                        var attackingCardType = playerAField[attackingCardIndex].TypeText;
+                        var defendingCardWeakness = playerBField[defendingCardIndex].WeakAgainst;
+                        var defendingCardStrength = playerBField[defendingCardIndex].StrongAgainst;
+                        console.log(attackingCardType);
+                        console.log(defendingCardWeakness);
 
-                    if (attackingCardType === defendingCardWeakness) {
-                        playerBField[defendingCardIndex].Health -= 10;
-                        playerAMana -= 9;
-                    } else if (attackingCardType === defendingCardStrength) {
-                        playerBField[defendingCardIndex].Health -= 3;
-                        playerAField[attackingCardIndex].Health -= 3;
-                        playerAMana -= 9;
-                    } else {
-                        playerBField[defendingCardIndex].Health -= 6;
-                        playerAMana -= 9;
+                        if (attackingCardType === defendingCardWeakness) {
+                            playerBField[defendingCardIndex].Health -= 10;
+                            playerAMana -= 9;
+                        } else if (attackingCardType === defendingCardStrength) {
+                            playerBField[defendingCardIndex].Health -= 3;
+                            playerAField[attackingCardIndex].Health -= 3;
+                            playerAMana -= 9;
+                        } else {
+                            playerBField[defendingCardIndex].Health -= 6;
+                            playerAMana -= 9;
+                        }
+
+                        if (playerBField[defendingCardIndex].Health <= 0) {
+                            var removedBCard = playerBField.splice(defendingCardIndex, 1);
+                            playerBGraveyard.push(removedBCard);
+                        }
+
+                        if (playerAField[attackingCardIndex].Health <= 0) {
+                            var removedACard = playerAField.splice(attackingCardIndex, 1);
+                            playerAGraveyard.push(removedACard);
+                        }
+
+                        // this.setState({
+                        //     playerAField: playerAField,
+                        //     playerBField: playerBField,
+                        //     playerAMana: playerAMana,
+                        //     playerBGraveyard: playerBGraveyard,
+                        //     playerAGraveyard: playerAGraveyard
+                        // }, function () {
+                        //     API.board(this.state)
+                        // })
+                        API.attackBMinion(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
+
                     }
-
-                    if (playerBField[defendingCardIndex].Health <= 0) {
-                        var removedBCard = playerBField.splice(defendingCardIndex, 1);
-                        playerBGraveyard.push(removedBCard);
-                    }
-
-                    if (playerAField[attackingCardIndex].Health <= 0) {
-                        var removedACard = playerAField.splice(attackingCardIndex, 1);
-                        playerAGraveyard.push(removedACard);
-                    }
-
-                    // this.setState({
-                    //     playerAField: playerAField,
-                    //     playerBField: playerBField,
-                    //     playerAMana: playerAMana,
-                    //     playerBGraveyard: playerBGraveyard,
-                    //     playerAGraveyard: playerAGraveyard
-                    // }, function () {
-                    //     API.board(this.state)
-                    // })
-                    API.attackBMinion(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
-                    
-                }
                 }
                 else {
                     //add some modal to say out of mana
@@ -469,60 +470,61 @@ class GameBoard extends Component {
                     console.log(attackingCardIndex);
                     console.log(defendingCardIndex);
 
-                    if (defendingCardIndex === undefined){
+                    if (defendingCardIndex === undefined) {
                         console.log('youre attacking something that doesnt exist')
                         return
-                    } else if(attackingCardIndex === undefined){
+                    } else if (attackingCardIndex === undefined) {
                         console.log('not attacking with a minion')
                     }
                     else {
 
-                    var attackingCardType = playerBField[attackingCardIndex].TypeText;
-                    var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
-                    var defendingCardStrength = playerAField[defendingCardIndex].StrongAgainst;
-                    console.log(attackingCardType);
-                    console.log(defendingCardWeakness);
+                        var attackingCardType = playerBField[attackingCardIndex].TypeText;
+                        var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
+                        var defendingCardStrength = playerAField[defendingCardIndex].StrongAgainst;
+                        console.log(attackingCardType);
+                        console.log(defendingCardWeakness);
 
-                    if (attackingCardType === defendingCardWeakness) {
-                        playerAField[defendingCardIndex].Health -= 10;
-                        playerBMana -= 9;
-                    } else if (attackingCardType === defendingCardStrength) {
-                        playerAField[defendingCardIndex].Health -= 3;
-                        playerBField[attackingCardIndex].Health -= 3;
-                        playerBMana -= 9;
-                    } else {
-                        playerAField[defendingCardIndex].Health -= 6;
-                        playerBMana -= 9;
+                        if (attackingCardType === defendingCardWeakness) {
+                            playerAField[defendingCardIndex].Health -= 10;
+                            playerBMana -= 9;
+                        } else if (attackingCardType === defendingCardStrength) {
+                            playerAField[defendingCardIndex].Health -= 3;
+                            playerBField[attackingCardIndex].Health -= 3;
+                            playerBMana -= 9;
+                        } else {
+                            playerAField[defendingCardIndex].Health -= 6;
+                            playerBMana -= 9;
+                        }
+
+                        if (playerAField[defendingCardIndex].Health <= 0) {
+                            var removedACard = playerAField.splice(defendingCardIndex, 1);
+                            playerAGraveyard.push(removedACard);
+                        }
+
+                        if (playerBField[attackingCardIndex].Health <= 0) {
+                            var removedBCard = playerBField.splice(attackingCardIndex, 1);
+                            playerBGraveyard.push(removedBCard);
+                        }
+
+                        // this.setState({
+                        //     playerAField: playerAField,
+                        //     playerBField: playerBField,
+                        //     playerBMana: playerBMana,
+                        //     playerAGraveyard: playerAGraveyard,
+                        //     playerBGraveyard: playerBGraveyard
+                        // }, function () {
+                        //     API.board(this.state)
+                        // })
+
+                        API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
+
+
+                        console.log(this.state)
+
+
+
                     }
-
-                    if (playerAField[defendingCardIndex].Health <= 0) {
-                        var removedACard = playerAField.splice(defendingCardIndex, 1);
-                        playerAGraveyard.push(removedACard);
-                    }
-
-                    if (playerBField[attackingCardIndex].Health <= 0) {
-                        var removedBCard = playerBField.splice(attackingCardIndex, 1);
-                        playerBGraveyard.push(removedBCard);
-                    }
-
-                    // this.setState({
-                    //     playerAField: playerAField,
-                    //     playerBField: playerBField,
-                    //     playerBMana: playerBMana,
-                    //     playerAGraveyard: playerAGraveyard,
-                    //     playerBGraveyard: playerBGraveyard
-                    // }, function () {
-                    //     API.board(this.state)
-                    // })
-
-                    API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
-
-
-                    console.log(this.state)
-
-
-
-                }}
+                }
                 else {
                     //add some modal to say out of mana
                     console.log("out of mana to attack or moves")
@@ -533,290 +535,155 @@ class GameBoard extends Component {
     };
 
     render() {
-        if (this.state.playerAChamp[0].Health <= 0 || (this.state.playerAField.length === 0 && this.state.playerAHand.length === 0)){
+        if (this.state.playerAChamp[0].Health <= 0 || (this.state.playerAField.length === 0 && this.state.playerAHand.length === 0)) {
             return (
-                <GameOver value = {this.state} winner = {'playerB'}></GameOver>
+                <GameOver value={this.state} winner={'playerB'}></GameOver>
             )
-        } else if (this.state.playerBChamp[0].Health <= 0 || (this.state.playerBField.length === 0 && this.state.playerBHand.length === 0)){
-            return(
-                <GameOver value = {this.state} winner = {'playerA'}></GameOver>
+        } else if (this.state.playerBChamp[0].Health <= 0 || (this.state.playerBField.length === 0 && this.state.playerBHand.length === 0)) {
+            return (
+                <GameOver value={this.state} winner={'playerA'}></GameOver>
             )
-        } else 
-        return (
-            
-            <DragDropContext onDragEnd={this.onDragEnd}>
+        } else
+            return (
 
-                <div className="outerContainer">
+                <DragDropContext onDragEnd={this.onDragEnd}>
 
-                    <div className="containerA">
+                    <div className="outerContainer">
 
-                        <div className="rowA">
+                        <div className="containerA">
 
-                            <div className="playerManaA">
-                                {this.state.playerAMana}
-                            </div>
+                            <div className="rowA">
 
-                            <div className="endTurnA" onClick={
-                                this.changeATurn
-                            }>
-                                End Turn
-                            </div>
+                                <div className="playerNameA">
+                                    {this.state.player2name}
+                                </div>
 
-                            <Droppable droppableId="playerChampionA">
-                                {(provided) => (
-                                    <div className="championA" ref={provided.innerRef}>
-                                        {this.state.playerAChamp.map((champion) => (
-                                            <div
-                                                className="playedChampionCard"
-                                                id={champion.id}
-                                                key={champion.id}
-                                            >
-                                                <p className="playedChampionHealth">{champion.Health || 2}</p>
-                                                <img className="playedChampionWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
-                                                <img className="playedChampionStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
-                                                <img className="playedChampionPortrait" src={champion.Img} alt=""></img>
-                                            </div>
+                                <div className="playerManaA">
+                                    {this.state.playerAMana}
+                                </div>
 
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                            <Droppable droppableId="playerHandA">
-                                {(provided) => (
-                                    <div className="playerHandA" ref={provided.innerRef}>
-                                        {this.state.playerAHand.map((minion, index) => (
-                                            <Draggable
-                                                key={minion.id}
-                                                draggableId={minion.id}
-                                                index={index}>
-                                                {(provided) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        className="minionHandCardA"
-                                                        id={minion.id}
-                                                        key={minion.id}
-                                                    >
-                                                        <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
-                                                        <p className="minionHandHealth">{minion.Health || 2}</p>
-
-                                                        <div className="ability">
-                                                            <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                            <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
-                                                            <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
-                                                        </div>
+                                <div className="endTurnA" onClick={this.changeATurn}>
+                                    End Turn
+                                </div>
 
 
 
-
-                                                        <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
-                                                        <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
-                                                        <img className="minionHandPortrait" src={minion.Img} alt=""></img>
-
-                                                    </div>
-
-
-                                                )}
-                                            </Draggable>
-                                        ))}
-                                        {provided.placeholder}
-
-                                    </div>
-                                )
-                                }
-
-                            </Droppable>
-                        </div>
-                        <Droppable droppableId="fieldA">
-                            {(provided) => (
-                                <div className="fieldA" ref={provided.innerRef}>
-                                    {this.state.playerAField.map((minion, index) => (
-                                        <Droppable droppableId={minion.id} key={minion.id}>
-                                            {(provided) => (
-                                                <div className="droppableMinion" ref={provided.innerRef} key={minion.id} >
-                                                    <Draggable
-                                                        key={minion.id}
-                                                        draggableId={minion.id}
-                                                        index={index}>
-                                                        {(provided) => (
-                                                            <div
-                                                                ref={provided.innerRef}
-                                                                {...provided.draggableProps}
-                                                                {...provided.dragHandleProps}
-                                                                className="minionFieldCardA"
-                                                                id={minion.id}
-                                                                key={minion.id}
-                                                            >
-
-                                                                <div className="innerA"> 
-                                                                
-                                                                <p className="minionFieldHealth">{minion.Health || 2}</p>
-
-                                                                <div className="abilityField">
-                                                                    <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
-                                                                </div>
-
-
-
-
-                                                                <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
-                                                                <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
-                                                                <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
-                                                                </div>
-
-                                                            </div>
-
-
-                                                        )}
-                                                    </Draggable>
-                                                    {provided.placeholder}
+                                <Droppable droppableId="playerChampionA">
+                                    {(provided) => (
+                                        <div className="championA" ref={provided.innerRef}>
+                                            {this.state.playerAChamp.map((champion) => (
+                                                <div
+                                                    className="playedChampionCard"
+                                                    id={champion.id}
+                                                    key={champion.id}
+                                                >
+                                                    <p className="playedChampionHealth">{champion.Health || 2}</p>
+                                                    <img className="playedChampionWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
+                                                    <img className="playedChampionStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
+                                                    <img className="playedChampionPortrait" src={champion.Img} alt=""></img>
                                                 </div>
 
-                                            )}
-                                        </Droppable>
-                                    ))}
-                                    {provided.placeholder}
-
-                                </div>
-                            )
-                            }
-                        </Droppable>
-
-                    </div>
-
-
-                    <div className="containerB">
-
-                        <Droppable droppableId="fieldB">
-                            {(provided) => (
-                                <div className="fieldB" ref={provided.innerRef}>
-                                    {this.state.playerBField.map((minion, index) => (
-                                        <Droppable droppableId={minion.id} key={minion.id}>
-                                            {(provided) => (
-                                                <div className="droppableMinion" ref={provided.innerRef} key={minion.id}>
-                                                    <Draggable
-                                                        key={minion.id}
-                                                        draggableId={minion.id}
-                                                        index={index}
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                                <Droppable droppableId="playerHandA">
+                                    {(provided) => (
+                                        <div className="playerHandA" ref={provided.innerRef}>
+                                            {this.state.playerAHand.map((minion, index) => (
+                                                <Draggable
+                                                    key={minion.id}
+                                                    draggableId={minion.id}
+                                                    index={index}>
+                                                    {(provided) => (
+                                                        <div
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                            className="minionHandCardA"
+                                                            id={minion.id}
+                                                            key={minion.id}
                                                         >
-                                                        {(provided) => (
-                                                            <div
-                                                                ref={provided.innerRef}
-                                                                {...provided.draggableProps}
-                                                                {...provided.dragHandleProps}
-                                                                className="minionFieldCardB"
-                                                                id={minion.id}
-                                                                key={minion.id}
-                                                            >
-                                                                <div className="innerB"> 
-                                                                
-                                                                <p className="minionFieldHealth">{minion.Health || 2}</p>
+                                                            <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
+                                                            <p className="minionHandHealth">{minion.Health || 2}</p>
 
-                                                                <div className="abilityField">
-                                                                    <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
-                                                                </div>
-
-
-
-
-                                                                <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
-                                                                <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
-                                                                <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
-                                                                    </div>
+                                                            <div className="ability">
+                                                                <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
+                                                                <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                                <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                             </div>
 
 
-                                                        )}
-                                                    </Draggable>
-                                                    {provided.placeholder}
-                                                </div>
-                                            )}
-                                        </Droppable>
-                                    ))}
-                                    {provided.placeholder}
 
-                                </div>
-                            )
-                            }
-                        </Droppable>
 
-                        <div className="rowB">
+                                                            <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
+                                                            <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
+                                                            <img className="minionHandPortrait" src={minion.Img} alt=""></img>
 
-                            <div className="endTurnB" onClick={
-                                this.changeBTurn
-                            }>
-                                End Turn
-                            </div>
-
-                            <div className="playerManaB">
-                                {this.state.playerBMana}
-                            </div>
-
-                            <Droppable droppableId="playerChampionB">
-                                {(provided) => (
-                                    <div className="championB" ref={provided.innerRef}>
-                                        {this.state.playerBChamp.map((champion) => (
-                                            <div
-                                                className="playedChampionCard"
-                                                id={champion.id}
-                                                key={champion.id}
-                                            >
-                                                <p className="playedChampionHealth">{champion.Health || 2}</p>
-                                                <img className="playedChampionWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
-                                                <img className="playedChampionStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
-                                                <img className="playedChampionPortrait" src={champion.Img} alt=""></img>
-                                            </div>
-
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                            <Droppable droppableId="playerHandB">
-                                {(provided) => (
-                                    <div className="playerHandB" ref={provided.innerRef}>
-                                        {this.state.playerBHand.map((minion, index) => (
-                                            <Draggable
-                                                key={minion.id}
-                                                draggableId={minion.id}
-                                                index={index}
-                                            >
-                                                {(provided) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        className="minionHandCardB"
-                                                        id={minion.id}
-                                                        key={minion.id}
-                                                    >
-                                                        <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
-                                                        <p className="minionHandHealth">{minion.Health || 2}</p>
-
-                                                        <div className="ability">
-                                                            <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                            <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
-                                                            <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                         </div>
 
 
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+
+                                        </div>
+                                    )
+                                    }
+
+                                </Droppable>
+                            </div>
+                            <Droppable droppableId="fieldA">
+                                {(provided) => (
+                                    <div className="fieldA" ref={provided.innerRef}>
+                                        {this.state.playerAField.map((minion, index) => (
+                                            <Droppable droppableId={minion.id} key={minion.id}>
+                                                {(provided) => (
+                                                    <div className="droppableMinion" ref={provided.innerRef} key={minion.id} >
+                                                        <Draggable
+                                                            key={minion.id}
+                                                            draggableId={minion.id}
+                                                            index={index}>
+                                                            {(provided) => (
+                                                                <div
+                                                                    ref={provided.innerRef}
+                                                                    {...provided.draggableProps}
+                                                                    {...provided.dragHandleProps}
+                                                                    className="minionFieldCardA"
+                                                                    id={minion.id}
+                                                                    key={minion.id}
+                                                                >
+
+                                                                    <div className="innerA">
+
+                                                                        <p className="minionFieldHealth">{minion.Health || 2}</p>
+
+                                                                        <div className="abilityField">
+                                                                            <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
+                                                                            <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
+                                                                            <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
+                                                                        </div>
 
 
-                                                        <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
-                                                        <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
-                                                        <img className="minionHandPortrait" src={minion.Img} alt=""></img>
 
+
+                                                                        <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
+                                                                        <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
+                                                                        <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            )}
+                                                        </Draggable>
+                                                        {provided.placeholder}
                                                     </div>
 
-
                                                 )}
-                                            </Draggable>
+                                            </Droppable>
                                         ))}
                                         {provided.placeholder}
 
@@ -824,13 +691,154 @@ class GameBoard extends Component {
                                 )
                                 }
                             </Droppable>
+
                         </div>
+
+
+                        <div className="containerB">
+
+                            <Droppable droppableId="fieldB">
+                                {(provided) => (
+                                    <div className="fieldB" ref={provided.innerRef}>
+                                        {this.state.playerBField.map((minion, index) => (
+                                            <Droppable droppableId={minion.id} key={minion.id}>
+                                                {(provided) => (
+                                                    <div className="droppableMinion" ref={provided.innerRef} key={minion.id}>
+                                                        <Draggable
+                                                            key={minion.id}
+                                                            draggableId={minion.id}
+                                                            index={index}
+                                                        >
+                                                            {(provided) => (
+                                                                <div
+                                                                    ref={provided.innerRef}
+                                                                    {...provided.draggableProps}
+                                                                    {...provided.dragHandleProps}
+                                                                    className="minionFieldCardB"
+                                                                    id={minion.id}
+                                                                    key={minion.id}
+                                                                >
+                                                                    <div className="innerB">
+
+                                                                        <p className="minionFieldHealth">{minion.Health || 2}</p>
+
+                                                                        <div className="abilityField">
+                                                                            <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
+                                                                            <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
+                                                                            <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
+                                                                        </div>
+
+
+
+
+                                                                        <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
+                                                                        <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
+                                                                        <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            )}
+                                                        </Draggable>
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )}
+                                            </Droppable>
+                                        ))}
+                                        {provided.placeholder}
+
+                                    </div>
+                                )
+                                }
+                            </Droppable>
+
+                            <div className="rowB">
+
+                                <div className="endTurnB" onClick={this.changeBTurn}>
+                                    End Turn
+                                </div>
+
+                                <div className="playerManaB">
+                                    {this.state.playerBMana}
+                                </div>
+
+                                <div className="playerNameB">
+                                    {this.state.player1name}
+                                </div>
+
+                                <Droppable droppableId="playerChampionB">
+                                    {(provided) => (
+                                        <div className="championB" ref={provided.innerRef}>
+                                            {this.state.playerBChamp.map((champion) => (
+                                                <div
+                                                    className="playedChampionCard"
+                                                    id={champion.id}
+                                                    key={champion.id}
+                                                >
+                                                    <p className="playedChampionHealth">{champion.Health || 2}</p>
+                                                    <img className="playedChampionWeakness" src={champion.WeakAgainst} alt="" width="42" height="1"></img>
+                                                    <img className="playedChampionStrength" src={champion.StrongAgainst} alt="" width="5" height="1"></img>
+                                                    <img className="playedChampionPortrait" src={champion.Img} alt=""></img>
+                                                </div>
+
+                                            ))}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                                <Droppable droppableId="playerHandB">
+                                    {(provided) => (
+                                        <div className="playerHandB" ref={provided.innerRef}>
+                                            {this.state.playerBHand.map((minion, index) => (
+                                                <Draggable
+                                                    key={minion.id}
+                                                    draggableId={minion.id}
+                                                    index={index}
+                                                >
+                                                    {(provided) => (
+                                                        <div
+                                                            ref={provided.innerRef}
+                                                            {...provided.draggableProps}
+                                                            {...provided.dragHandleProps}
+                                                            className="minionHandCardB"
+                                                            id={minion.id}
+                                                            key={minion.id}
+                                                        >
+                                                            <h3 className="MinionHandName">{minion.Name || "Minion"}</h3>
+                                                            <p className="minionHandHealth">{minion.Health || 2}</p>
+
+                                                            <div className="ability">
+                                                                <span className="minionHandAttack1">{minion.Attack1Name || "Ability 1"}</span>
+                                                                <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
+                                                                <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
+                                                            </div>
+
+
+
+
+                                                            <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
+                                                            <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
+                                                            <img className="minionHandPortrait" src={minion.Img} alt=""></img>
+
+                                                        </div>
+
+
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                            {provided.placeholder}
+
+                                        </div>
+                                    )
+                                    }
+                                </Droppable>
+                            </div>
+                        </div>
+
+
                     </div>
-
-
-                </div>
-            </DragDropContext>
-        )
+                </DragDropContext>
+            )
     }
 }
 export default GameBoard;
