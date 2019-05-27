@@ -202,7 +202,9 @@ io.on('connection', function (socket) {
       game.aMaxMana = 20;
       game.bMaxMana = 20;
       
-      socket.leave('room-' + game.gameId)
+      socket.leave('room-' + game.gameId, function(err){
+        console.log('disconnected from the room')
+      })
       io.to('room-' + game.gameId).emit('updateGame', game)
       
     })
