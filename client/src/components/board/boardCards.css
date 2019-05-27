@@ -274,9 +274,9 @@
     transition: transform 0.15s;
     position: relative;
     width: 35vh;
-    height: 47vh;
+    height: 40vh;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    border-radius: 100%;
     border: 1vh rgb(163, 122, 61);
     border-style: outset;
     background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
@@ -294,9 +294,9 @@
     transition: transform 0.15s;
     position: relative;
     width: 35vh;
-    height: 47vh;
+    height: 40vh;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    border-radius: 100%;
     border: 1vh rgb(163, 122, 61);
     border-style: outset;
     background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
@@ -305,13 +305,13 @@
   
   
     /* Remove this margin! only for testing */
-    margin-top:-13.5vh;
+    margin-top:-11.5vh;
     margin-right: -4vw;
   }
   
   .minionFieldCardA:hover {
     background: #6e5c4f;
-    transform: scale(.9);
+    transform: scale(.7);
     z-index:1;
   }
   
@@ -319,7 +319,7 @@
     background: #6e5c4f;
     transform: scale(.9);
     z-index:1;
-  }
+  } 
 
   
   /* The Minion's Name Banner */
@@ -346,9 +346,12 @@
   .minionFieldPortrait {
     position: absolute;
     top: 5px;
-    left: 12%;
+    left: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
     width: 70%;
-    height: 55%;
+    height: 65%;
     border: 4px solid #968E86;
     border-radius: 100%;
     background-size: cover;
@@ -361,7 +364,7 @@
     background: #968E86;
     border: 4px solid #968E86;
     border-radius: 100%;
-    bottom: -8%;
+    bottom: -9%;
     left: -10%;
     color: white;
   }
@@ -373,9 +376,10 @@
     background: #bc3328;
     border: 4px solid #968E86;
     border-radius: 100%;
-    bottom: -5vh;
-    right: -3vh;
+    bottom: 28%;
+    left:85%;
     color: white;
+    z-index:2;
   }
   
   
@@ -414,15 +418,20 @@
   
   
   /* Ability 1 Div/Container */
-  .ability1 {
+  .abilityField {
     position: absolute;
-    width: 48%;
+    width: 70%;
     top: 62%;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
     height: 20%;
     background: #968E86;
     border: 1px black solid;
     border-radius: 30%;
     text-align: center;
+    z-index:1;
   }
   
   .ability1:hover {
@@ -444,6 +453,7 @@
     color: rgb(226, 213, 30);
     margin-right: 2vh;
     text-shadow: 2px 2px 4px #000000;
+  
   
   }
   

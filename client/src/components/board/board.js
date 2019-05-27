@@ -686,13 +686,15 @@ class GameBoard extends Component {
                                                                 id={minion.id}
                                                                 key={minion.id}
                                                             >
-                                                                <h3 className="MinionFieldName">{minion.Name || "Minion"}</h3>
+
+                                                                <div className="innerA"> 
+                                                                
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
-                                                                <div className="ability">
+                                                                <div className="abilityField">
                                                                     <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
+                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
+                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
                                                                 </div>
 
 
@@ -701,6 +703,7 @@ class GameBoard extends Component {
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                                 <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
                                                                 <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
+                                                                </div>
 
                                                             </div>
 
@@ -746,13 +749,14 @@ class GameBoard extends Component {
                                                                 id={minion.id}
                                                                 key={minion.id}
                                                             >
-                                                                <h3 className="MinionFieldName">{minion.Name || "Minion"}</h3>
+                                                                <div className="innerB"> 
+                                                                
                                                                 <p className="minionFieldHealth">{minion.Health || 2}</p>
 
-                                                                <div className="ability">
+                                                                <div className="abilityField">
                                                                     <span className="minionFieldAttack1">{minion.Attack1Name || "Ability 1"}</span>
-                                                                    <span className="minionFieldAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
-                                                                    <span className="minionFieldAttack1Cost">Cost: {minion.Attack1Cost}</span>
+                                                                    <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
+                                                                    <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
                                                                 </div>
 
 
@@ -761,7 +765,7 @@ class GameBoard extends Component {
                                                                 <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                                 <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
                                                                 <img className="minionFieldPortrait" src={minion.Img} alt=""></img>
-
+                                                                    </div>
                                                             </div>
 
 
