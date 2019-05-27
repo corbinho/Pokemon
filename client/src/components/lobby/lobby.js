@@ -15,6 +15,7 @@ class Lobby extends React.Component {
 
   }
 
+
   joinGame = () => {
     if (this.state.name !== "") {
       this.setState({

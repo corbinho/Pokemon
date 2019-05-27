@@ -1,6 +1,7 @@
 import React from "react";
 import "../gameOver/gameOver.css";
 import Lobby from "../lobby/lobby"
+import API from "../../utils/API";
 
 
 
@@ -22,6 +23,7 @@ class GameOver extends React.Component {
     }
 
     goLobby = () => {
+        API.leaveGame()
         this.setState({
             goToLobby: true
         })

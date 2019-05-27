@@ -9,6 +9,8 @@ export default {
     return axios.get("/api/minions");
   },
 
+
+
   // Socket stuff below
   joinGame: (cb) => {
     socket.emit('joinGame', { })
@@ -21,6 +23,10 @@ export default {
   draftMinion: (minions , minion, cb) => {
   
     socket.emit('draftMinion', minions, minion)
+  },
+
+  leaveGame: () => {
+    socket.emit('leaveGame')
   },
 
   board: (allState) => {
