@@ -32,7 +32,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
   result[droppableDestination.droppableId] = destClone;
-  
+
   return result;
 };
 
@@ -47,7 +47,9 @@ class DraftMinion extends Component {
       player2champion: this.props.p2champ,
       player1Turn: true,
       player2Turn: false,
-      champions: this.props.champions
+      champions: this.props.champions,
+      player1name: this.props.p1name,
+      player2name: this.props.p2name
     };
 
     this.id2List = {
@@ -60,19 +62,19 @@ class DraftMinion extends Component {
 
   componentDidMount = () => {
     API.joinGame(updates => {
-        console.log(updates)
-        if (updates.player1 && updates.player2) {
-            this.setState({
-                player1deck: updates.player1.minions || [],
-                player2deck: updates.player2.minions || [],
-                player1Turn: updates.player1.turn, 
-                player2Turn: updates.player2.turn,
-                minions: updates.minions,
-                player1champion: updates.player1.champion,
-                player2champion: updates.player2.champion,
-                champions: updates.champions
-            })
-        }
+      console.log(updates)
+      if (updates.player1 && updates.player2) {
+        this.setState({
+          player1deck: updates.player1.minions || [],
+          player2deck: updates.player2.minions || [],
+          player1Turn: updates.player1.turn,
+          player2Turn: updates.player2.turn,
+          minions: updates.minions,
+          player1champion: updates.player1.champion,
+          player2champion: updates.player2.champion,
+          champions: updates.champions
+        })
+      }
     })
   }
 
@@ -126,7 +128,7 @@ class DraftMinion extends Component {
         player2Turn: true
       });
 
-      API.draftMinion(result.droppable , result[destination.droppableId])
+      API.draftMinion(result.droppable, result[destination.droppableId])
     }
 
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && (this.state.player2Turn)) {
@@ -144,7 +146,7 @@ class DraftMinion extends Component {
         player2Turn: false
       });
 
-      API.draftMinion(result.droppable , result[destination.droppableId])
+      API.draftMinion(result.droppable, result[destination.droppableId])
     }
 
     // socket.emit('updateMinions', {
@@ -157,16 +159,30 @@ class DraftMinion extends Component {
   render() {
     if (this.state.player1deck.length === 5 && this.state.player2deck.length === 5) {
       return (
-        <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion}></GameBoard>
+        <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion} p1name={this.state.player1name} p2name={this.state.player2name}></GameBoard>
       )
-    } 
+    }
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="container">
-          <div className="minionHeader">
-            <h1 className="headerText">Choose your minions</h1>
+
+          <div className="row1">
+
+            <div className="player2Name">
+              <h1 className="headerText">{this.state.player2name || "Waiting for Opponent"}</h1>
+            </div>
+
+            <div className="minionHeader">
+              <h1 className="headerText">Choose your minions</h1>
+
+            </div>
+
+            <div className="player1Name">
+              <h1 className="headerText">{this.state.player1name || "Waiting for Opponent"}</h1>
+            </div>
 
           </div>
+
 
           <div className="row2">
             <Droppable droppableId="droppable3">
