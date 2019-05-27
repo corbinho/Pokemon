@@ -35,6 +35,12 @@ export default {
     socket.emit('board', allState)
   },
 
+  joinNewGame: () => {
+    console.log("joining a game")
+    socket.emit('joinNewGame')
+
+  },
+
   checkSocket: (cb) => {
     socket.emit('checkSocket', cb)
   },

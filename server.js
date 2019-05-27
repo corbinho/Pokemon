@@ -23,6 +23,8 @@ function Game(id){
 let roomno = 1;
 
 io.on('connection', function (socket) {
+
+  socket.on('joinNewGame', function(){
   console.log("User Connected " + socket.id)
 
   let socketInGame = false;
@@ -62,7 +64,7 @@ io.on('connection', function (socket) {
     console.log("You are in room no. " + roomno);
 
   socket.on('joinGame', function (data) {
-    
+
     socket.on('disconnect', function () {
       game.player1 = false
       game.player2 = false
@@ -210,6 +212,7 @@ io.on('connection', function (socket) {
     })
     
   })
+})
 })
 
 app.all('/', function (req, res, next) {

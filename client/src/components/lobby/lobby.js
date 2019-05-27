@@ -1,6 +1,7 @@
 import React from "react";
 import "../lobby/lobby.css"
 import DraftChamp from "../draftChamp/draftChamp";
+import API from "../../utils/API";
 
 
 
@@ -17,11 +18,14 @@ class Lobby extends React.Component {
 
 
   joinGame = () => {
+    
     if (this.state.name !== "") {
+      API.joinNewGame();
       this.setState({
         joinAGame: true,
       })
     }
+    
     console.log("clicked!")
   }
 
