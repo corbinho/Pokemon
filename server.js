@@ -127,7 +127,7 @@ io.on('connection', function (socket) {
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
 
-    socket.on('changeATurn', function (currentAMaxMana, newMana) {
+    socket.on('changeATurn', function (currentAMaxMana, newMana, name) {
       if (socket.id === game.player1.id) {
         console.log("not the right socket, trying to change A's turn")
         return
@@ -137,14 +137,15 @@ io.on('connection', function (socket) {
         game.aMaxMana = currentAMaxMana;
         game.playerAMana = newMana;
         game.playerBturn = true;
-        game.playerATurn = false
+        game.playerATurn = false;
+        game.currentPlayerTurn = name
       }
   
       io.to('room-' + game.gameId).emit('updateGame', game)
   
     })
 
-    socket.on('changeBTurn', function (currentBMaxMana, newMana) {
+    socket.on('changeBTurn', function (currentBMaxMana, newMana, name) {
       if (socket.id === game.player2.id) {
         console.log("not the right socket, trying to change B's turn")
         return
@@ -154,7 +155,8 @@ io.on('connection', function (socket) {
         game.bMaxMana = currentBMaxMana;
         game.playerBMana = newMana;
         game.playerBturn = false;
-        game.playerATurn = true
+        game.playerATurn = true;
+        game.currentPlayerTurn = name
       }
   
       io.to('room-' + game.gameId).emit('updateGame', game)
