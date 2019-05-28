@@ -153,6 +153,7 @@ class DraftMinion extends Component {
 
             <div className="player2Name">
               <h1 className="headerText">{this.state.player2name || "Waiting for Opponent"}</h1>
+              <h6 className="headerText">{this.state.player2champion[0].name}</h6>
             </div>
 
             <div className="minionHeader">
@@ -162,6 +163,7 @@ class DraftMinion extends Component {
 
             <div className="player1Name">
               <h1 className="headerText">{this.state.player1name || "Waiting for Opponent"}</h1>
+              <h6 className="headerText">{this.state.player1champion[0].name}</h6>
             </div>
 
           </div>
