@@ -56,7 +56,9 @@ class GameBoard extends Component {
             bMaxMana: 20,
             player1name: this.props.p1name,
             player2name: this.props.p2name,
-            currentPlayerTurn: this.props.p1name
+            currentPlayerTurn: this.props.p1name,
+            isAttacked: false,
+            isKilled: false
         }
 
 

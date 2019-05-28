@@ -282,6 +282,7 @@
     background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
     display: inline-flex;
     transform: scale(0.4);
+    z-index:5;
   
   
     /* Remove this margin! only for testing */
@@ -302,6 +303,7 @@
     background-image: radial-gradient(circle, #a87046, #cab09b, #776557);
     display: inline-flex;
     transform: scale(0.4);
+    z-index:5;
   
   
     /* Remove this margin! only for testing */
@@ -468,5 +470,40 @@
   .droppableMinion {
     display: block;
   }
+ 
+/*  ---------------------------------------------Card Animation -----------------------------*/
 
-  
+
+
+ /* .minionFieldCardB:hover {
+	-webkit-animation: minionFieldCardB 0.65s linear both;
+	        animation: minionFieldCardB 0.65s linear both;
+}
+@-webkit-keyframes minionFieldCardB {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotateZ(180deg);
+            transform: scale(0.5) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+}
+@keyframes minionFieldCardB {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotateZ(180deg);
+            transform: scale(0.5) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+} */
