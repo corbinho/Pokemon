@@ -161,12 +161,13 @@ io.on('connection', function (socket) {
   
     })  
     
-    socket.on('draft1Minion', function (minions, minion) {
+    socket.on('draft1Minion', function (minions, minion, name) {
       if (socket.id === game.player1.id) {
         game.player1.minions = minion;
         game.player1.turn = false;
         game.player2.turn = true;
-        game.minions = minions
+        game.minions = minions;
+        game.currentTurn = name;
       }
       else if (socket.id === game.player2.id) {
         return
@@ -175,12 +176,13 @@ io.on('connection', function (socket) {
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
 
-    socket.on('draft2Minion', function (minions, minion) {
+    socket.on('draft2Minion', function (minions, minion, name) {
       if (socket.id === game.player2.id) {
         game.player2.minions = minion;
         game.player2.turn = false;
         game.player1.turn = true;
-        game.minions = minions
+        game.minions = minions;
+        game.currentTurn = name;
       }
       else if (socket.id === game.player1.id) {
         return
