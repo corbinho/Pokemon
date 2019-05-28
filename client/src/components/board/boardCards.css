@@ -96,7 +96,7 @@
   .minionHandCardA:hover {
     background: #6e5c4f;
     transform: translateY(20vh);
-    z-index:1;
+    z-index:6;
     margin:none;
   }
 
@@ -125,7 +125,7 @@
   .minionHandCardB:hover {
     background: #6e5c4f;
     transform: translateY(-20vh);
-    z-index:1;
+    z-index:6;
     margin:none;
   }
 
