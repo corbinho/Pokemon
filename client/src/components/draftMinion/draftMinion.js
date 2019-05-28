@@ -121,13 +121,6 @@ class DraftMinion extends Component {
         destination
       );
 
-      this.setState({
-        minions: result.droppable,
-        player1deck: result.droppable2,
-        player1Turn: false,
-        player2Turn: true
-      });
-
       API.draftMinion(result.droppable, result[destination.droppableId])
     }
 
@@ -139,20 +132,8 @@ class DraftMinion extends Component {
         destination
       );
 
-      this.setState({
-        minions: result.droppable,
-        player2deck: result.droppable3,
-        player1Turn: true,
-        player2Turn: false
-      });
-
       API.draftMinion(result.droppable, result[destination.droppableId])
     }
-
-    // socket.emit('updateMinions', {
-    //   room: 'global',
-    //   newCode: this.state
-    // })
 
   };
 

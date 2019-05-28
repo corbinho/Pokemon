@@ -98,22 +98,7 @@ class DraftChamp extends Component {
       console.log("not in destination")
       return;
     }
-
-    // if (source.droppableId === destination.droppableId) {
-    //   const items = reorder(
-    //     this.getList(source.droppableId),
-    //     source.index,
-    //     destination.index
-    //   );
-
-    //   let state = { items };
-
-    //   if (source.droppableId === 'droppable2') {
-    //     state = { selected: items };
-    //   }
-
-    //   this.setState(state);
-    // } 
+    
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1champion.length > 0) {
       console.log("already have a hero")
       return;
