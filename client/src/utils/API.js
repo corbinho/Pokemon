@@ -80,12 +80,12 @@ export default {
     socket.emit('checkSocket', cb)
   },
 
-  changeAsTurn: (currentAMaxMana, newMana) => {
-    socket.emit('changeATurn', currentAMaxMana, newMana)
+  changeAsTurn: (currentAMaxMana, newMana, name) => {
+    socket.emit('changeATurn', currentAMaxMana, newMana, name)
   },
 
-  changeBsTurn: (currentBMaxMana, newMana) => {
-    socket.emit('changeBTurn', currentBMaxMana, newMana)
+  changeBsTurn: (currentBMaxMana, newMana, name) => {
+    socket.emit('changeBTurn', currentBMaxMana, newMana, name)
   }
 
 

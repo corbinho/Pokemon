@@ -55,7 +55,8 @@ class GameBoard extends Component {
             aMaxMana: 20,
             bMaxMana: 20,
             player1name: this.props.p1name,
-            player2name: this.props.p2name
+            player2name: this.props.p2name,
+            currentPlayerTurn: this.props.p1name
         }
 
 
@@ -86,7 +87,8 @@ class GameBoard extends Component {
                         playerAMana: updates.playerAMana || this.state.playerAMana,
                         playerBMana: updates.playerBMana || this.state.playerBMana,
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
-                        bMaxMana: updates.bMaxMana || this.state.bMaxMana
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana,
+                        currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
                     }, function () { console.log(this.state) }
                     )
                 } else {
@@ -104,7 +106,8 @@ class GameBoard extends Component {
                         playerAMana: updates.playerAMana || this.state.playerAMana,
                         playerBMana: updates.playerBMana || this.state.playerBMana,
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
-                        bMaxMana: updates.bMaxMana || this.state.bMaxMana
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana,
+                        currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
                     }, function () { console.log(this.state) }
                     )
                 }
@@ -122,12 +125,12 @@ class GameBoard extends Component {
             if (currentAMaxMana <= 45) {
                 currentAMaxMana += 5;
                 newMana = currentAMaxMana
-                API.changeAsTurn(currentAMaxMana, newMana)
+                API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
             else {
                 currentAMaxMana = 50;
                 newMana = currentAMaxMana;
-                API.changeAsTurn(currentAMaxMana, newMana)
+                API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
         }
     }
@@ -142,12 +145,12 @@ class GameBoard extends Component {
             if (currentBMaxMana <= 45) {
                 currentBMaxMana += 5
                 newMana = currentBMaxMana;
-                API.changeBsTurn(currentBMaxMana, newMana);
+                API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name);
             }
             else {
                 currentBMaxMana = 50;
                 newMana = currentBMaxMana;
-                API.changeBsTurn(currentBMaxMana, newMana)
+                API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name)
             }
         }
     }
@@ -566,8 +569,6 @@ class GameBoard extends Component {
                                     End Turn
                                 </div>
 
-
-
                                 <Droppable droppableId="playerChampionA">
                                     {(provided) => (
                                         <div className="championA" ref={provided.innerRef}>
@@ -613,9 +614,6 @@ class GameBoard extends Component {
                                                                 <span className="minionHandAttack1Power"><br></br>Dmg: {minion.Attack1Power}</span>
                                                                 <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                             </div>
-
-
-
 
                                                             <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                             <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
@@ -665,9 +663,6 @@ class GameBoard extends Component {
                                                                             <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
                                                                             <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
                                                                         </div>
-
-
-
 
                                                                         <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                                         <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
@@ -727,9 +722,6 @@ class GameBoard extends Component {
                                                                             <span className="minionFieldAttack1Power"><br></br>{minion.Attack1Power}</span>
                                                                             <span className="minionFieldAttack1Cost">{minion.Attack1Cost}</span>
                                                                         </div>
-
-
-
 
                                                                         <img className="minionFieldWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                                         <img className="minionFieldStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
@@ -813,15 +805,11 @@ class GameBoard extends Component {
                                                                 <span className="minionHandAttack1Cost">Cost: {minion.Attack1Cost}</span>
                                                             </div>
 
-
-
-
                                                             <img className="minionHandWeakness" src={minion.WeakAgainstImg} alt="" width="42" height="1"></img>
                                                             <img className="minionHandStrength" src={minion.StrongAgainstImg} alt="" width="5" height="1"></img>
                                                             <img className="minionHandPortrait" src={minion.Img} alt=""></img>
 
                                                         </div>
-
 
                                                     )}
                                                 </Draggable>
