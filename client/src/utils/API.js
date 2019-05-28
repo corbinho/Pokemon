@@ -20,14 +20,14 @@ export default {
     socket.emit('draftChampion', champions, champion)
     // socket.on
   },
-  draft1Minion: (minions , minion, cb) => {
+  draft1Minion: (minions , minion, name, cb) => {
   
-    socket.emit('draft1Minion', minions, minion)
+    socket.emit('draft1Minion', minions, minion, name)
   },
 
-  draft2Minion: (minions , minion, cb) => {
+  draft2Minion: (minions , minion, name,  cb) => {
   
-    socket.emit('draft2Minion', minions, minion)
+    socket.emit('draft2Minion', minions, minion, name)
   },
 
   leaveGame: () => {
