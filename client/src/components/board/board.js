@@ -124,6 +124,7 @@ class GameBoard extends Component {
         } else {
             let currentAMaxMana = this.state.aMaxMana
             let newMana;
+            let modal = document.getElementById("myModal");
             if (currentAMaxMana <= 45) {
                 currentAMaxMana += 5;
                 newMana = currentAMaxMana
@@ -134,6 +135,8 @@ class GameBoard extends Component {
                 newMana = currentAMaxMana;
                 API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
+            modal.style.display = "block";
+            setTimeout(function(){ modal.style.display = "none"; }, 2500);
         }
     }
 
@@ -144,6 +147,8 @@ class GameBoard extends Component {
         } else {
             let currentBMaxMana = this.state.bMaxMana
             let newMana;
+            // Get the modal
+            let modal = document.getElementById("myModal");
             if (currentBMaxMana <= 45) {
                 currentBMaxMana += 5
                 newMana = currentBMaxMana;
@@ -154,6 +159,8 @@ class GameBoard extends Component {
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name)
             }
+            modal.style.display = "block";
+            setTimeout(function(){ modal.style.display = "none"; }, 2500);
         }
     }
 
@@ -691,6 +698,14 @@ class GameBoard extends Component {
 
                         </div>
 
+                        {/* --------------------------------------------------Turn Popup-------------------------------------------------------*/}
+                        <div id="myModal" class="modal">
+
+                            <div class="modal-content">
+                                <p>{this.state.currentPlayerTurn + "'s Turn"}</p>
+                            </div>
+
+                        </div>
 
                         <div className="containerB">
 
