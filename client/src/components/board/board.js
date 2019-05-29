@@ -135,7 +135,7 @@ class GameBoard extends Component {
                 newMana = currentAMaxMana;
                 API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
-            modal.style.display = "block";
+            setTimeout(function(){ modal.style.display = "block";}, 300);
             setTimeout(function(){ modal.style.display = "none"; }, 2500);
         }
     }
@@ -159,7 +159,7 @@ class GameBoard extends Component {
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name)
             }
-            modal.style.display = "block";
+            setTimeout(function(){ modal.style.display = "block";}, 300);
             setTimeout(function(){ modal.style.display = "none"; }, 2500);
         }
     }
