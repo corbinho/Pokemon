@@ -72,6 +72,11 @@ class GameBoard extends Component {
 
     componentDidMount = () => {
         API.joinGame(updates => {
+            if(this.state.currentPlayerTurn !== updates.currentPlayerTurn){
+                let modal = document.getElementById("myModal");
+                setTimeout(function(){ modal.style.display = "block";}, 300);
+                setTimeout(function(){ modal.style.display = "none"; }, 2500);
+            }
             console.log(updates)
             if (updates.player1 && updates.player2) {
                 if (updates.playerATurn || updates.playerBturn) {
@@ -135,8 +140,9 @@ class GameBoard extends Component {
                 newMana = currentAMaxMana;
                 API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
-            setTimeout(function(){ modal.style.display = "block";}, 300);
-            setTimeout(function(){ modal.style.display = "none"; }, 2500);
+            // setTimeout(function(){ modal.style.display = "block";}, 300);
+            // setTimeout(function(){ modal.style.display = "none"; }, 2500);
+            // API.showTurn(modal)
         }
     }
 
@@ -159,8 +165,9 @@ class GameBoard extends Component {
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name)
             }
-            setTimeout(function(){ modal.style.display = "block";}, 300);
-            setTimeout(function(){ modal.style.display = "none"; }, 2500);
+            // setTimeout(function(){ modal.style.display = "block";}, 300);
+            // setTimeout(function(){ modal.style.display = "none"; }, 2500);
+            // API.showTurn(modal)
         }
     }
 
