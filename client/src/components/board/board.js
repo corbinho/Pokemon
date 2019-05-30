@@ -40,12 +40,12 @@ class GameBoard extends Component {
         super(props);
 
         this.state = {
-            playerAChamp: this.props.p1champ,
-            playerAHand: this.props.p1deck,
+            playerAChamp: this.props.p2champ,
+            playerAHand: this.props.p2deck,
             playerAField: [],
             playerAGraveyard: [],
-            playerBChamp: this.props.p2champ,
-            playerBHand: this.props.p2deck,
+            playerBChamp: this.props.p1champ,
+            playerBHand: this.props.p1deck,
             playerBField: [],
             playerBGraveyard: [],
             playerATurn: false,
@@ -154,7 +154,7 @@ class GameBoard extends Component {
             let currentBMaxMana = this.state.bMaxMana
             let newMana;
             // Get the modal
-            let modal = document.getElementById("myModal");
+            // let modal = document.getElementById("myModal");
             if (currentBMaxMana <= 45) {
                 currentBMaxMana += 5
                 newMana = currentBMaxMana;
@@ -207,17 +207,13 @@ class GameBoard extends Component {
                 let playerAField = result.fieldA
                 let playerAHand = result.playerHandA
                 let playerAMana = currentMana
-                // this.setState({
-                //     playerAField: result.fieldA,
-                //     playerAHand: result.playerHandA,
-                //     playerAMana: currentMana
-
-                // }, function () {
-                //     API.board(this.state)
-                // });
+                
                 API.playAHand(playerAField, playerAHand, playerAMana)
             } else {
                 console.log("out of mana to play card")
+                let modal = document.getElementById("myModalManaPlay");
+                setTimeout(function(){ modal.style.display = "block";}, 300);
+                setTimeout(function(){ modal.style.display = "none"; }, 2500);
             }
             console.log("A current mana = " + currentMana)
         }
@@ -235,17 +231,14 @@ class GameBoard extends Component {
                 let playerBField = result.fieldB
                 let playerBHand = result.playerHandB
                 let playerBMana = currentMana
-                // this.setState({
-                //     playerBField: result.fieldB,
-                //     playerBHand: result.playerHandB,
-                //     playerBMana: currentMana
-                // }, function () {
-                //     API.board(this.state)
-                // });
-                API.playBHand(playerBField, playerBHand, playerBMana)
                 console.log("B current mana = " + currentMana)
+                API.playBHand(playerBField, playerBHand, playerBMana)
+                
             } else {
                 console.log("out of mana to play a card")
+                let modal = document.getElementById("myModalManaPlay");
+                setTimeout(function(){ modal.style.display = "block";}, 300);
+                setTimeout(function(){ modal.style.display = "none"; }, 2500);
             }
         }
         //attacking player A Champion
@@ -299,17 +292,13 @@ class GameBoard extends Component {
                             playerBGraveyard.push(removedBCard);
                         }
 
-
-                        // this.setState({
-                        //     playerAChamp: playerAChampion,
-                        //     playerBField: playerBField,
-                        //     playerBMana: playerBMana,
-                        //     playerBGraveyard: playerBGraveyard
-                        // }, function () {
-                        //     API.board(this.state)
-                        // })
                         API.attackAChampion(playerAChampion, playerBField, playerBMana, playerBGraveyard)
                     }
+                } else {
+                    //not enough mana
+                    let modal = document.getElementById("myModalManaAttack");
+                    setTimeout(function(){ modal.style.display = "block";}, 300);
+                    setTimeout(function(){ modal.style.display = "none"; }, 2500);
                 }
             }
 
@@ -365,16 +354,13 @@ class GameBoard extends Component {
                             playerAGraveyard.push(removedACard);
                         }
 
-                        // this.setState({
-                        //     playerBChamp: playerBChampion,
-                        //     playerAField: playerAField,
-                        //     playerAMana: playerAMana,
-                        //     playerAGraveyard: playerAGraveyard
-                        // }, function () {
-                        //     API.board(this.state)
-                        // })
                         API.attackBChampion(playerBChampion, playerAField, playerAMana, playerAGraveyard)
                     }
+                } else {
+                    //some popup saying you do not have enough mana
+                    let modal = document.getElementById("myModalManaAttack");
+                    setTimeout(function(){ modal.style.display = "block";}, 300);
+                    setTimeout(function(){ modal.style.display = "none"; }, 2500);
                 }
 
             }
@@ -461,6 +447,9 @@ class GameBoard extends Component {
                 else {
                     //add some modal to say out of mana
                     console.log("out of mana to attack or moves")
+                    let modal = document.getElementById("myModalManaAttack");
+                    setTimeout(function(){ modal.style.display = "block";}, 300);
+                    setTimeout(function(){ modal.style.display = "none"; }, 2500);
                 }
             }
             //player B's turn
@@ -536,17 +525,15 @@ class GameBoard extends Component {
                         // })
 
                         API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
-
-
                         console.log(this.state)
-
-
-
                     }
                 }
                 else {
                     //add some modal to say out of mana
                     console.log("out of mana to attack or moves")
+                    let modal = document.getElementById("myModalManaAttack");
+                    setTimeout(function(){ modal.style.display = "block";}, 300);
+                    setTimeout(function(){ modal.style.display = "none"; }, 2500);
                 }
             }
         }
@@ -556,11 +543,11 @@ class GameBoard extends Component {
     render() {
         if (this.state.playerAChamp[0].Health <= 0 || (this.state.playerAField.length === 0 && this.state.playerAHand.length === 0)) {
             return (
-                <GameOver value={this.state} winner={'playerB'}></GameOver>
+                <GameOver value={this.state} winner={'playerB'} player1 ={this.state.player1name} player2 ={this.state.player2name}></GameOver>
             )
         } else if (this.state.playerBChamp[0].Health <= 0 || (this.state.playerBField.length === 0 && this.state.playerBHand.length === 0)) {
             return (
-                <GameOver value={this.state} winner={'playerA'}></GameOver>
+                <GameOver value={this.state} winner={'playerA'} player1 ={this.state.player1name} player2 ={this.state.player2name}></GameOver>
             )
         } else
             return (
@@ -710,6 +697,22 @@ class GameBoard extends Component {
 
                             <div class="modal-content">
                                 <p>{this.state.currentPlayerTurn + "'s Turn"}</p>
+                            </div>
+
+                        </div>
+
+                        <div id="myModalManaPlay" class="modal">
+
+                            <div class="modal-content">
+                                <p>You need at least 10 mana to play a card</p>
+                            </div>
+
+                        </div>
+
+                        <div id="myModalManaAttack" class="modal">
+
+                            <div class="modal-content">
+                                <p>You need at least 9 mana to attack a card</p>
                             </div>
 
                         </div>

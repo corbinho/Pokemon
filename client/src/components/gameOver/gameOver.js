@@ -18,7 +18,9 @@ class GameOver extends React.Component {
             playerBHand: this.props.value.playerBHand,
             playerAGraveyard: this.props.value.playerAGraveyard,
             playerBGraveyard: this.props.value.playerBGraveyard,
-            goToLobby: false
+            goToLobby: false,
+            playerBName: this.props.player1,
+            playerAName: this.props.player2
         }
     }
 
@@ -46,7 +48,7 @@ class GameOver extends React.Component {
                                 
                             </div>
                             <div className="playerHeader">
-                                Player 1
+                                {this.state.playerBName}
                             <h6>Champion Health Remaining {this.state.playerBChamp[0].Health}/100</h6>
                                 <h6>Minions Remaining {this.state.playerBField.length + this.state.playerBHand.length}/5</h6>
                                 <h6>Minions Destroyed {this.state.playerAGraveyard.length}/5</h6>
@@ -73,7 +75,7 @@ class GameOver extends React.Component {
                         <div className="right">
 
                             <div className="playerHeader">
-                                Player 2
+                            {this.state.playerAName}
                             <h6>Champion Health Remaining {this.state.playerAChamp[0].Health}/100</h6>
                                 <h6>Minions Remaining {this.state.playerAField.length + this.state.playerAHand.length}/5</h6>
                                 <h6>Minions Destroyed {this.state.playerBGraveyard.length}/5</h6>
@@ -100,7 +102,7 @@ class GameOver extends React.Component {
 
                             </div>
                             <div className="playerHeader">
-                                Player 1
+                            {this.state.playerAName}
                             <h6>Champion Health Remaining {this.state.playerBChamp[0].Health}/100</h6>
                                 <h6>Minions Remaining {this.state.playerBField.length + this.state.playerBHand.length}/5</h6>
                                 <h6>Minions Destroyed {this.state.playerAGraveyard.length}/5</h6>
@@ -128,7 +130,7 @@ class GameOver extends React.Component {
                         <div className="right">
                             
                         <div className="playerHeader">
-                                Player 2
+                            {this.state.playerAName}
                             <h6>Champion Health Remaining {this.state.playerAChamp[0].Health}/100</h6>
                                 <h6>Minions Remaining {this.state.playerAField.length + this.state.playerAHand.length}/5</h6>
                                 <h6>Minions Destroyed {this.state.playerBGraveyard.length}/5</h6>
