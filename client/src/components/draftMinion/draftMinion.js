@@ -63,7 +63,7 @@ class DraftMinion extends Component {
 
   componentDidMount = () => {
     API.joinGame(updates => {
-      console.log(updates)
+      
       if (updates.player1 && updates.player2) {
         this.setState({
           player1deck: updates.player1.minions || [],

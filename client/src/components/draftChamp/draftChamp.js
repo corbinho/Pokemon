@@ -72,7 +72,7 @@ class DraftChamp extends Component {
   componentDidMount = () => {
     API.assignNames(this.props.name)
     API.joinGame(updates => {
-      console.log(updates)
+      
       if (updates.player1 && updates.player2) {
         this.setState({
           player1champion: updates.player1.champion || [],
