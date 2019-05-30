@@ -175,7 +175,7 @@ class GameBoard extends Component {
 
     onDragEnd = result => {
         const { source, destination } = result;
-        console.log(this.state.playerAHand)
+        
 
         // dropped outside the list
         if (!destination) {
@@ -231,7 +231,7 @@ class GameBoard extends Component {
                 let playerBField = result.fieldB
                 let playerBHand = result.playerHandB
                 let playerBMana = currentMana
-                console.log("B current mana = " + currentMana)
+                console.log("B current mana = " + playerBMana)
                 API.playBHand(playerBField, playerBHand, playerBMana)
                 
             } else {
