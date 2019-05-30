@@ -233,12 +233,13 @@ io.on('connection', function (socket) {
 
     })
 
-    socket.on('playBHand', function(playerBField, playerBHand, playerBMana){
+    socket.on('playBHand', function(playerBField, playerBHand, playerBMana, name){
 
       if (socket.id === game.player1.id){
       game.playerBField = playerBField
       game.playerBHand = playerBHand
       game.playerBMana = playerBMana
+      game.currentPlayerTurn = name
       } else {
         return
       }

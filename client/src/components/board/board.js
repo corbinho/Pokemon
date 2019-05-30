@@ -231,8 +231,9 @@ class GameBoard extends Component {
                 let playerBField = result.fieldB
                 let playerBHand = result.playerHandB
                 let playerBMana = currentMana
+                let name = this.state.player1name
                 console.log("B current mana = " + playerBMana)
-                API.playBHand(playerBField, playerBHand, playerBMana)
+                API.playBHand(playerBField, playerBHand, playerBMana, name)
                 
             } else {
                 console.log("out of mana to play a card")

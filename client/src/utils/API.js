@@ -49,8 +49,8 @@ export default {
     socket.emit('playAHand', playerAField, playerAHand, playerAMana)
   },
 
-  playBHand: (playerBField, playerBHand, playerBMana) => {
-    socket.emit('playBHand', playerBField, playerBHand, playerBMana)
+  playBHand: (playerBField, playerBHand, playerBMana, name) => {
+    socket.emit('playBHand', playerBField, playerBHand, playerBMana, name)
   },
 
   attackAChampion: (playerAChampion, playerBField, playerBMana, playerBGraveyard) => {
