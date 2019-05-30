@@ -82,6 +82,10 @@ io.on('connection', function (socket) {
 
   socket.on('joinGame', function (data) {
 
+    socket.on('showTurn', function(){
+      
+    })
+
     socket.on('disconnect', function () {
       game.player1 = false
       game.player2 = false
@@ -114,11 +118,11 @@ io.on('connection', function (socket) {
 
 
     socket.on('draftChampion', function (champions, champion) {
-      if (socket.id === game.player1.id) {
+      if (socket.id === game.player1.id && game.player2 !== false) {
         game.player1.champion = champion;
         game.champions = champions
       }
-      else if (socket.id === game.player2.id) {
+      else if (socket.id === game.player2.id && game.player1 !== false) {
         game.player2.champion = champion;
         game.champions = champions
       }
@@ -158,9 +162,9 @@ io.on('connection', function (socket) {
         game.playerATurn = true;
         game.currentPlayerTurn = name
       }
-  
+      
       io.to('room-' + game.gameId).emit('updateGame', game)
-  
+      
     })  
     
     socket.on('draft1Minion', function (minions, minion, name) {
