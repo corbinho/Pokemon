@@ -76,10 +76,12 @@ class DraftChamp extends Component {
       console.log(updates)
 
       if (updates.playerDisconnected === true){
-        this.setState({
-          playerDisconnected: updates.playerDisconnected
-        })
+          let modal = document.getElementById("myModalQuit");
+          setTimeout(function(){ modal.style.display = "block";}, 300);
+          
+          setTimeout(function(){window.location.reload()}, 3000)
       }
+      
       if (updates.player1 && updates.player2) {
         this.setState({
           player1champion: updates.player1.champion || [],
@@ -163,6 +165,13 @@ class DraftChamp extends Component {
 
             </div>
 
+            <div id="myModalQuit" class="modal">
+
+                <div class="modal-content">
+                    <p>{"Player Disconnected, heading to lobby"}</p>
+                </div>
+
+            </div>
 
 
             <div className="row2">

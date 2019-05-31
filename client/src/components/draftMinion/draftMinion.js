@@ -63,7 +63,12 @@ class DraftMinion extends Component {
 
   componentDidMount = () => {
     API.joinGame(updates => {
-      
+      if (updates.playerDisconnected === true){
+        let modal = document.getElementById("myModalQuit");
+        setTimeout(function(){ modal.style.display = "block";}, 300);
+        
+        setTimeout(function(){window.location.reload()}, 3000)
+    }
       if (updates.player1 && updates.player2) {
         this.setState({
           player1deck: updates.player1.minions || [],
@@ -168,6 +173,13 @@ class DraftMinion extends Component {
 
           </div>
 
+          <div id="myModalQuit" class="modal">
+
+            <div class="modal-content">
+                <p>{"Player Disconnected, heading to lobby"}</p>
+            </div>
+
+          </div>
 
           <div className="row2">
             <Droppable droppableId="droppable3">
