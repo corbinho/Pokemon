@@ -6,6 +6,7 @@ import API from '../../utils/API';
 import { isUndefined } from "util";
 import GameOver from '../gameOver/gameOver'
 
+
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -71,6 +72,8 @@ class GameBoard extends Component {
     }
 
     componentDidMount = () => {
+        // var audio = new Audio('./sounds/attack.mp3');
+        // audio.play();
         API.joinGame(updates => {
             if(this.state.currentPlayerTurn !== updates.currentPlayerTurn){
                 let modal = document.getElementById("myModal");

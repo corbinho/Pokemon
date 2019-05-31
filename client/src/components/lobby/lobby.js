@@ -11,9 +11,9 @@ class Lobby extends React.Component {
     this.state = {
       sockets: this.props.value,
       joinAGame: false,
-      name: ""
+      name: "",
+      playerDisconnected: this.props.playerDisconnect || false
     }
-
   }
 
 

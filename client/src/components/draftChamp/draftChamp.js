@@ -4,6 +4,7 @@ import "./DraftChampion.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DraftMinion from "../draftMinion/draftMinion";
 import API from '../../utils/API';
+import Lobby from "../lobby/lobby";
 
 
 
@@ -72,7 +73,13 @@ class DraftChamp extends Component {
   componentDidMount = () => {
     API.assignNames(this.props.name)
     API.joinGame(updates => {
-      
+      console.log(updates)
+
+      if (updates.playerDisconnected === true){
+        this.setState({
+          playerDisconnected: updates.playerDisconnected
+        })
+      }
       if (updates.player1 && updates.player2) {
         this.setState({
           player1champion: updates.player1.champion || [],
@@ -80,6 +87,10 @@ class DraftChamp extends Component {
           champions: updates.champions || championList.championList,
           player1name: updates.player1name || "",
           player2name: updates.player2name || "",
+          playerDisconnected: false,
+        }, function(){
+        
+        console.log(this.state)
         })
       }
     })
@@ -122,7 +133,10 @@ class DraftChamp extends Component {
   };
 
   render() {
-    if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0) {
+    if (this.state.playerDisconnected === true){
+      window.location.reload();
+    }
+    else if (this.state.player1champion.length > 0 && this.state.player2champion.length > 0) {
       return (
         <DraftMinion p1champ={this.state.player1champion} p2champ={this.state.player2champion} champions={this.state.champions} p1name={this.state.player1name} p2name={this.state.player2name}></DraftMinion>
 
