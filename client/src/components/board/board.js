@@ -79,7 +79,45 @@ class GameBoard extends Component {
             }
             console.log(updates)
             if (updates.player1 && updates.player2) {
-                if (updates.playerATurn || updates.playerBturn) {
+                if (updates.playerAMana === 0) {
+                    this.setState({
+                        playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                        playerAHand: updates.playerAHand || this.state.playerAHand,
+                        playerAField: updates.playerAField || this.state.playerAField,
+                        playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                        playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                        playerBHand: updates.playerBHand || this.state.playerBHand,
+                        playerBField: updates.playerBField || this.state.playerBField,
+                        playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                        playerATurn: this.state.playerATurn,
+                        playerBturn: this.state.playerBturn,
+                        playerAMana: updates.playerAMana, 
+                        playerBMana: updates.playerBMana || this.state.playerBMana,
+                        aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana,
+                        currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
+                    }, function () { console.log(this.state) }
+                    )
+                } else if (updates.playerBMana === 0) {
+                    this.setState({
+                        playerAChamp: updates.playerAChamp || this.state.playerAChamp,
+                        playerAHand: updates.playerAHand || this.state.playerAHand,
+                        playerAField: updates.playerAField || this.state.playerAField,
+                        playerAGraveyard: updates.playerAGraveyard || this.state.playerAGraveyard,
+                        playerBChamp: updates.playerBChamp || this.state.playerBChamp,
+                        playerBHand: updates.playerBHand || this.state.playerBHand,
+                        playerBField: updates.playerBField || this.state.playerBField,
+                        playerBGraveyard: updates.playerBGraveyard || this.state.playerBGraveyard,
+                        playerATurn: this.state.playerATurn,
+                        playerBturn: this.state.playerBturn,
+                        playerAMana: updates.playerAMana || this.state.playerAMana,
+                        playerBMana: updates.playerBMana,
+                        aMaxMana: updates.aMaxMana || this.state.aMaxMana,
+                        bMaxMana: updates.bMaxMana || this.state.bMaxMana,
+                        currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
+                    }, function () { console.log(this.state) }
+                    )
+                } else if (updates.playerATurn || updates.playerBturn) {
                     this.setState({
                         playerAChamp: updates.playerAChamp || this.state.playerAChamp,
                         playerAHand: updates.playerAHand || this.state.playerAHand,
