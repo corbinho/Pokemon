@@ -80,6 +80,12 @@ class GameBoard extends Component {
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 setTimeout(function(){ modal.style.display = "none"; }, 2500);
             }
+            if (updates.playerDisconnected === true){
+                let modal = document.getElementById("myModalQuit");
+                setTimeout(function(){ modal.style.display = "block";}, 300);
+                
+                setTimeout(function(){window.location.reload()}, 3000)
+            }
             console.log(updates)
             if (updates.player1 && updates.player2) {
                 if (updates.playerAMana === 0) {
@@ -758,6 +764,15 @@ class GameBoard extends Component {
                             </div>
 
                         </div>
+
+                         <div id="myModalQuit" class="modal">
+
+                        <div class="modal-content">
+                                    <p>{"Player Disconnected, heading to lobby"}</p>
+                                </div>
+
+                            </div>
+
 
                         <div className="containerB">
 
