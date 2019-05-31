@@ -107,12 +107,19 @@ io.on('connection', function (socket) {
       game.playerBMana = 20;
       game.aMaxMana = 20;
       game.bMaxMana = 20;
-      
-      
-      io.to('room-' + game.gameId).emit('updateGame', game)
-  
-      
-      console.log("disconnected")
+      game.playerDisconnected = true
+
+      io.of('/').in('room-' + game.gameId).clients((error, socketIds) => {
+
+        
+        if (error) throw error;
+        
+        io.to('room-' + game.gameId).emit('updateGame', game)
+        socketIds.forEach(socketId => io.sockets.sockets[socketId].leave('room-' + game.gameId));
+        
+        console.log(io.nsps['/'].adapter.rooms['room-' + roomno])
+      });
+
       
     });
 

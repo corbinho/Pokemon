@@ -140,7 +140,7 @@ class DraftMinion extends Component {
   };
 
   render() {
-    if (this.state.player1deck.length === 5 && this.state.player2deck.length === 5) {
+    if (this.state.player1deck.length === 1 && this.state.player2deck.length === 1) {
       return (
         <GameBoard p1deck={this.state.player1deck} p2deck={this.state.player2deck} p1champ={this.state.player1champion} p2champ={this.state.player2champion} p1name={this.state.player1name} p2name={this.state.player2name}></GameBoard>
       )

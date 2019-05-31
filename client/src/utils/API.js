@@ -16,6 +16,7 @@ export default {
     socket.emit('joinGame', { })
     socket.on('updateGame', cb)
     socket.on('showNewTurn', cb)
+    
   },
   draftChampion: (champions, champion, cb) => {
     socket.emit('draftChampion', champions, champion)
