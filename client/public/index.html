@@ -50,9 +50,11 @@
     -->
     <audio id="quack" src="audio/quack.mp3"></audio>
     <script>
-        setTimeout(function() {
-            document.getElementById('quack').play()
-        }, 5000)
+        window.quack = function() {
+            setTimeout(function() {
+                document.getElementById('quack').play()
+            }, 20)
+        }
     </script>
   </body>
 </html>
