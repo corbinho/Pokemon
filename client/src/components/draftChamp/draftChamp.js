@@ -111,6 +111,10 @@ class DraftChamp extends Component {
       console.log("not in destination")
       return;
     }
+
+    if (source.droppableId === 'droppable' && destination.droppableId === 'droppable') {
+      return
+    }
     
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1champion.length > 0) {
       console.log("already have a hero")
@@ -135,6 +139,8 @@ class DraftChamp extends Component {
 
       API.draftChampion(result.droppable, result[destination.droppableId])
     }
+
+    
   };
 
   render() {
