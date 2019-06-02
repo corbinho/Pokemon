@@ -101,6 +101,12 @@ class GameBoard extends Component {
                     // window.killedCard()
                   
                 }
+
+                if (updates.playerAChamp && updates.playerAChamp !== this.state.playerAChamp  || updates.playerBChamp && updates.playerBChamp !== this.state.playerBChamp){
+                    
+                    // window.attackedChamp()
+                  
+                }
                 
                 for (let i = 0; i < this.state.playerAField.length; i++){
                     
