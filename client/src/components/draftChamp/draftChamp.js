@@ -130,6 +130,9 @@ class DraftChamp extends Component {
         destination
       );
 
+      // for testing the sound effects
+      window.quack()
+
       API.draftChampion(result.droppable, result[destination.droppableId])
     }
   };
