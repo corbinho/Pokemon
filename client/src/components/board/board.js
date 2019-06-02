@@ -255,6 +255,7 @@ class GameBoard extends Component {
                 let playerAHand = result.playerHandA
                 let playerAMana = currentMana
                 
+                window.playCard1()
                 API.playAHand(playerAField, playerAHand, playerAMana)
             } else {
                 console.log("out of mana to play card")
@@ -280,6 +281,7 @@ class GameBoard extends Component {
                 let playerBMana = currentMana
                 let name = this.state.player1name
                 console.log("B current mana = " + playerBMana)
+                window.playCard1()
                 API.playBHand(playerBField, playerBHand, playerBMana, name)
                 
             } else {
@@ -488,6 +490,7 @@ class GameBoard extends Component {
                         // }, function () {
                         //     API.board(this.state)
                         // })
+                        window.attack()
                         API.attackBMinion(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
 
                     }
@@ -571,7 +574,7 @@ class GameBoard extends Component {
                         // }, function () {
                         //     API.board(this.state)
                         // })
-
+                        window.attack()
                         API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
                         console.log(this.state)
                     }
