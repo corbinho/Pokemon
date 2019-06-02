@@ -73,7 +73,7 @@ class DraftChamp extends Component {
   componentDidMount = () => {
     API.assignNames(this.props.name)
     API.joinGame(updates => {
-      console.log(updates)
+      
 
       if (updates.playerDisconnected === true){
           let modal = document.getElementById("myModalQuit");
@@ -90,9 +90,6 @@ class DraftChamp extends Component {
           player1name: updates.player1name || "",
           player2name: updates.player2name || "",
           playerDisconnected: false,
-        }, function(){
-        
-        console.log(this.state)
         })
       }
     })
@@ -108,7 +105,7 @@ class DraftChamp extends Component {
 
     // dropped outside the list
     if (!destination) {
-      console.log("not in destination")
+      
       return;
     }
 
@@ -117,12 +114,12 @@ class DraftChamp extends Component {
     }
     
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1champion.length > 0) {
-      console.log("already have a hero")
+      
       return;
     }
 
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && this.state.player2champion.length > 0) {
-      console.log("already have a hero")
+      
       return;
     }
 
