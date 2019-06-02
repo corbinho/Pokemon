@@ -27,7 +27,7 @@ let roomno = 1;
 io.on('connection', function (socket) {
 
   socket.on('joinNewGame', function(name){
-  console.log("User Connected " + socket.id)
+  
 
   let socketInGame = false;
     
@@ -37,7 +37,7 @@ io.on('connection', function (socket) {
       } 
     }
 
-    console.log(socketInGame)
+    
 
     if (io.nsps['/'].adapter.rooms["room-" + roomno] && io.nsps['/'].adapter.rooms["room-" + roomno].length === 2 && socketInGame === false) {
       roomno++
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
       io.nsps['/'].adapter.rooms['room-' + roomno].game = new Game(roomno);
     } 
 
-    console.log(io.nsps['/'].adapter.rooms['room-' + roomno])
+    
 
     // socket is assigned to player 1
     if (!io.nsps['/'].adapter.rooms['room-' + roomno].game.player1) io.nsps['/'].adapter.rooms['room-' + roomno].game.player1 = { id: socket.id };
@@ -60,12 +60,12 @@ io.on('connection', function (socket) {
     
     
 
-    console.log(io.nsps['/'].adapter.rooms['room-' + roomno].game)
+    
 
     let game = io.nsps['/'].adapter.rooms['room-' + roomno].game
 
     //Send this event to everyone in the room.
-    console.log("You are in room no. " + roomno);
+    
 
     socket.on('assignNames', function (name){
       
@@ -117,7 +117,7 @@ io.on('connection', function (socket) {
         io.to('room-' + game.gameId).emit('updateGame', game)
         socketIds.forEach(socketId => io.sockets.sockets[socketId].leave('room-' + game.gameId));
         
-        console.log(io.nsps['/'].adapter.rooms['room-' + roomno])
+        
       });
 
       
@@ -133,7 +133,7 @@ io.on('connection', function (socket) {
         game.player2.champion = champion;
         game.champions = champions
       }
-      console.log(game)
+      
   
       io.to('room-' + game.gameId).emit('updateGame', game)
     })
@@ -311,7 +311,7 @@ io.on('connection', function (socket) {
 
     socket.on('leaveGame', function(){
 
-      console.log("leaving room " + 'room-' + game.gameId)
+      
       game.player1 = false
       game.player2 = false
       game.champions = championList.championList
