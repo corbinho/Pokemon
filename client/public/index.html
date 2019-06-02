@@ -53,6 +53,7 @@
   <audio id="quack" src="audio/quack.mp3"></audio>
   <audio id="attack" src="audio/attack.mp3"></audio>
   <audio id="playCard1" src="audio/playCard.mp3"></audio>
+  <audio id="changeTurn" src="audio/changeTurn.mp3"></audio>
   <script>
     //pick champ sound
     window.quack = function () {
@@ -64,9 +65,13 @@
     window.attack = function () {
       document.getElementById('attack').play()
     }
-    //attack minion sound
+    //play card sound
     window.playCard1 = function () {
       document.getElementById('playCard1').play()
+    }
+    //change turn sound
+    window.changeTurn = function () {
+      document.getElementById('changeTurn').play()
     }
   </script>
 </body>
