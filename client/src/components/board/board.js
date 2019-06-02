@@ -76,6 +76,7 @@ class GameBoard extends Component {
         // audio.play();
         API.joinGame(updates => {
             if(this.state.currentPlayerTurn !== updates.currentPlayerTurn){
+                window.attack()
                 let modal = document.getElementById("myModal");
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 setTimeout(function(){ modal.style.display = "none"; }, 2500);
@@ -85,6 +86,13 @@ class GameBoard extends Component {
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 
                 setTimeout(function(){window.location.reload()}, 3000)
+            }
+            if (updates.playerAField > this.state.playerAField || updates.playerBField > this.state.playerBField){
+                window.playCard()
+            } else if (updates.playerAField.length < this.state.playerAField.length || updates.playerBField.length < this.state.playerBField.length){
+                window.killedCard()
+            } else if (updates.playerAField !== this.state.playerAField || updates.playerBField !== this.state.playerBField){
+                window.attack()
             }
             console.log(updates)
             if (updates.player1 && updates.player2) {
