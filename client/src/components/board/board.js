@@ -76,7 +76,8 @@ class GameBoard extends Component {
         // audio.play();
         API.joinGame(updates => {
             if(this.state.currentPlayerTurn !== updates.currentPlayerTurn){
-                window.attack()
+                
+                window.changeTurn()
                 let modal = document.getElementById("myModal");
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 setTimeout(function(){ modal.style.display = "none"; }, 2500);
@@ -87,15 +88,44 @@ class GameBoard extends Component {
                 
                 setTimeout(function(){window.location.reload()}, 3000)
             }
-            if (updates.playerAField > this.state.playerAField || updates.playerBField > this.state.playerBField){
-                window.playCard()
-            } else if (updates.playerAField.length < this.state.playerAField.length || updates.playerBField.length < this.state.playerBField.length){
-                window.killedCard()
-            } else if (updates.playerAField !== this.state.playerAField || updates.playerBField !== this.state.playerBField){
-                window.attack()
-            }
-            console.log(updates)
+            
             if (updates.player1 && updates.player2) {
+                
+                if (updates.playerAField && updates.playerAField > this.state.playerAField  || updates.playerBField && updates.playerBField > this.state.playerBField ){
+                    
+                    window.playCard1()
+                    
+                }
+                if (updates.playerAField && updates.playerAField.length < this.state.playerAField.length  || updates.playerBField && updates.playerBField.length < this.state.playerBField.length){
+                    
+                    // window.killedCard()
+                  
+                }
+                
+                for (let i = 0; i < this.state.playerAField.length; i++){
+                    
+                    let attackACard = false
+                    if (this.state.playerAField[i].Health !== updates.playerAField[i].Health){
+                        attackACard = true
+                    }
+                    if (attackACard){
+                        
+                        window.attack()
+                    }
+                }
+
+                for (let i = 0; i < this.state.playerBField.length; i++){
+                    
+                    let attackACard = false
+                    if (this.state.playerBField[i].Health !== updates.playerBField[i].Health){
+                        attackACard = true
+                    }
+                    if (attackACard){
+                        
+                        window.attack()
+                    }
+                }
+                
                 if (updates.playerAMana === 0) {
                     this.setState({
                         playerAChamp: updates.playerAChamp || this.state.playerAChamp,
@@ -113,7 +143,7 @@ class GameBoard extends Component {
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
                         bMaxMana: updates.bMaxMana || this.state.bMaxMana,
                         currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
-                    }, function () { console.log(this.state) }
+                    }
                     )
                 } else if (updates.playerBMana === 0) {
                     this.setState({
@@ -132,7 +162,7 @@ class GameBoard extends Component {
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
                         bMaxMana: updates.bMaxMana || this.state.bMaxMana,
                         currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
-                    }, function () { console.log(this.state) }
+                    }
                     )
                 } else if (updates.playerATurn || updates.playerBturn) {
                     this.setState({
@@ -151,7 +181,7 @@ class GameBoard extends Component {
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
                         bMaxMana: updates.bMaxMana || this.state.bMaxMana,
                         currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
-                    }, function () { console.log(this.state) }
+                    }
                     )
                 } else {
                     this.setState({
@@ -170,9 +200,10 @@ class GameBoard extends Component {
                         aMaxMana: updates.aMaxMana || this.state.aMaxMana,
                         bMaxMana: updates.bMaxMana || this.state.bMaxMana,
                         currentPlayerTurn: updates.currentPlayerTurn || this.props.p1name
-                    }, function () { console.log(this.state) }
+                    }
                     )
                 }
+                
             }
         })
     }
@@ -195,9 +226,7 @@ class GameBoard extends Component {
                 newMana = currentAMaxMana;
                 API.changeAsTurn(currentAMaxMana, newMana, this.state.player1name)
             }
-            // setTimeout(function(){ modal.style.display = "block";}, 300);
-            // setTimeout(function(){ modal.style.display = "none"; }, 2500);
-            // API.showTurn(modal)
+            
         }
     }
 
@@ -208,8 +237,7 @@ class GameBoard extends Component {
         } else {
             let currentBMaxMana = this.state.bMaxMana
             let newMana;
-            // Get the modal
-            // let modal = document.getElementById("myModal");
+            
             if (currentBMaxMana <= 45) {
                 currentBMaxMana += 5
                 newMana = currentBMaxMana;
@@ -220,9 +248,7 @@ class GameBoard extends Component {
                 newMana = currentBMaxMana;
                 API.changeBsTurn(currentBMaxMana, newMana, this.state.player2name)
             }
-            // setTimeout(function(){ modal.style.display = "block";}, 300);
-            // setTimeout(function(){ modal.style.display = "none"; }, 2500);
-            // API.showTurn(modal)
+            
         }
     }
 
@@ -234,7 +260,7 @@ class GameBoard extends Component {
 
         // dropped outside the list
         if (!destination) {
-            console.log("not in destination")
+            
             return;
         }
         if (source.droppableId > 0 && destination.droppableId === "fieldA") {
@@ -263,15 +289,15 @@ class GameBoard extends Component {
                 let playerAHand = result.playerHandA
                 let playerAMana = currentMana
                 
-                window.playCard1()
+               
                 API.playAHand(playerAField, playerAHand, playerAMana)
             } else {
-                console.log("out of mana to play card")
+                
                 let modal = document.getElementById("myModalManaPlay");
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 setTimeout(function(){ modal.style.display = "none"; }, 2500);
             }
-            console.log("A current mana = " + currentMana)
+            
         }
         //playing a card for bottom player
         if (source.droppableId === "playerHandB" && destination.droppableId === "fieldB" && this.state.playerBturn === true) {
@@ -288,12 +314,12 @@ class GameBoard extends Component {
                 let playerBHand = result.playerHandB
                 let playerBMana = currentMana
                 let name = this.state.player1name
-                console.log("B current mana = " + playerBMana)
-                window.playCard1()
+                
+                
                 API.playBHand(playerBField, playerBHand, playerBMana, name)
                 
             } else {
-                console.log("out of mana to play a card")
+                
                 let modal = document.getElementById("myModalManaPlay");
                 setTimeout(function(){ modal.style.display = "block";}, 300);
                 setTimeout(function(){ modal.style.display = "none"; }, 2500);
@@ -304,7 +330,7 @@ class GameBoard extends Component {
         if (source.droppableId !== "playerHandB" && destination.droppableId === "playerChampionA") {
 
             if (this.state.playerBturn) {
-                console.log("running this attack to champion")
+                
                 var playerBField = this.state.playerBField;
                 var playerBMana = this.state.playerBMana;
                 var playerAChampion = this.state.playerAChamp;
@@ -319,19 +345,17 @@ class GameBoard extends Component {
                         }
                     }
                     if (attackingCardIndex === undefined) {
-                        console.log("not attacking with a minion")
+                       
                         return
                     } else {
 
-                        console.log(playerBField[attackingCardIndex])
-                        console.log("attacking card index " + attackingCardIndex)
+                        
 
                         var attackingCardType = playerBField[attackingCardIndex].TypeText;
                         var defendingCardWeakness = playerAChampion[defendingCardIndex].WeakAgainstText;
                         var defendingCardStrength = playerAChampion[defendingCardIndex].StrongAgainstText;
 
-                        console.log("attacking card type " + attackingCardType);
-                        console.log("defending card weakness " + defendingCardWeakness);
+                        
 
                         if (attackingCardType === defendingCardWeakness) {
                             playerAChampion[0].Health -= 10;
@@ -349,7 +373,7 @@ class GameBoard extends Component {
                             var removedBCard = playerBField.splice(attackingCardIndex, 1);
                             playerBGraveyard.push(removedBCard);
                         }
-
+                        window.attack()
                         API.attackAChampion(playerAChampion, playerBField, playerBMana, playerBGraveyard)
                     }
                 } else {
@@ -367,7 +391,7 @@ class GameBoard extends Component {
         if (source.droppableId !== "playerHandA" && destination.droppableId === "playerChampionB") {
 
             if (this.state.playerATurn) {
-                console.log("running this attack to champion")
+                
                 var playerAField = this.state.playerAField;
                 var playerAMana = this.state.playerAMana;
                 var playerBChampion = this.state.playerBChamp;
@@ -382,18 +406,16 @@ class GameBoard extends Component {
                         }
                     }
                     if (attackingCardIndex === undefined) {
-                        console.log("not attacking with a minion")
+                       
                         return
                     } else {
-                        console.log(playerAField[attackingCardIndex])
-                        console.log("attacking card index " + attackingCardIndex)
+                        
 
                         var attackingCardType = playerAField[attackingCardIndex].TypeText;
                         var defendingCardWeakness = playerBChampion[defendingCardIndex].WeakAgainstText;
                         var defendingCardStrength = playerBChampion[defendingCardIndex].StrongAgainstText;
 
-                        console.log("attacking card type " + attackingCardType);
-                        console.log("defending card weakness " + defendingCardWeakness);
+                       
 
                         if (attackingCardType === defendingCardWeakness) {
                             playerBChampion[0].Health -= 10;
@@ -411,7 +433,7 @@ class GameBoard extends Component {
                             var removedACard = playerAField.splice(attackingCardIndex, 1);
                             playerAGraveyard.push(removedACard);
                         }
-
+                        window.attack()
                         API.attackBChampion(playerBChampion, playerAField, playerAMana, playerAGraveyard)
                     }
                 } else {
@@ -425,9 +447,7 @@ class GameBoard extends Component {
         }
         //attacking a minion
         if (destination.droppableId !== "playerChampionA" && destination.droppableId !== "playerChampionB" && source.droppableId !== "fieldA" && source.droppableId !== "fieldB" && source.droppableId !== "playerHandA" && source.droppableId !== "playerHandB") {
-            console.log(result);
-            console.log("source card index " + result.source.droppableId);
-            console.log("destination card index " + result.destination.droppableId);
+            
             if (this.state.playerATurn) {
                 var playerAField = this.state.playerAField;
                 var playerBField = this.state.playerBField;
@@ -449,23 +469,20 @@ class GameBoard extends Component {
                             defendingCardIndex = j
                         }
                     }
-                    console.log(playerAField);
-                    console.log(attackingCardIndex);
-                    console.log(defendingCardIndex);
+                    
 
                     if (defendingCardIndex === undefined) {
-                        console.log('youre attacking something that doesnt exist')
+                        
                         return
                     } else if (attackingCardIndex === undefined) {
-                        console.log('not attacking with a minion')
+                       
 
                     } else {
 
                         var attackingCardType = playerAField[attackingCardIndex].TypeText;
                         var defendingCardWeakness = playerBField[defendingCardIndex].WeakAgainst;
                         var defendingCardStrength = playerBField[defendingCardIndex].StrongAgainst;
-                        console.log(attackingCardType);
-                        console.log(defendingCardWeakness);
+                        
 
                         if (attackingCardType === defendingCardWeakness) {
                             playerBField[defendingCardIndex].Health -= 10;
@@ -505,7 +522,7 @@ class GameBoard extends Component {
                 }
                 else {
                     //add some modal to say out of mana
-                    console.log("out of mana to attack or moves")
+                    
                     let modal = document.getElementById("myModalManaAttack");
                     setTimeout(function(){ modal.style.display = "block";}, 300);
                     setTimeout(function(){ modal.style.display = "none"; }, 2500);
@@ -533,23 +550,20 @@ class GameBoard extends Component {
                             defendingCardIndex = j
                         }
                     }
-                    console.log(playerBField);
-                    console.log(attackingCardIndex);
-                    console.log(defendingCardIndex);
+                    
 
                     if (defendingCardIndex === undefined) {
-                        console.log('youre attacking something that doesnt exist')
+                        
                         return
                     } else if (attackingCardIndex === undefined) {
-                        console.log('not attacking with a minion')
+                       
                     }
                     else {
 
                         var attackingCardType = playerBField[attackingCardIndex].TypeText;
                         var defendingCardWeakness = playerAField[defendingCardIndex].WeakAgainst;
                         var defendingCardStrength = playerAField[defendingCardIndex].StrongAgainst;
-                        console.log(attackingCardType);
-                        console.log(defendingCardWeakness);
+                        
 
                         if (attackingCardType === defendingCardWeakness) {
                             playerAField[defendingCardIndex].Health -= 10;
@@ -573,23 +587,14 @@ class GameBoard extends Component {
                             playerBGraveyard.push(removedBCard);
                         }
 
-                        // this.setState({
-                        //     playerAField: playerAField,
-                        //     playerBField: playerBField,
-                        //     playerBMana: playerBMana,
-                        //     playerAGraveyard: playerAGraveyard,
-                        //     playerBGraveyard: playerBGraveyard
-                        // }, function () {
-                        //     API.board(this.state)
-                        // })
                         window.attack()
                         API.attackAMinion(playerBField, playerAField, playerBMana, playerAGraveyard, playerBGraveyard)
-                        console.log(this.state)
+                        
                     }
                 }
                 else {
                     //add some modal to say out of mana
-                    console.log("out of mana to attack or moves")
+                    
                     let modal = document.getElementById("myModalManaAttack");
                     setTimeout(function(){ modal.style.display = "block";}, 300);
                     setTimeout(function(){ modal.style.display = "none"; }, 2500);

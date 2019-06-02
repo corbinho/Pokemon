@@ -92,7 +92,7 @@ class DraftMinion extends Component {
 
     // dropped outside the list
     if (!destination) {
-      console.log("not in destination")
+      
       return;
     }
 
@@ -111,12 +111,12 @@ class DraftMinion extends Component {
 
       this.setState(state);
     } if (source.droppableId === 'droppable' && destination.droppableId === "droppable2" && this.state.player1deck.length > 8) {
-      console.log("deck full")
+      
       return;
     }
 
     if (source.droppableId === 'droppable' && destination.droppableId === "droppable3" && this.state.player2deck.length > 8) {
-      console.log("deck full")
+      
       return;
     }
 
