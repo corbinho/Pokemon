@@ -109,7 +109,8 @@ class GameBoard extends Component {
                   
                 }
                 
-                if (this.state.playerAField.length > 0) {
+                if (updates.playerAField) {
+                if (updates.playerAField.length > 0){
                 for (let i = 0; i < this.state.playerAField.length; i++){
                     
                     let attackACard = false
@@ -120,9 +121,11 @@ class GameBoard extends Component {
                         
                         window.attack()
                     }
+                }
                 }}
 
-                if (this.state.playerBField.length > 0) {
+                if (updates.playerBField) {
+                if (updates.playerBField.length > 0) {
                 for (let i = 0; i < this.state.playerBField.length; i++){
                     
                     let attackACard = false
@@ -134,6 +137,7 @@ class GameBoard extends Component {
                         window.attack()
                     }
                 }}
+                }
                 
                 if (updates.playerAMana === 0) {
                     this.setState({
