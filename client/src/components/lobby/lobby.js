@@ -20,6 +20,7 @@ class Lobby extends React.Component {
   joinGame = () => {
     
     if (this.state.name !== "") {
+      window.playCard1();
       API.joinNewGame();
       this.setState({
         joinAGame: true,
@@ -34,6 +35,8 @@ class Lobby extends React.Component {
       name: evt.target.value
     })
   }
+
+
 
   render() {
     if (this.state.joinAGame === true) {

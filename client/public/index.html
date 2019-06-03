@@ -50,22 +50,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  <audio id="quack" src="audio/quack.mp3"></audio>
+  <audio id="soundtrack" src="audio/soundtrack.mp3"></audio>
   <audio id="attack" src="audio/attack.mp3"></audio>
   <audio id="playCard1" src="audio/playCard.mp3"></audio>
   <audio id="changeTurn" src="audio/changeTurn.mp3"></audio>
   <audio id="death" src="audio/death.mp3"></audio>
   <audio id="championAttack" src="audio/championAttack.mp3"></audio>
   <script>
-    //pick champ sound
-    window.quack = function () {
+    //soundtrack
+    window.soundtrack = function () {
       setTimeout(function () {
-        document.getElementById('quack').play()
+        document.getElementById('soundtrack').play()
       }, 20)
     }
     //attack minion sound
     window.attack = function () {
       document.getElementById('attack').play()
+      setTimeout(function () {
+        document.getElementById('attack').pause()
+      }, 400)
     }
     //play card sound
     window.playCard1 = function () {

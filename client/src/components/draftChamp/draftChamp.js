@@ -47,7 +47,9 @@ class DraftChamp extends Component {
       player1champion: [],
       player2champion: [],
       player1name: "",
-      player2name: ""
+      player2name: "",
+      p1c:false,
+      p2c:false,
     }
 
     this.id2List = {
@@ -83,6 +85,7 @@ class DraftChamp extends Component {
       }
       
       if (updates.player1 && updates.player2) {
+        window.soundtrack()
         this.setState({
           player1champion: updates.player1.champion || [],
           player2champion: updates.player2.champion || [],
@@ -91,6 +94,21 @@ class DraftChamp extends Component {
           player2name: updates.player2name || "",
           playerDisconnected: false,
         })
+
+        if (this.state.player1champion.length > 0 && this.state.p1c === false){
+          window.playCard1();
+          this.setState({
+            p1c:true
+          })
+        }
+
+        if (this.state.player2champion.length > 0 && this.state.p2c === false){
+          window.playCard1();
+          this.setState({
+            p2c:true
+          })
+        }
+
       }
     })
   }
