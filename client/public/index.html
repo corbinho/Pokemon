@@ -54,6 +54,7 @@
   <audio id="attack" src="audio/attack.mp3"></audio>
   <audio id="playCard1" src="audio/playCard.mp3"></audio>
   <audio id="changeTurn" src="audio/changeTurn.mp3"></audio>
+  <audio id="death" src="audio/death.mp3"></audio>
   <script>
     //pick champ sound
     window.quack = function () {
@@ -72,6 +73,10 @@
     //change turn sound
     window.changeTurn = function () {
       document.getElementById('changeTurn').play()
+    }
+    //death sound
+    window.death = function () {
+      document.getElementById('death').play()
     }
   </script>
 </body>

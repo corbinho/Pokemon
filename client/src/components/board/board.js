@@ -98,7 +98,7 @@ class GameBoard extends Component {
                 }
                 if (updates.playerAField && updates.playerAField.length < this.state.playerAField.length  || updates.playerBField && updates.playerBField.length < this.state.playerBField.length){
                     
-                    // window.killedCard()
+                    window.death()
                   
                 }
 
@@ -108,6 +108,7 @@ class GameBoard extends Component {
                   
                 }
                 
+                if (this.state.playerAField.length > 0) {
                 for (let i = 0; i < this.state.playerAField.length; i++){
                     
                     let attackACard = false
@@ -118,8 +119,9 @@ class GameBoard extends Component {
                         
                         window.attack()
                     }
-                }
+                }}
 
+                if (this.state.playerBField.length > 0) {
                 for (let i = 0; i < this.state.playerBField.length; i++){
                     
                     let attackACard = false
@@ -130,7 +132,7 @@ class GameBoard extends Component {
                         
                         window.attack()
                     }
-                }
+                }}
                 
                 if (updates.playerAMana === 0) {
                     this.setState({
