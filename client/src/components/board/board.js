@@ -104,7 +104,8 @@ class GameBoard extends Component {
 
                 if (updates.playerAChamp && updates.playerAChamp !== this.state.playerAChamp  || updates.playerBChamp && updates.playerBChamp !== this.state.playerBChamp){
                     
-                    // window.attackedChamp()
+                    //seems like other sounds are getting triggered
+                    window.championAttack()
                   
                 }
                 
