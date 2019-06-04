@@ -25,10 +25,12 @@ class GameOver extends React.Component {
     }
 
     goLobby = () => {
-        API.leaveGame()
-        this.setState({
-            goToLobby: true
-        })
+        // API.leaveGame()
+        // this.setState({
+        //     goToLobby: true
+        // })
+
+        setTimeout(function(){window.location.reload()}, 3000)
     }
 
     render() {
