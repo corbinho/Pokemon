@@ -75,8 +75,9 @@ class GameBoard extends Component {
         // var audio = new Audio('./sounds/attack.mp3');
         // audio.play();
         API.joinGame(updates => {
+            console.log(updates);
+            console.log(this.state)
             if(this.state.currentPlayerTurn !== updates.currentPlayerTurn){
-                
                 window.changeTurn()
                 let modal = document.getElementById("myModal");
                 setTimeout(function(){ modal.style.display = "block";}, 300);
@@ -88,6 +89,38 @@ class GameBoard extends Component {
                 
                 setTimeout(function(){window.location.reload()}, 3000)
             }
+
+            if (updates.playerAField && updates.playerAField.length > 0 && this.state.playerAField.length > 0 && updates.playerAField.length === this.state.playerAField.length && this.state.currentPlayerTurn === updates.currentPlayerTurn){
+                
+                for (let i = 0; i < updates.playerAField.length; i++){
+                    
+                    let attackACard = false
+                    if (this.state.playerAField[i].Health !== updates.playerAField[i].Health){
+                        attackACard = true
+                    }
+                    if (attackACard){
+                        
+                        window.attack()
+                    }
+                
+                }}
+
+                
+                if (updates.playerBField && updates.playerBField.length > 0 && this.state.playerBField.length > 0 && updates.playerBField.length === this.state.playerBField.length && this.state.currentPlayerTurn === updates.currentPlayerTurn) {
+                
+                
+                for (let i = 0; i < updates.playerBField.length; i++){
+                    
+                    let attackACard = false
+                    if (this.state.playerBField[i].Health !== updates.playerBField[i].Health){
+                        attackACard = true
+                    }
+                    if (attackACard){
+                        
+                        window.attack()
+                    }
+                }
+                }
             
             if (updates.player1 && updates.player2) {
                 
@@ -107,40 +140,6 @@ class GameBoard extends Component {
                     //seems like other sounds are getting triggered
                     window.championAttack()
                   
-                }
-                
-                if (updates.playerAField) {
-                if (updates.playerAField.length > 0 && this.state.playerAField.length > 0 && updates.playerAField.length === this.state.playerAField.length){
-                if (this.state.currentPlayerTurn === updates.currentPlayerTurn){
-                for (let i = 0; i < updates.playerAField.length; i++){
-                    
-                    let attackACard = false
-                    if (this.state.playerAField[i].Health !== updates.playerAField[i].Health){
-                        attackACard = true
-                    }
-                    if (attackACard){
-                        
-                        window.attack()
-                    }
-                }
-            }
-                }}
-
-                if (updates.playerBField) {
-                if (updates.playerBField.length > 0 && this.state.playerBField.length > 0 && updates.playerBField.length === this.state.playerBField.length) {
-                
-                if (this.state.currentPlayerTurn === updates.currentPlayerTurn){
-                for (let i = 0; i < updates.playerBField.length; i++){
-                    
-                    let attackACard = false
-                    if (this.state.playerBField[i].Health !== updates.playerBField[i].Health){
-                        attackACard = true
-                    }
-                    if (attackACard){
-                        
-                        window.attack()
-                    }
-                }}}
                 }
                 
                 if (updates.playerAMana === 0) {
