@@ -30,7 +30,7 @@ class GameOver extends React.Component {
         //     goToLobby: true
         // })
 
-        setTimeout(function(){window.location.reload()}, 3000)
+        setTimeout(function(){window.location.reload()}, 20)
     }
 
     render() {
