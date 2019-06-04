@@ -91,7 +91,7 @@ class GameBoard extends Component {
             
             if (updates.player1 && updates.player2) {
                 
-                if (updates.playerAField && updates.playerAField > this.state.playerAField  || updates.playerBField && updates.playerBField > this.state.playerBField ){
+                if (updates.playerAField && updates.playerAField.length > this.state.playerAField.length  || updates.playerBField && updates.playerBField.length > this.state.playerBField.length){
                     
                     window.playCard1()
                     
@@ -110,8 +110,9 @@ class GameBoard extends Component {
                 }
                 
                 if (updates.playerAField) {
-                if (updates.playerAField.length > 0){
-                for (let i = 0; i < this.state.playerAField.length; i++){
+                if (updates.playerAField.length > 0 && this.state.playerAField.length > 0 && updates.playerAField.length === this.state.playerAField.length){
+                if (this.state.currentPlayerTurn === updates.currentPlayerTurn){
+                for (let i = 0; i < updates.playerAField.length; i++){
                     
                     let attackACard = false
                     if (this.state.playerAField[i].Health !== updates.playerAField[i].Health){
@@ -122,11 +123,14 @@ class GameBoard extends Component {
                         window.attack()
                     }
                 }
+            }
                 }}
 
                 if (updates.playerBField) {
-                if (updates.playerBField.length > 0) {
-                for (let i = 0; i < this.state.playerBField.length; i++){
+                if (updates.playerBField.length > 0 && this.state.playerBField.length > 0 && updates.playerBField.length === this.state.playerBField.length) {
+                
+                if (this.state.currentPlayerTurn === updates.currentPlayerTurn){
+                for (let i = 0; i < updates.playerBField.length; i++){
                     
                     let attackACard = false
                     if (this.state.playerBField[i].Health !== updates.playerBField[i].Health){
@@ -136,7 +140,7 @@ class GameBoard extends Component {
                         
                         window.attack()
                     }
-                }}
+                }}}
                 }
                 
                 if (updates.playerAMana === 0) {
@@ -519,15 +523,6 @@ class GameBoard extends Component {
                             playerAGraveyard.push(removedACard);
                         }
 
-                        // this.setState({
-                        //     playerAField: playerAField,
-                        //     playerBField: playerBField,
-                        //     playerAMana: playerAMana,
-                        //     playerBGraveyard: playerBGraveyard,
-                        //     playerAGraveyard: playerAGraveyard
-                        // }, function () {
-                        //     API.board(this.state)
-                        // })
                         window.attack()
                         API.attackBMinion(playerAField, playerBField, playerAMana, playerBGraveyard, playerAGraveyard)
 
