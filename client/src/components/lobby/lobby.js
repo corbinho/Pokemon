@@ -65,7 +65,7 @@ class Lobby extends React.Component {
 
             <div className="createGame">
               <div className="header">Create a New Game</div>
-              <input type="text" name="name" className="inputField" placeholder="Enter your name"></input>
+              <input type="text" name="name" className="inputField" placeholder="Enter your name" value={this.state.name} onChange={this.updateInput}></input>
               <br></br>
               <button className="createGameBtn" onClick={this.joinGame} >Create a Game </button>
 
